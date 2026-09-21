@@ -14,9 +14,9 @@
   position: relative;
   display: block;
   padding: 24px 48px 24px 0;
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.03;
   cursor: pointer;
   list-style: none;
 }
@@ -51,8 +51,8 @@
 
 .accordion .accordion-item-body {
   padding: 0 0 24px;
-  font-size: var(--body-font-size-s);
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.33;
 }
 
 .accordion .accordion-item-body p {
@@ -61,6 +61,6 @@
 
 @media (width >= 900px) {
   .accordion .accordion-item summary {
-    font-size: 2rem;
+    font-size: 31px; /* source: Merkle history accordion year titles */
   }
 }

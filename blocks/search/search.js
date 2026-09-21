@@ -13,8 +13,6 @@
  * are shareable and the back/forward buttons work.
  */
 
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 const QUERY_INDEX = '/query-index.json';
 const PAGE_SIZE = 500;
 
@@ -58,17 +56,22 @@ function isContentPage(row) {
   return true;
 }
 
-/* Score a row against the lowercased query; higher = more relevant, 0 = no match. */
+/* Score a row against the lowercased query. Matching is driven by the page's
+   `keywords` metadata from query-index.json; title is a lighter fallback so the
+   search still surfaces obvious pages when keywords are sparse. 0 = no match. */
 function scoreRow(row, q) {
-  const title = (row.title || '').toLowerCase();
-  const desc = (row.description || '').toLowerCase();
   const keywords = (row.keywords || '').toLowerCase();
-  const path = (row.path || '').toLowerCase();
+  const title = (row.title || '').toLowerCase();
   let score = 0;
-  if (title.includes(q)) score += title.startsWith(q) ? 6 : 4;
-  if (keywords.includes(q)) score += 3;
-  if (desc.includes(q)) score += 2;
-  if (path.includes(q)) score += 1;
+  // primary: match against the keywords column
+  if (keywords) {
+    const tags = keywords.split(/[,;|]/).map((t) => t.trim()).filter(Boolean);
+    if (tags.some((t) => t === q)) score += 10; // exact tag hit
+    else if (tags.some((t) => t.includes(q) || q.includes(t))) score += 6;
+    else if (keywords.includes(q)) score += 4;
+  }
+  // fallback: title contains the query
+  if (title.includes(q)) score += title.startsWith(q) ? 3 : 2;
   return score;
 }
 
@@ -91,29 +94,18 @@ function renderResult(row) {
   link.className = 'search-result-link';
   link.href = row.path;
 
-  if (row.image) {
-    const fig = document.createElement('div');
-    fig.className = 'search-result-image';
-    fig.append(createOptimizedPicture(row.image, row.title || '', false, [{ width: '400' }]));
-    link.append(fig);
-  }
-
-  const body = document.createElement('div');
-  body.className = 'search-result-body';
-
   const h = document.createElement('h3');
   h.className = 'search-result-title';
   h.textContent = row.title || row.path;
-  body.append(h);
+  link.append(h);
 
   if (row.description) {
     const p = document.createElement('p');
     p.className = 'search-result-desc';
     p.textContent = row.description;
-    body.append(p);
+    link.append(p);
   }
 
-  link.append(body);
   li.append(link);
   return li;
 }
