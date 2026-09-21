@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-filter",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Filtered content archive. A black 'Filters' pill reveals category chips; results render as a 2-column grid of light-grey card panels (blue/brand eyebrow label + bold title + 'Read more' link); a black 'Load more' pill reveals results in batches.",
+  "contentPattern": "Each result card is one row: cell 1 = optional image, cell 2 = eyebrow/category label + title (heading) + 'Read more' link. Filtering, batching, and the Filters control are client-side behavior derived from the cards' eyebrow text — not authored rows.",
+  "usage": "'Find something specific' style filterable, paginated content archive / resource listing.",
+  "options": [],
+  "memberVariantIds": ["cards-filter"]
+}

@@ -1,0 +1,151 @@
+/* cards-filter — filtered content archive: Filters control + card grid + Load more.
+   Merkle: light-grey card panels, blue eyebrow, black pill buttons, brand-red accents. */
+
+.cards-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- filter control --- */
+.cards-filter .cards-filter-controls {
+  position: relative;
+}
+
+.cards-filter .cards-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 12px 24px;
+  border: 0;
+  border-radius: 24px;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.cards-filter .cards-filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.cards-filter .cards-filter-chip {
+  margin: 0;
+  padding: 8px 16px;
+  border: 1px solid #dadada;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--text-color);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cards-filter .cards-filter-chip:hover {
+  border-color: var(--brand-accent, #dd3039);
+}
+
+.cards-filter .cards-filter-chip.is-active {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+/* --- card grid --- */
+.cards-filter .cards-filter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.cards-filter .cards-filter-list > li {
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cards-filter .cards-filter-card-image {
+  line-height: 0;
+}
+
+.cards-filter .cards-filter-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.cards-filter .cards-filter-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+}
+
+/* eyebrow / category label */
+.cards-filter .cards-filter-card-body > p:first-child {
+  margin: 0;
+  color: var(--link-color, #dd3039);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cards-filter .cards-filter-card-body h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+/* "Read more" link pushed to the bottom, brand red */
+.cards-filter .cards-filter-card-body > p:last-child {
+  margin: 8px 0 0;
+}
+
+.cards-filter .cards-filter-card-body > p:last-child a {
+  color: var(--link-color, #dd3039);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* --- load more --- */
+.cards-filter .cards-filter-loadmore {
+  align-self: center;
+  margin: 8px 0;
+  padding: 14px 32px;
+  border: 0;
+  border-radius: 24px;
+  background: #000;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.cards-filter .cards-filter-loadmore:hover {
+  background: #333;
+}
+
+@media (width >= 600px) {
+  .cards-filter .cards-filter-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-filter .cards-filter-list {
+    gap: 24px;
+  }
+}

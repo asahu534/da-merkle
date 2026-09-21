@@ -1,0 +1,204 @@
+/* Block: carousel-hero — full-bleed dark hero carousel
+   Values extracted from source computed styles (merkle.com .teasercarousel.carousel). */
+
+/* --- full-bleed: break out of the section's max-width/padding container --- */
+.carousel-hero-wrapper {
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.carousel-hero {
+  position: relative;
+  color: #fff;
+  background-color: #000;
+}
+
+.carousel-hero .carousel-hero-slides-container {
+  position: relative;
+}
+
+.carousel-hero .carousel-hero-slides,
+.carousel-hero .carousel-hero-slide-indicators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-hero .carousel-hero-slides {
+  display: flex;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow: scroll clip;
+}
+
+.carousel-hero .carousel-hero-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-hero .carousel-hero-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  min-height: 460px;
+}
+
+/* --- full-bleed background image behind the copy --- */
+.carousel-hero .carousel-hero-slide .carousel-hero-slide-image {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-hero .carousel-hero-slide .carousel-hero-slide-image picture {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-hero .carousel-hero-slide .carousel-hero-slide-image picture > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark scrim so white copy stays legible over bright images */
+.carousel-hero .carousel-hero-slide .carousel-hero-slide-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 65%) 0%, rgb(0 0 0 / 35%) 40%, rgb(0 0 0 / 5%) 70%);
+}
+
+/* --- overlaid, left-aligned, vertically-centered copy --- */
+.carousel-hero .carousel-hero-slide .carousel-hero-slide-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 100%;
+  padding: 24px;
+}
+
+/* description paragraphs — white body copy (base for all content <p>) */
+.carousel-hero .carousel-hero-slide-content p {
+  margin: 16px 0 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #fff;
+}
+
+/* eyebrow label (e.g. PLAYBOOK / CASE STUDY) — first paragraph when no heading */
+.carousel-hero .carousel-hero-slide-content > p:first-child {
+  margin: 0 0 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #aeaebc;
+}
+
+.carousel-hero .carousel-hero-slide-content h1,
+.carousel-hero .carousel-hero-slide-content h2,
+.carousel-hero .carousel-hero-slide-content h3 {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.08;
+  color: #fff;
+}
+
+/* --- CTA links: white pill, black uppercase label (links are not .button-decorated) --- */
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-hero .carousel-hero-slide-content p:has(a) {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 12px 0 0;
+}
+
+main .carousel-hero .carousel-hero-slide-content a:any-link {
+  display: inline-block;
+  margin: 0;
+  padding: 15px 16px;
+  border: 0;
+  border-radius: 16px;
+  background-color: #fff;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+main .carousel-hero .carousel-hero-slide-content a:any-link:hover,
+main .carousel-hero .carousel-hero-slide-content a:any-link:focus-visible {
+  background-color: #eee;
+  color: #000;
+  text-decoration: none;
+}
+
+/* --- slide indicators: thin dashes anchored bottom-left --- */
+.carousel-hero .carousel-hero-slide-indicators {
+  position: absolute;
+  bottom: 32px;
+  left: 24px;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  line-height: 0;
+}
+
+.carousel-hero .carousel-hero-slide-indicator button {
+  width: 52px;
+  height: 2px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: #aeaebc;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+/* active indicator (JS sets disabled + aria-current) — Merkle red */
+.carousel-hero .carousel-hero-slide-indicator button:disabled,
+.carousel-hero .carousel-hero-slide-indicator button[aria-current],
+.carousel-hero .carousel-hero-slide-indicator button:hover,
+.carousel-hero .carousel-hero-slide-indicator button:focus-visible {
+  background-color: var(--link-color);
+}
+
+/* source hides prev/next arrows — indicators only */
+.carousel-hero .carousel-hero-navigation-buttons {
+  display: none;
+}
+
+/* --- desktop --- */
+@media (width >= 900px) {
+  .carousel-hero .carousel-hero-slide {
+    min-height: 522px;
+  }
+
+  .carousel-hero .carousel-hero-slide .carousel-hero-slide-content {
+    max-width: 600px;
+    padding: 48px 30px;
+  }
+
+  .carousel-hero .carousel-hero-slide-content h1,
+  .carousel-hero .carousel-hero-slide-content h2,
+  .carousel-hero .carousel-hero-slide-content h3 {
+    font-size: 52px;
+    line-height: 56px;
+  }
+
+  .carousel-hero .carousel-hero-slide-indicators {
+    left: 30px;
+  }
+}

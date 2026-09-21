@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-casestudy",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Horizontally-scrolling case-study gallery on a dark background. Each card is a tall image with a client eyebrow label and title overlaid. Prev/next circular arrow buttons scroll the track one card at a time.",
+  "contentPattern": "First row labels the block ('Cards'). Each case study is one row with two cells: cell 1 = image, cell 2 = client eyebrow + title (heading) + optional link.",
+  "usage": "'Our work in action' case-study / client-story gallery carousel.",
+  "options": [],
+  "memberVariantIds": ["cards-casestudy"]
+}

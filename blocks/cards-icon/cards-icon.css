@@ -1,0 +1,74 @@
+/* cards-icon — Merkle "Built for the experience economy" icon feature grid.
+ *
+ * In the imported content this became FOUR separate cards-icon blocks (one per
+ * column) sitting as consecutive siblings inside one dark section. EDS wraps
+ * each block in its own .cards-icon-wrapper, so the 4-across layout is achieved
+ * by laying the WRAPPERS out as columns (they are adjacent siblings with no
+ * intervening whitespace nodes). White text comes from the section's own
+ * `.section.dark` rules (styles.css) — inherited, not hardcoded — which matches
+ * the source (white on black) and stays visible if the dark class is absent.
+ *
+ * Values extracted from merkle.com computed styles (see
+ * migration-work/cards-icon-extracted.css).
+ */
+
+/* --- Block internals (mobile-first: single stacked column) --- */
+.cards-icon {
+  margin: 0;
+}
+
+.cards-icon > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards-icon > ul > li {
+  display: block;
+  margin: 0;
+}
+
+/* full-width icon image; source rendition is 360x243 (~1.48:1), object-fit fill */
+.cards-icon .cards-icon-card-image {
+  line-height: 0;
+}
+
+.cards-icon .cards-icon-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 243;
+  object-fit: contain;
+}
+
+.cards-icon .cards-icon-card-body {
+  display: block;
+  padding: 0;
+}
+
+/* h6: 21px / 700 / 24px line-height, generous ~49px vertical rhythm (source: margin 48.93px 0) */
+.cards-icon .cards-icon-card-body h6 {
+  margin: 48px 0;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+/* p: 18px / 400 / 24px line-height, margin 0 0 16px (source) */
+.cards-icon .cards-icon-card-body p {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/* --- Desktop: the four block wrappers read as a flush 4-across row --- */
+@media (width >= 900px) {
+  .cards-icon-wrapper {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 25%;
+    margin: 0;
+    vertical-align: top;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variantName": "video-centered",
+  "baseBlock": "video",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Centered, max-width video player. Shows a poster image with a circular play button until clicked; then loads the video (MP4, YouTube, or Vimeo). Reserves 16:9 space to avoid layout shift.",
+  "contentPattern": "First row labels the block ('Video'). Second row: a link to the video source, plus an optional poster image.",
+  "usage": "Standalone centered promotional/explainer video with a poster and play button.",
+  "options": [],
+  "memberVariantIds": ["video-centered"]
+}

@@ -1,0 +1,131 @@
+/* search — site-search landing: large query input + trending topic pills.
+   Renders on the dark section; white text/borders. */
+
+.search {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 24px 0;
+}
+
+/* --- search form --- */
+.search .search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 auto 32px;
+}
+
+.search .search-input {
+  flex: 1 1 auto;
+  margin: 0;
+  padding: 12px 48px 12px 0;
+  border: 0;
+  border-bottom: 1px solid rgb(255 255 255 / 60%);
+  background: transparent;
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1.3;
+}
+
+.search .search-input::placeholder {
+  color: rgb(255 255 255 / 70%);
+}
+
+.search .search-input:focus {
+  outline: none;
+  border-bottom-color: #fff;
+}
+
+.search .search-submit {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* magnifier icon */
+.search .search-submit::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.search .search-submit::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 19px;
+  width: 9px;
+  height: 2px;
+  background: #fff;
+  transform: rotate(45deg);
+  transform-origin: left center;
+}
+
+/* --- trending topics --- */
+.search .search-topics-title {
+  margin: 0 0 16px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search .search-topics-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.search .search-topic {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 20px;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 28px;
+  background: transparent;
+  color: #fff;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.search .search-topic:hover,
+.search .search-topic:focus-visible {
+  border-color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+/* trailing magnifier on each pill */
+.search .search-topic::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentcolor;
+  border-radius: 50%;
+  box-shadow: 3px 3px 0 -1px currentcolor;
+}
+
+@media (width >= 900px) {
+  .search .search-input {
+    font-size: 2.25rem;
+  }
+}

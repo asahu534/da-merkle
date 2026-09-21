@@ -1,0 +1,10 @@
+{
+  "variantName": "search",
+  "baseBlock": "search",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Site-search landing on a dark background: a large centered query input with a magnifier submit button, a 'Trending Topics' label, and a row of pill-shaped trending-topic buttons (each with a magnifier icon). Submitting or clicking a pill navigates to search results with a ?q= query.",
+  "contentPattern": "Row 1 = the input placeholder/prompt text. Row 2 = a 'Trending Topics' heading. Row 3 = a list of trending topic terms. The input, submit button, and topic pills are built by the block JS; results/pagination are runtime behavior.",
+  "usage": "Dedicated site-search page hero: query input plus trending/suggested search terms.",
+  "options": [],
+  "memberVariantIds": ["search"]
+}

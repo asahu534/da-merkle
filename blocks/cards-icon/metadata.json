@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-icon",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Grid of feature items on a dark background. Each item has a 3D/graphic icon on top, a bold title, and a short description, all left-aligned. Typically four across on desktop.",
+  "contentPattern": "First row labels the block ('Cards'). Each item is one row with two cells: cell 1 = icon image, cell 2 = title (heading) + description.",
+  "usage": "'Built for the experience economy' style icon-led feature grid.",
+  "options": [],
+  "memberVariantIds": ["cards-icon"]
+}
