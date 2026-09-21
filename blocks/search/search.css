@@ -148,6 +148,98 @@
   filter: invert(9%) sepia(60%) saturate(3000%) hue-rotate(220deg) brightness(60%);
 }
 
+/* --- results (client-side, from query-index.json) --- */
+.search .search-results {
+  max-width: 806px;
+  margin: 40px auto 0;
+  text-align: left;
+}
+
+.search .search-count,
+.search .search-status {
+  margin: 0 0 24px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.search .search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search .search-result {
+  margin: 0;
+  padding: 0;
+}
+
+.search .search-result-link {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 20px 0;
+  border-top: 1px solid rgb(255 255 255 / 20%);
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.search .search-result-link:hover,
+.search .search-result-link:focus-visible {
+  opacity: 0.75;
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+
+.search .search-result:last-child .search-result-link {
+  border-bottom: 1px solid rgb(255 255 255 / 20%);
+}
+
+.search .search-result-image {
+  flex: 0 0 120px;
+  line-height: 0;
+}
+
+.search .search-result-image img {
+  width: 120px;
+  height: 80px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.search .search-result-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.search .search-result-title {
+  margin: 0;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.search .search-result-desc {
+  margin: 8px 0 0;
+  color: rgb(255 255 255 / 80%);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  /* clamp long descriptions to two lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 @media (width >= 900px) {
   .search {
     padding: 96px 30px;
@@ -160,5 +252,18 @@
 
   .search .search-topics {
     margin-top: 48px;
+  }
+
+  .search .search-results {
+    margin-top: 56px;
+  }
+
+  .search .search-result-image {
+    flex-basis: 160px;
+  }
+
+  .search .search-result-image img {
+    width: 160px;
+    height: 100px;
   }
 }
