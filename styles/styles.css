@@ -62,9 +62,9 @@
     --body-font-size-s: 18px;
     --body-font-size-xs: 16px;
 
-    /* heading sizes */
+    /* heading sizes — Merkle uses large 52px display h1/h2 */
     --heading-font-size-xxl: 52px;
-    --heading-font-size-xl: 40px;
+    --heading-font-size-xl: 48px;
     --heading-font-size-l: 28px;
     --heading-font-size-m: 21px;
     --heading-font-size-s: 18px;
@@ -109,9 +109,16 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.15;
   scroll-margin: 40px;
+}
+
+/* Merkle uses light-weight (400) large display headings for h1/h2;
+   smaller headings (h3-h6, e.g. card titles) stay bold (700). */
+h1,
+h2 {
+  font-weight: 400;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -370,13 +377,16 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link {
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.35s, background-color 0.35s;
 }
 
-/* source CTA pills have no hover change (stay white) */
+/* source CTA pills turn blue with white text on hover (0.35s) */
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:hover,
-main .section .default-content-wrapper p:has(> a + a) > a:any-link:hover {
-  background-color: #fff;
-  color: #000;
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:hover,
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:focus-visible,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:focus-visible {
+  background-color: #0328d1;
+  color: #fff;
   text-decoration: none;
 }
 /* stylelint-enable no-descending-specificity */

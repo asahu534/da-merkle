@@ -134,13 +134,14 @@ main .carousel-hero .carousel-hero-slide-content a:any-link {
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
+  transition: color 0.35s, background-color 0.35s;
 }
 
-/* source hero CTA pills have no hover change (stay white) */
+/* source hero CTA pills turn blue with white text on hover (0.35s) */
 main .carousel-hero .carousel-hero-slide-content a:any-link:hover,
 main .carousel-hero .carousel-hero-slide-content a:any-link:focus-visible {
-  background-color: #fff;
-  color: #000;
+  background-color: #0328d1;
+  color: #fff;
   text-decoration: none;
 }
 
