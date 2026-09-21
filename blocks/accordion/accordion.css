@@ -61,6 +61,6 @@
 
 @media (width >= 900px) {
   .accordion .accordion-item summary {
-    font-size: 31px; /* source: Merkle history accordion year titles */
+    font-size: 26px;
   }
 }
