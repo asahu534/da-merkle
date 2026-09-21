@@ -372,9 +372,10 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link {
   text-decoration: none;
 }
 
+/* source CTA pills have no hover change (stay white) */
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:hover,
 main .section .default-content-wrapper p:has(> a + a) > a:any-link:hover {
-  background-color: #eee;
+  background-color: #fff;
   color: #000;
   text-decoration: none;
 }

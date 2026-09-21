@@ -56,8 +56,10 @@ header nav a:any-link {
   text-decoration: none;
 }
 
+/* source header nav links have no hover change (stay white, no underline) */
 header nav a:hover {
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
 }
 
 /* hamburger */
@@ -277,17 +279,17 @@ header nav .nav-lang li {
   padding: 6px 0;
 }
 
+/* Contact Us — static white pill (source shows no hover change) */
 header nav .nav-cta {
   display: inline-block;
   padding: 10px 20px;
   border: 1px solid #fff;
-  border-radius: 2px;
-  font-weight: 600;
+  border-radius: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 header nav .nav-cta:hover {
-  background: #fff;
-  color: #000;
   text-decoration: none;
 }
 

@@ -1,0 +1,66 @@
+/* accordion — "Our growing family" timeline accordion (Merkle history page).
+   Large bold titles with a thin divider between items and a +/- style chevron;
+   panel content revealed on open. Values aligned to Merkle source. */
+
+.accordion .accordion-item {
+  border-top: 1px solid #dadada;
+}
+
+.accordion .accordion-item:last-child {
+  border-bottom: 1px solid #dadada;
+}
+
+.accordion .accordion-item summary {
+  position: relative;
+  display: block;
+  padding: 24px 48px 24px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion .accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* chevron */
+.accordion .accordion-item summary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentcolor;
+  border-width: 2px 2px 0 0;
+  transform: translateY(-50%) rotate(135deg);
+  transition: transform 0.2s;
+}
+
+.accordion .accordion-item[open] summary::after {
+  transform: translateY(-70%) rotate(-45deg);
+}
+
+.accordion .accordion-item summary:hover,
+.accordion .accordion-item summary:focus-visible {
+  color: var(--link-color);
+  outline: none;
+}
+
+.accordion .accordion-item-body {
+  padding: 0 0 24px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+}
+
+.accordion .accordion-item-body p {
+  margin: 0 0 0.8em;
+}
+
+@media (width >= 900px) {
+  .accordion .accordion-item summary {
+    font-size: 2rem;
+  }
+}

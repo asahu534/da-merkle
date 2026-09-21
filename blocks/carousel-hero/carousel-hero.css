@@ -136,9 +136,10 @@ main .carousel-hero .carousel-hero-slide-content a:any-link {
   text-decoration: none;
 }
 
+/* source hero CTA pills have no hover change (stay white) */
 main .carousel-hero .carousel-hero-slide-content a:any-link:hover,
 main .carousel-hero .carousel-hero-slide-content a:any-link:focus-visible {
-  background-color: #eee;
+  background-color: #fff;
   color: #000;
   text-decoration: none;
 }

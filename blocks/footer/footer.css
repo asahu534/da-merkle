@@ -19,8 +19,10 @@ footer .footer-content a:any-link {
   text-decoration: none;
 }
 
+/* source footer links have no hover change */
 footer .footer-content a:hover {
-  text-decoration: underline;
+  color: #fff;
+  text-decoration: none;
 }
 
 footer p {
@@ -66,11 +68,12 @@ footer .footer-social-icon {
   height: 36px;
   border: 1px solid rgb(255 255 255 / 40%);
   border-radius: 50%;
-  transition: opacity 0.2s;
+  transition: border-color 0.2s;
 }
 
+/* source social-icon hover: border turns brand red, no opacity/underline change */
 footer .footer-social-icon:hover {
-  opacity: 0.7;
+  border-color: var(--brand-accent, #dd3039);
   text-decoration: none;
 }
 
