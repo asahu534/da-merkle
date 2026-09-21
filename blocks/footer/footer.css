@@ -19,10 +19,35 @@ footer .footer-content a:any-link {
   text-decoration: none;
 }
 
-/* source footer links have no hover change */
 footer .footer-content a:hover {
   color: #fff;
   text-decoration: none;
+}
+
+/* animated blue underline bar on the legal links (matches source:
+   2px blue bar at bottom:-4px, scaleX 0 -> 1 from the left on hover) */
+/* stylelint-disable-next-line no-descending-specificity */
+footer .footer-brand ul a {
+  position: relative;
+}
+
+footer .footer-brand ul a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #0391f2;
+  transform: scaleX(0);
+  transform-origin: right bottom;
+  transition: transform 0.25s ease-out;
+}
+
+footer .footer-brand ul a:hover::before,
+footer .footer-brand ul a:focus-visible::before {
+  transform: scaleX(1);
+  transform-origin: left bottom;
 }
 
 footer p {
