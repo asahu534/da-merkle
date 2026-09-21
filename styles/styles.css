@@ -115,10 +115,12 @@ h6 {
 }
 
 /* Merkle uses light-weight (400) large display headings for h1/h2;
-   smaller headings (h3-h6, e.g. card titles) stay bold (700). */
+   smaller headings (h3-h6, e.g. card titles) stay bold (700). The display
+   headings also use a tight line-height (~1.08, source: 56px on 52px). */
 h1,
 h2 {
   font-weight: 400;
+  line-height: 1.08;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -365,6 +367,7 @@ main .section.center .default-content-wrapper > p {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.14; /* tight intro copy — source: 24px on 21px */
 }
 
 /* stylelint-disable no-descending-specificity */
