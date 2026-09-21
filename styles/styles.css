@@ -346,3 +346,36 @@ main .section.dark h6 {
 main .section.dark a:any-link {
   color: #fff;
 }
+
+/* CTA links in default content — a paragraph whose only content is links
+   renders as white pill buttons (matches Merkle "All Work" / "About us"). */
+/* stylelint-disable no-descending-specificity */
+main .section .default-content-wrapper p:has(> a:only-child),
+main .section .default-content-wrapper p:has(> a + a) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0 0;
+}
+
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link {
+  display: inline-block;
+  padding: 15px 16px;
+  border-radius: 16px;
+  background-color: #fff;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:hover,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:hover {
+  background-color: #eee;
+  color: #000;
+  text-decoration: none;
+}
+/* stylelint-enable no-descending-specificity */
