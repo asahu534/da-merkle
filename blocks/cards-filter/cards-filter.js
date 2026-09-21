@@ -33,13 +33,23 @@ export default function decorate(block) {
     const li = document.createElement('li');
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-filter-card-image';
-      else div.className = 'cards-filter-card-body';
+      if (div.querySelector('picture')) div.className = 'cards-filter-card-image';
+      else if (div.querySelector('h3, p')) div.className = 'cards-filter-card-body';
+      else div.remove(); // drop empty placeholder cells (source cards have no image)
     });
     // derive the card's category from its eyebrow (first paragraph in the body)
     const body = li.querySelector('.cards-filter-card-body');
     const eyebrow = body ? body.querySelector('p') : null;
     if (eyebrow) li.dataset.category = slug(eyebrow.textContent);
+    // normalise the "Read more" link: source shows just "Read more" as the
+    // visible label; keep the full title as the accessible name.
+    const readLink = body ? body.querySelector('p:last-child a') : null;
+    if (readLink) {
+      const title = li.querySelector('h3');
+      const label = title ? title.textContent.trim() : readLink.textContent.trim();
+      readLink.setAttribute('aria-label', `Read more: ${label}`);
+      readLink.textContent = 'Read more';
+    }
     ul.append(li);
   });
 

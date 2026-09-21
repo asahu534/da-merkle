@@ -15,6 +15,7 @@ function readConfig(block) {
   let placeholder = 'What can we help you search for?';
   let heading = 'Trending Topics';
   const topics = [];
+  const textRows = [];
 
   rows.forEach((row) => {
     const list = row.querySelector('ul, ol');
@@ -28,9 +29,14 @@ function readConfig(block) {
       heading = headingEl.textContent.trim();
     } else {
       const text = row.textContent.trim();
-      if (text) placeholder = text;
+      if (text) textRows.push(text);
     }
   });
+
+  // First text row is the input prompt/placeholder; a second text row (e.g.
+  // "Trending Topics") is the topics label, unless an explicit heading was found.
+  if (textRows[0]) [placeholder] = textRows;
+  if (textRows[1]) [, heading] = textRows;
 
   return { placeholder, heading, topics };
 }

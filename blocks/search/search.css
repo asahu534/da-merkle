@@ -1,10 +1,25 @@
-/* search — site-search landing: large query input + trending topic pills.
-   Renders on the dark section; white text/borders. */
+/* search — Merkle site-search landing.
+   Full-bleed dark navy panel: large centered underlined query input with a
+   magnifier submit button, a "TRENDING TOPICS" label, and a row of pill-shaped
+   trending-topic buttons (each with a trailing magnifier icon). All white
+   text/borders on the navy background.
+   Values extracted from source computed styles (merkle.com/en/search.html). */
 
+/* white magnifier icon (source: /resources/v2/icons/search-dt.svg) */
 .search {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 24px 0;
+  --search-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.94043 0.625C13.5366 0.625 17.2559 4.3267 17.2559 8.88477C17.2559 13.4428 13.5366 17.1445 8.94043 17.1445C4.34425 17.1445 0.625 13.4428 0.625 8.88477C0.625008 4.32672 4.34426 0.625029 8.94043 0.625Z" stroke="white" stroke-width="1.25"/><path d="M14.0508 15.1797L15.2036 14.0444L23.4289 22.2929C23.7443 22.6092 23.742 23.1199 23.4237 23.4334C23.1053 23.7469 22.5915 23.7445 22.2761 23.4282L14.0508 15.1797Z" fill="white"/></svg>');
+
+  background-color: rgb(4 14 75); /* Merkle navy */
+  color: #fff;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+/* full-bleed: escape the section's 1200px content column */
+.search-wrapper {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* --- search form --- */
@@ -12,120 +27,138 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0 auto 32px;
+  max-width: 806px;
+  margin: 0 auto;
 }
 
 .search .search-input {
   flex: 1 1 auto;
+  min-width: 0;
   margin: 0;
-  padding: 12px 48px 12px 0;
+  padding: 0 48px 8px 0;
   border: 0;
-  border-bottom: 1px solid rgb(255 255 255 / 60%);
+  border-bottom: 2px solid #fff;
+  border-radius: 0;
   background: transparent;
   color: #fff;
-  font-size: 1.75rem;
-  line-height: 1.3;
+  font-family: var(--body-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+  appearance: none;
 }
 
 .search .search-input::placeholder {
-  color: rgb(255 255 255 / 70%);
+  color: #fff;
+  opacity: 1;
+}
+
+/* hide the native search clear/decoration */
+.search .search-input::-webkit-search-decoration,
+.search .search-input::-webkit-search-cancel-button {
+  appearance: none;
 }
 
 .search .search-input:focus {
   outline: none;
-  border-bottom-color: #fff;
 }
 
 .search .search-submit {
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+  bottom: 12px;
+  width: 24px;
+  height: 24px;
   margin: 0;
   padding: 0;
   border: 0;
-  background: transparent;
+  background: var(--search-icon) no-repeat center / contain;
   cursor: pointer;
 }
 
-/* magnifier icon */
-.search .search-submit::before {
-  content: '';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #fff;
-  border-radius: 50%;
-}
-
-.search .search-submit::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 19px;
-  width: 9px;
-  height: 2px;
-  background: #fff;
-  transform: rotate(45deg);
-  transform-origin: left center;
-}
-
 /* --- trending topics --- */
+.search .search-topics {
+  margin-top: 40px;
+}
+
 .search .search-topics-title {
-  margin: 0 0 16px;
-  font-size: 0.875rem;
+  margin: 0 0 24px;
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  line-height: 24px;
   text-transform: uppercase;
 }
 
 .search .search-topics-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  justify-content: center;
+  gap: 16px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search .search-topics-list li {
+  margin: 0;
+  padding: 0;
 }
 
 .search .search-topic {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 10px;
   margin: 0;
-  padding: 12px 20px;
-  border: 1px solid rgb(255 255 255 / 50%);
-  border-radius: 28px;
+  padding: 15px 16px;
+  border: 2px solid #fff;
+  border-radius: 32px;
   background: transparent;
   color: #fff;
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-.search .search-topic:hover,
-.search .search-topic:focus-visible {
-  border-color: #fff;
-  background: rgb(255 255 255 / 10%);
+  transition: background-color 0.2s, color 0.2s;
 }
 
 /* trailing magnifier on each pill */
 .search .search-topic::after {
   content: '';
-  width: 14px;
-  height: 14px;
-  border: 2px solid currentcolor;
-  border-radius: 50%;
-  box-shadow: 3px 3px 0 -1px currentcolor;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+  background: var(--search-icon) no-repeat center / contain;
+}
+
+.search .search-topic:hover,
+.search .search-topic:focus-visible {
+  background: #fff;
+  color: rgb(4 14 75);
+  outline: none;
+}
+
+/* recolor the magnifier to navy on hover (invert the white icon) */
+.search .search-topic:hover::after,
+.search .search-topic:focus-visible::after {
+  filter: invert(9%) sepia(60%) saturate(3000%) hue-rotate(220deg) brightness(60%);
 }
 
 @media (width >= 900px) {
+  .search {
+    padding: 96px 30px;
+  }
+
   .search .search-input {
-    font-size: 2.25rem;
+    font-size: 37px;
+    line-height: 40px;
+  }
+
+  .search .search-topics {
+    margin-top: 48px;
   }
 }
