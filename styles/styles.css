@@ -354,6 +354,26 @@ main .section.dark a:any-link {
   color: #fff;
 }
 
+/* center section variant — author-configurable via Section Metadata Style=center.
+   Centers the intro (heading + paragraph) and the CTA button row; constrains
+   the intro text to a readable centered column (matches Merkle intro sections). */
+main .section.center .default-content-wrapper {
+  text-align: center;
+}
+
+main .section.center .default-content-wrapper > p {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* stylelint-disable no-descending-specificity */
+main .section.center .default-content-wrapper p:has(> a:only-child),
+main .section.center .default-content-wrapper p:has(> a + a) {
+  justify-content: center;
+}
+/* stylelint-enable no-descending-specificity */
+
 /* CTA links in default content — a paragraph whose only content is links
    renders as Merkle pill buttons. First link = PRIMARY (white pill, blue on
    hover); any following link = SECONDARY (red outline, solid-red fill on hover).
