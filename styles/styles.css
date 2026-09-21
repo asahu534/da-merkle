@@ -355,7 +355,9 @@ main .section.dark a:any-link {
 }
 
 /* CTA links in default content — a paragraph whose only content is links
-   renders as white pill buttons (matches Merkle "All Work" / "About us"). */
+   renders as Merkle pill buttons. First link = PRIMARY (white pill, blue on
+   hover); any following link = SECONDARY (red outline, solid-red fill on hover).
+   Matches "All Work" (primary) + "About us" (secondary). */
 /* stylelint-disable no-descending-specificity */
 main .section .default-content-wrapper p:has(> a:only-child),
 main .section .default-content-wrapper p:has(> a + a) {
@@ -365,28 +367,49 @@ main .section .default-content-wrapper p:has(> a + a) {
   margin: 24px 0 0;
 }
 
+/* base pill (both variants) */
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link,
 main .section .default-content-wrapper p:has(> a + a) > a:any-link {
   display: inline-block;
-  padding: 15px 16px;
   border-radius: 16px;
-  background-color: #fff;
-  color: #000;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   text-decoration: none;
-  transition: color 0.35s, background-color 0.35s;
+  transition: color 0.35s, background-color 0.35s, border-color 0.35s;
 }
 
-/* source CTA pills turn blue with white text on hover (0.35s) */
+/* PRIMARY (first link): white pill, black text */
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child,
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link {
+  padding: 15px 16px;
+  border: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child:hover,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child:focus-visible,
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:hover,
-main .section .default-content-wrapper p:has(> a + a) > a:any-link:hover,
-main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:focus-visible,
-main .section .default-content-wrapper p:has(> a + a) > a:any-link:focus-visible {
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:focus-visible {
   background-color: #0328d1;
   color: #fff;
-  text-decoration: none;
+}
+
+/* SECONDARY (subsequent links): transparent, red outline, white text */
+main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link,
+main .section.dark .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link {
+  padding: 13px 14px;
+  border: 2px solid var(--brand-accent, #dd3039);
+  background-color: transparent;
+  color: #fff;
+}
+
+main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:hover,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:focus-visible {
+  background-color: var(--brand-accent, #dd3039);
+  border-color: var(--brand-accent, #dd3039);
+  color: #fff;
 }
 /* stylelint-enable no-descending-specificity */
