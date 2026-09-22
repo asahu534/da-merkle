@@ -356,6 +356,28 @@ main .section.dark a:any-link {
   color: #fff;
 }
 
+/* navy section variant — Merkle uses a full-bleed navy panel with white text for
+   the site search and article-header sections (source: rgb(4 14 75)). */
+main .section.navy {
+  background-color: rgb(4 14 75);
+  color: #fff;
+  margin: 0;
+  padding: 64px 0;
+}
+
+main .section.navy h1,
+main .section.navy h2,
+main .section.navy h3,
+main .section.navy h4,
+main .section.navy h5,
+main .section.navy h6 {
+  color: #fff;
+}
+
+main .section.navy a:any-link {
+  color: #fff;
+}
+
 /* center section variant — author-configurable via Section Metadata Style=center.
    Centers the intro (heading + paragraph) and the CTA button row; constrains
    the intro text to a readable centered column (matches Merkle intro sections). */
