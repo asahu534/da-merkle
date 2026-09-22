@@ -6,11 +6,12 @@
  *   row 2: a "Trending Topics" heading
  *   row 3: a list of trending topic terms (as list items or links)
  *
- * The input, submit button, and topic pill buttons are built here. Submitting,
- * clicking a pill, or typing filters the EDS `/query-index.json` feed in the
- * browser and renders matches inline below the search bar — no page reload.
- * The active query is reflected in the URL (?q=) via the History API so results
- * are shareable and the back/forward buttons work.
+ * The input, submit button, and topic pills are built here. Submitting, clicking
+ * a pill, or typing filters the EDS `/query-index.json` feed in the browser and
+ * renders matches inline below the search bar — no page reload. Results render in
+ * a two-column layout: a FILTERS sidebar (facets built from the `keywords` column)
+ * and a list of result cards. The active query is reflected in the URL (?q=) via
+ * the History API so results are shareable and the back/forward buttons work.
  */
 
 const QUERY_INDEX = '/query-index.json';
@@ -47,6 +48,24 @@ async function fetchIndex() {
   return indexPromise;
 }
 
+/* Split a row's `keywords` column into trimmed, non-empty tags. */
+function keywordTags(row) {
+  return (row.keywords || '')
+    .split(/[,;|]/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+}
+
+/* Derive a card eyebrow ("Blog Post", "Ebook", …) from the page path. */
+function pathToType(path = '') {
+  if (/\/articles-blogs\//i.test(path)) return 'Blog Post';
+  if (/\/press-releases\//i.test(path)) return 'Press Release';
+  if (/\/ebooks\//i.test(path)) return 'Ebook';
+  if (/\/events\//i.test(path)) return 'Event';
+  if (/\/work\/case-studies\//i.test(path)) return 'Case Study';
+  return '';
+}
+
 /* Paths that are not real content pages and must never appear in results. */
 function isContentPage(row) {
   const path = row.path || '';
@@ -65,7 +84,7 @@ function scoreRow(row, q) {
   let score = 0;
   // primary: match against the keywords column
   if (keywords) {
-    const tags = keywords.split(/[,;|]/).map((t) => t.trim()).filter(Boolean);
+    const tags = keywordTags(row).map((t) => t.toLowerCase());
     if (tags.some((t) => t === q)) score += 10; // exact tag hit
     else if (tags.some((t) => t.includes(q) || q.includes(t))) score += 6;
     else if (keywords.includes(q)) score += 4;
@@ -93,6 +112,14 @@ function renderResult(row) {
   const link = document.createElement('a');
   link.className = 'search-result-link';
   link.href = row.path;
+
+  const type = pathToType(row.path);
+  if (type) {
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'search-result-type';
+    eyebrow.textContent = type;
+    link.append(eyebrow);
+  }
 
   const h = document.createElement('h3');
   h.className = 'search-result-title';
@@ -185,17 +212,118 @@ export default function decorate(block) {
     block.append(topicsWrap);
   }
 
-  // --- results region ---
+  // --- results region (white panel: count + filters sidebar + result cards) ---
   const results = document.createElement('div');
   results.className = 'search-results';
   results.setAttribute('aria-live', 'polite');
   results.hidden = true;
   block.append(results);
 
+  // state for the current query + active facet selections
+  let currentMatches = [];
+  const selectedFilters = new Set();
+
   const setEmptyView = (empty) => {
     // hide the trending topics once the user is actively searching
     if (topicsWrap) topicsWrap.hidden = !empty;
     results.hidden = empty;
+  };
+
+  // render the filtered view (count + cards) for the current query/facets
+  const renderView = () => {
+    const filtered = selectedFilters.size
+      ? currentMatches.filter((row) => keywordTags(row).some((t) => selectedFilters.has(t)))
+      : currentMatches;
+
+    const q = input.value.trim();
+    const main = results.querySelector('.search-results-main');
+    main.textContent = '';
+
+    const count = document.createElement('p');
+    count.className = 'search-count';
+    count.textContent = filtered.length
+      ? `Showing 1–${filtered.length} of ${filtered.length} results for “${q}”`
+      : `No results for “${q}”`;
+    main.append(count);
+
+    if (filtered.length) {
+      const ul = document.createElement('ul');
+      ul.className = 'search-results-list';
+      filtered.forEach((row) => ul.append(renderResult(row)));
+      main.append(ul);
+    }
+
+    // reflect selected/cleared state on the clear button
+    const clearBtn = results.querySelector('.search-filters-clear');
+    if (clearBtn) clearBtn.disabled = selectedFilters.size === 0;
+  };
+
+  // build the FILTERS sidebar facet from the keyword tags of the current matches
+  const buildFilters = () => {
+    const counts = new Map();
+    currentMatches.forEach((row) => {
+      keywordTags(row).forEach((t) => counts.set(t, (counts.get(t) || 0) + 1));
+    });
+    const tags = [...counts.keys()].sort((a, b) => a.localeCompare(b));
+
+    const aside = document.createElement('aside');
+    aside.className = 'search-filters';
+
+    const h = document.createElement('h2');
+    h.className = 'search-filters-title';
+    h.textContent = 'Filters';
+    aside.append(h);
+
+    if (tags.length) {
+      const list = document.createElement('ul');
+      list.className = 'search-filter-list';
+      tags.forEach((tag) => {
+        const li = document.createElement('li');
+        const label = document.createElement('label');
+        label.className = 'search-filter-option';
+
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.value = tag;
+        cb.addEventListener('change', () => {
+          if (cb.checked) selectedFilters.add(tag);
+          else selectedFilters.delete(tag);
+          renderView();
+        });
+
+        const text = document.createElement('span');
+        text.className = 'search-filter-label';
+        text.textContent = tag;
+
+        const n = document.createElement('span');
+        n.className = 'search-filter-count';
+        n.textContent = counts.get(tag);
+
+        label.append(cb, text, n);
+        li.append(label);
+        list.append(li);
+      });
+      aside.append(list);
+    } else {
+      const empty = document.createElement('p');
+      empty.className = 'search-filters-empty';
+      empty.textContent = 'No filters available.';
+      aside.append(empty);
+    }
+
+    const clear = document.createElement('button');
+    clear.type = 'button';
+    clear.className = 'search-filters-clear';
+    clear.textContent = 'Clear all filters';
+    clear.disabled = true;
+    clear.addEventListener('click', () => {
+      selectedFilters.clear();
+      aside.querySelectorAll('input[type="checkbox"]').forEach((c) => { c.checked = false; });
+      renderView();
+    });
+    aside.append(clear);
+
+    return aside;
   };
 
   const render = async (query) => {
@@ -206,32 +334,37 @@ export default function decorate(block) {
       return;
     }
     setEmptyView(false);
-    results.innerHTML = '<p class="search-status">Searching…</p>';
+    results.innerHTML = '<div class="search-results-inner"><p class="search-status">Searching…</p></div>';
     let matches;
     try {
       const data = await fetchIndex();
       matches = search(data, q);
     } catch (e) {
-      results.innerHTML = '<p class="search-status">Search is temporarily unavailable. Please try again later.</p>';
+      results.innerHTML = '<div class="search-results-inner"><p class="search-status">Search is temporarily unavailable. Please try again later.</p></div>';
       return;
     }
     // guard against an out-of-order response for a stale query
     if (input.value.trim() !== q) return;
-    results.textContent = '';
 
-    const count = document.createElement('p');
-    count.className = 'search-count';
-    count.textContent = matches.length
-      ? `${matches.length} result${matches.length === 1 ? '' : 's'} for “${q}”`
-      : `No results for “${q}”`;
-    results.append(count);
+    currentMatches = matches;
+    selectedFilters.clear();
 
-    if (matches.length) {
-      const ul = document.createElement('ul');
-      ul.className = 'search-results-list';
-      matches.forEach((row) => ul.append(renderResult(row)));
-      results.append(ul);
-    }
+    // scaffold the two-column layout
+    results.innerHTML = '';
+    const inner = document.createElement('div');
+    inner.className = 'search-results-inner';
+
+    const layout = document.createElement('div');
+    layout.className = 'search-results-layout';
+
+    const main = document.createElement('div');
+    main.className = 'search-results-main';
+
+    layout.append(buildFilters(), main);
+    inner.append(layout);
+    results.append(inner);
+
+    renderView();
   };
 
   const updateUrl = (query) => {
