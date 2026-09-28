@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -11,33 +13,33 @@
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* colors — Merkle brand (see brand.css) */
+  --background-color: #fff;
+  --light-color: #f5f5f5;
+  --dark-color: #000;
+  --text-color: #202020;
+  --link-color: #dd3039;
+  --link-hover-color: #b3262e;
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* fonts — proxima-nova with geometric sans fallback */
+  --body-font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
+  --heading-font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 20px;
+  --body-font-size-s: 18px;
+  --body-font-size-xs: 16px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* heading sizes — mobile-first (full size at >=900px below) */
+  --heading-font-size-xxl: 36px;
+  --heading-font-size-xl: 30px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 20px;
+  --heading-font-size-s: 18px;
+  --heading-font-size-xs: 16px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 80px;
 }
 
 /* fallback fonts */
@@ -56,17 +58,17 @@
 @media (width >= 900px) {
   :root {
     /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
+    --body-font-size-m: 20px;
+    --body-font-size-s: 18px;
+    --body-font-size-xs: 16px;
 
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
+    /* heading sizes — Merkle uses large 52px display h1/h2 */
+    --heading-font-size-xxl: 52px;
+    --heading-font-size-xl: 48px;
     --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-m: 21px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
 
@@ -107,9 +109,18 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: 1.15;
   scroll-margin: 40px;
+}
+
+/* Merkle uses light-weight (400) large display headings for h1/h2;
+   smaller headings (h3-h6, e.g. card titles) stay bold (700). The display
+   headings also use a tight line-height (~1.08, source: 56px on 52px). */
+h1,
+h2 {
+  font-weight: 400;
+  line-height: 1.08;
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
@@ -323,3 +334,127 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+/* dark section variant — Merkle uses full-bleed black sections with white text */
+main .section.dark {
+  background-color: var(--dark-color);
+  color: #fff;
+  margin: 0;
+  padding: 64px 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: #fff;
+}
+
+main .section.dark a:any-link {
+  color: #fff;
+}
+
+/* navy section variant — Merkle uses a full-bleed navy panel with white text for
+   the site search and article-header sections (source: rgb(4 14 75)). */
+main .section.navy {
+  background-color: rgb(4 14 75);
+  color: #fff;
+  margin: 0;
+  padding: 64px 0;
+}
+
+main .section.navy h1,
+main .section.navy h2,
+main .section.navy h3,
+main .section.navy h4,
+main .section.navy h5,
+main .section.navy h6 {
+  color: #fff;
+}
+
+main .section.navy a:any-link {
+  color: #fff;
+}
+
+/* center section variant — author-configurable via Section Metadata Style=center.
+   Centers the intro (heading + paragraph) and the CTA button row; constrains
+   the intro text to a readable centered column (matches Merkle intro sections). */
+main .section.center .default-content-wrapper {
+  text-align: center;
+}
+
+main .section.center .default-content-wrapper > p {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.14; /* tight intro copy — source: 24px on 21px */
+}
+
+/* stylelint-disable no-descending-specificity */
+main .section.center .default-content-wrapper p:has(> a:only-child),
+main .section.center .default-content-wrapper p:has(> a + a) {
+  justify-content: center;
+}
+/* stylelint-enable no-descending-specificity */
+
+/* CTA links in default content — a paragraph whose only content is links
+   renders as Merkle pill buttons. First link = PRIMARY (white pill, blue on
+   hover); any following link = SECONDARY (red outline, solid-red fill on hover).
+   Matches "All Work" (primary) + "About us" (secondary). */
+/* stylelint-disable no-descending-specificity */
+main .section .default-content-wrapper p:has(> a:only-child),
+main .section .default-content-wrapper p:has(> a + a) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 24px 0 0;
+}
+
+/* base pill (both variants) */
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link {
+  display: inline-block;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.35s, background-color 0.35s, border-color 0.35s;
+}
+
+/* PRIMARY (first link): white pill, black text */
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child,
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link {
+  padding: 15px 16px;
+  border: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child:hover,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child:focus-visible,
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:hover,
+main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:focus-visible {
+  background-color: #0328d1;
+  color: #fff;
+}
+
+/* SECONDARY (subsequent links): transparent, red outline, white text */
+main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link,
+main .section.dark .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link {
+  padding: 13px 14px;
+  border: 2px solid var(--brand-accent, #dd3039);
+  background-color: transparent;
+  color: #fff;
+}
+
+main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:hover,
+main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:focus-visible {
+  background-color: var(--brand-accent, #dd3039);
+  border-color: var(--brand-accent, #dd3039);
+  color: #fff;
+}
+/* stylelint-enable no-descending-specificity */
