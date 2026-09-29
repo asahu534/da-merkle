@@ -91,32 +91,31 @@ export default async function decorate(block) {
       }
     });
 
-    
     // search: make the authored search icon clickable
-const searchBlock = nav.querySelector('.search');
+    const searchBlock = nav.querySelector('.search');
 
-if (searchBlock) {
-  const searchContent = searchBlock.querySelector(':scope > div');
-  const searchPath = searchContent?.querySelector(':scope > div:first-child')?.textContent.trim();
-  const searchImage = searchBlock.querySelector('img');
+    if (searchBlock) {
+      const searchContent = searchBlock.querySelector(':scope > div');
+      const searchPath = searchContent?.querySelector(':scope > div:first-child')?.textContent.trim();
+      const searchImage = searchBlock.querySelector('img');
 
-  if (searchPath && searchImage) {
-    const searchLink = document.createElement('a');
+      if (searchPath && searchImage) {
+        const searchLink = document.createElement('a');
 
-    // Convert "en/search" to "/en/search"
-    searchLink.href = searchPath.startsWith('/') ? searchPath : `/${searchPath}`;
+        // Convert "en/search" to "/en/search"
+        searchLink.href = searchPath.startsWith('/') ? searchPath : `/${searchPath}`;
 
-    searchLink.setAttribute('aria-label', 'Search');
-    searchLink.className = 'nav-search-link';
+        searchLink.setAttribute('aria-label', 'Search');
+        searchLink.className = 'nav-search-link';
 
-    // Move the SVG/image into the link
-    searchLink.append(searchImage);
+        // Move the SVG/image into the link
+        searchLink.append(searchImage);
 
-    // Replace the original search content
-    searchBlock.textContent = '';
-    searchBlock.append(searchLink);
-  }
-}
+        // Replace the original search content
+        searchBlock.textContent = '';
+        searchBlock.append(searchLink);
+      }
+    }
 
     // desktop hover open/close for dropdowns
     navSections.querySelectorAll(':scope > ul > li.nav-drop').forEach((drop) => {
