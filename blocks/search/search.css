@@ -1,0 +1,371 @@
+/* search — Merkle site-search landing.
+   Full-bleed dark navy panel: large centered underlined query input with a
+   magnifier submit button, a "TRENDING TOPICS" label, and a row of pill-shaped
+   trending-topic buttons (each with a trailing magnifier icon). All white
+   text/borders on the navy background.
+   Values extracted from source computed styles (merkle.com/en/search.html). */
+
+/* white magnifier icon (source: /resources/v2/icons/search-dt.svg) */
+.search {
+  --search-icon: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.94043 0.625C13.5366 0.625 17.2559 4.3267 17.2559 8.88477C17.2559 13.4428 13.5366 17.1445 8.94043 17.1445C4.34425 17.1445 0.625 13.4428 0.625 8.88477C0.625008 4.32672 4.34426 0.625029 8.94043 0.625Z" stroke="white" stroke-width="1.25"/><path d="M14.0508 15.1797L15.2036 14.0444L23.4289 22.2929C23.7443 22.6092 23.742 23.1199 23.4237 23.4334C23.1053 23.7469 22.5915 23.7445 22.2761 23.4282L14.0508 15.1797Z" fill="white"/></svg>');
+
+  background-color: rgb(4 14 75); /* Merkle navy */
+  color: #fff;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+/* full-bleed: escape the section's 1200px content column */
+.search-wrapper {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* --- search form --- */
+.search .search-form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 806px;
+  margin: 0 auto;
+}
+
+.search .search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0 48px 8px 0;
+  border: 0;
+  border-bottom: 2px solid #fff;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.1;
+  text-align: center;
+  appearance: none;
+}
+
+.search .search-input::placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+/* hide the native search clear/decoration */
+.search .search-input::-webkit-search-decoration,
+.search .search-input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.search .search-input:focus {
+  outline: none;
+}
+
+.search .search-submit {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--search-icon) no-repeat center / contain;
+  cursor: pointer;
+}
+
+/* --- trending topics --- */
+.search .search-topics {
+  margin-top: 40px;
+}
+
+.search .search-topics-title {
+  margin: 0 0 24px;
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.search .search-topics-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search .search-topics-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.search .search-topic {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 15px 16px;
+  border: 2px solid #fff;
+  border-radius: 32px;
+  background: transparent;
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* trailing magnifier on each pill */
+.search .search-topic::after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-left: 16px;
+  background: var(--search-icon) no-repeat center / contain;
+}
+
+.search .search-topic:hover,
+.search .search-topic:focus-visible {
+  background: #fff;
+  color: rgb(4 14 75);
+  outline: none;
+}
+
+/* recolor the magnifier to navy on hover (invert the white icon) */
+.search .search-topic:hover::after,
+.search .search-topic:focus-visible::after {
+  filter: invert(9%) sepia(60%) saturate(3000%) hue-rotate(220deg) brightness(60%);
+}
+
+/* --- results (client-side, from query-index.json) ---
+   Full-bleed WHITE panel below the navy search bar. Negative margins cancel the
+   block's navy padding so the results sit on white, matching merkle.com/en/search. */
+.search .search-results {
+  margin: 56px -24px 0;
+  padding: 48px 24px 64px;
+  background-color: #fff;
+  color: var(--text-color, #202020);
+  text-align: left;
+}
+
+.search .search-results-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search .search-status {
+  margin: 0;
+  color: var(--text-color, #202020);
+  font-size: 18px;
+}
+
+/* result count header — top-right, above the columns (source: "Showing 1–6 of …") */
+.search .search-count {
+  margin: 0 0 24px;
+  color: var(--text-color, #202020);
+  font-size: 18px;
+  font-weight: 400;
+  text-align: right;
+}
+
+/* two-column: FILTERS sidebar + result cards */
+.search .search-results-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* --- filters sidebar --- */
+.search .search-filters {
+  flex: 0 0 auto;
+}
+
+.search .search-filters-title {
+  margin: 0 0 16px;
+  color: var(--text-color, #202020);
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.search .search-filter-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #d9d9d9;
+}
+
+.search .search-filter-list li {
+  margin: 0;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.search .search-filter-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  color: var(--text-color, #202020);
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search .search-filter-option input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--brand-accent, #dd3039);
+  cursor: pointer;
+}
+
+.search .search-filter-label {
+  flex: 1 1 auto;
+}
+
+.search .search-filter-count {
+  color: #6a6a6a;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.search .search-filters-empty {
+  margin: 0;
+  color: #6a6a6a;
+  font-size: 16px;
+}
+
+.search .search-filters-clear {
+  display: block;
+  width: 100%;
+  margin: 24px 0 0;
+  padding: 16px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #e4e4ea;
+  color: #6a6a6a;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.search .search-filters-clear:disabled {
+  cursor: default;
+}
+
+.search .search-filters-clear:not(:disabled):hover,
+.search .search-filters-clear:not(:disabled):focus-visible {
+  background-color: var(--brand-accent, #dd3039);
+  color: #fff;
+  outline: none;
+}
+
+/* --- results column --- */
+.search .search-results-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.search .search-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.search .search-result {
+  margin: 0;
+  padding: 0;
+}
+
+/* light card tile — type eyebrow + title + description (source: search results) */
+.search .search-result-link {
+  display: block;
+  padding: 32px;
+  border-radius: 8px;
+  background-color: #f2f2f2;
+  color: var(--text-color, #202020);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.search .search-result-link:hover,
+.search .search-result-link:focus-visible {
+  background-color: #e6e6e6;
+  color: var(--text-color, #202020);
+  text-decoration: none;
+  outline: none;
+}
+
+.search .search-result-type {
+  margin: 0 0 12px;
+  color: #0091f2;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.search .search-result-title {
+  margin: 0;
+  color: var(--text-color, #202020);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.search .search-result-desc {
+  margin: 16px 0 0;
+  color: var(--text-color, #202020);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (width >= 900px) {
+  .search {
+    padding: 96px 30px;
+  }
+
+  .search .search-input {
+    font-size: 37px;
+    line-height: 40px;
+  }
+
+  .search .search-topics {
+    margin-top: 48px;
+  }
+
+  .search .search-results {
+    margin: 72px -30px 0;
+    padding: 64px 30px 80px;
+  }
+
+  .search .search-results-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+  }
+
+  .search .search-filters {
+    flex: 0 0 320px;
+    position: sticky;
+    top: 96px;
+  }
+}

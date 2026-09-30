@@ -1,0 +1,15 @@
+{
+  "variantName": "cards-featured",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Editorial gallery of content cards. The first card is featured — wider, with a dark text panel beside its image; the remaining cards are narrower with an image on top and text below. Each card has an eyebrow label, a title, and a 'Learn more' link.",
+  "contentPattern": "First row labels the block ('Cards'). Each card is one row with two cells: cell 1 = image, cell 2 = eyebrow label + title (heading) + CTA link.",
+  "usage": "'Our latest and greatest' style featured editorial/content promo gallery.",
+  "options": [],
+  "memberVariantIds": ["cards-featured"],
+  "usageTracking": {
+    "pagesUsing": ["/", "/en/merkle-now"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-21"
+  }
+}

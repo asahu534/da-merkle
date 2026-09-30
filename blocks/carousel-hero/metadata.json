@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-hero",
+  "baseBlock": "carousel",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Full-bleed, full-viewport-width rotating hero. Each slide is a dark background image with a large heading and two CTA buttons overlaid on the left. Thin dash-style slide indicators anchored bottom-left. Auto-advances.",
+  "contentPattern": "First row labels the block ('Carousel'). Each subsequent row is one slide: cell 1 = background image, cell 2 = heading + optional description + up to two CTA links.",
+  "usage": "Top-of-page hero banner with multiple rotating promotional slides.",
+  "options": [],
+  "memberVariantIds": ["carousel-hero"]
+}

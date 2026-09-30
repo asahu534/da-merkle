@@ -1,0 +1,170 @@
+/* cards-filter — "Find something specific" filterable archive.
+   Merkle source: light-grey rounded card panels, blue eyebrow, black h3 title,
+   "Read more" with a blue underline bar, black pill Filters / Load more buttons.
+   Values extracted from source computed styles (.masonry / .cmp-masonry). */
+
+.cards-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* --- filter control --- */
+.cards-filter .cards-filter-controls {
+  position: relative;
+}
+
+/* Filters pill — black, uppercase, 16px radius (source .filter-btn) */
+.cards-filter .cards-filter-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 15px 16px;
+  border: 0;
+  border-radius: 16px;
+  background: #000;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cards-filter .cards-filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* keep the panel collapsed until the Filters button opens it (source default) */
+.cards-filter .cards-filter-panel[hidden] {
+  display: none;
+}
+
+.cards-filter .cards-filter-chip {
+  margin: 0;
+  padding: 8px 16px;
+  border: 1px solid #dadada;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--text-color);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.cards-filter .cards-filter-chip:hover {
+  border-color: #0391f2;
+}
+
+.cards-filter .cards-filter-chip.is-active {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+
+/* --- card grid --- */
+.cards-filter .cards-filter-list {
+  list-style: none;
+  margin: 18px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* card panel — light grey, 24px radius, min-height matches source */
+.cards-filter .cards-filter-list > li {
+  display: flex;
+  flex-direction: column;
+  background: #f2f2f4;
+  border-radius: 24px;
+  overflow: hidden;
+  min-height: 210px;
+}
+
+/* source cards carry no image — hide the empty (image) cell */
+.cards-filter .cards-filter-card-image,
+.cards-filter .cards-filter-card-body:empty {
+  display: none;
+}
+
+.cards-filter .cards-filter-card-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* card body — 24px padding, column layout, "Read more" pushed to bottom */
+/* stylelint-disable-next-line no-descending-specificity */
+.cards-filter .cards-filter-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+/* eyebrow / category label — blue, uppercase */
+.cards-filter .cards-filter-card-body > p:first-child {
+  margin: 0;
+  color: #0391f2;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+/* title */
+.cards-filter .cards-filter-card-body h3 {
+  margin: 16px 0 24px;
+  color: #000;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 32px;
+  text-transform: none;
+}
+
+/* "Read more" — black text with a blue underline bar, pinned to card bottom */
+.cards-filter .cards-filter-card-body > p:last-child {
+  margin: auto 0 0;
+}
+
+.cards-filter .cards-filter-card-body > p:last-child a {
+  display: inline-block;
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-color: #0391f2;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* --- load more --- */
+.cards-filter .cards-filter-loadmore {
+  align-self: center;
+  margin: 8px 0;
+  padding: 15px 16px;
+  border: 0;
+  border-radius: 16px;
+  background: #000;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cards-filter .cards-filter-loadmore:hover {
+  background: #333;
+}
+
+@media (width >= 600px) {
+  .cards-filter .cards-filter-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
