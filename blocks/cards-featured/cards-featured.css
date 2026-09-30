@@ -1,22 +1,16 @@
-/* Block: cards-featured — "Our latest and greatest" editorial gallery.
-   Values extracted from source computed styles (merkle.com .teasergallerylist.mer-featured-tgl).
-   Cards are black, rounded 24px. Regular cards = image fill + text overlay at top with a
-   dark gradient. Featured (first) card = solid black text panel beside a half-width image. */
-
+/* Block: cards-featured — "Our latest and greatest" editorial gallery. */
 
 #our-latest-and-greatest {
-  font-size:52px;
+  font-size: 52px;
   font-weight: 400;
   line-height: 56px;
   margin-bottom: 16px;
 }
 
-
-
 .default-content-wrapper > p {
   font-size: 21px;
   font-weight: 400;
-  font-style:normal;
+  font-style: normal;
   margin: 0;
   line-height: 24px;
 }
@@ -27,7 +21,7 @@
     line-height: 40px;
   }
 
-  .default-content-wrapper > p { 
+  .default-content-wrapper > p {
     font-size: 16px;
     line-height: 20px;
   }
@@ -36,7 +30,6 @@
 .cards-featured-wrapper {
   margin-top: 48px !important;
 }
-
 
 .cards-featured > ul {
   list-style: none;
@@ -48,6 +41,7 @@
 }
 
 .cards-featured > ul > li {
+  cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -56,7 +50,8 @@
   background-color: #000;
 }
 
-/* --- image (fills the card; text overlays it on regular cards) --- */
+/* Image */
+
 .cards-featured .cards-featured-card-image {
   position: relative;
   line-height: 0;
@@ -69,7 +64,6 @@
   object-fit: cover;
 }
 
-/* dark gradient scrim behind the overlaid text (source: linear-gradient over image top) */
 .cards-featured .cards-featured-card-image::before {
   content: "";
   position: absolute;
@@ -79,7 +73,8 @@
   pointer-events: none;
 }
 
-/* --- text panel --- */
+/* Text panel */
+
 .cards-featured .cards-featured-card-body {
   position: absolute;
   top: 0;
@@ -88,11 +83,14 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
   padding: 24px 16px;
   color: #fff;
 }
 
-/* eyebrow label */
+/* Eyebrow */
+
 .cards-featured .cards-featured-card-body p:first-of-type {
   margin: 0;
   font-size: 15px;
@@ -102,7 +100,8 @@
   color: #aeaebc;
 }
 
-/* title */
+/* Title */
+
 .cards-featured .cards-featured-card-body h3 {
   margin: 16px 0 0;
   font-size: 21px;
@@ -111,16 +110,20 @@
   color: #fff;
 }
 
-/* "Learn more" link */
+/* Learn more container */
+
 .cards-featured .cards-featured-card-body p:last-of-type {
-  margin: 16px 0 0;
+  margin: auto 0 0;
 }
+
+/* Learn more link */
 
 .cards-featured .cards-featured-card-body a,
 .cards-featured .cards-featured-card-body a.button:any-link {
+  position: relative;
   display: inline;
   margin: 0;
-  padding: 0;
+  padding: 0 0 8px;
   border: 0;
   border-radius: 0;
   background: none;
@@ -133,10 +136,46 @@
 }
 
 .cards-featured .cards-featured-card-body a:hover {
-  text-decoration: underline;
+text-decoration: none !important;
 }
 
-/* --- desktop: horizontal row, featured card is double-width --- */
+/* Animated underline */
+
+.cards-featured .cards-featured-card-body a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00a3ff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+/* Trigger underline when the whole card is hovered */
+
+.cards-featured > ul > li:hover .cards-featured-card-body a::after {
+  transform: scaleX(1);
+}
+
+
+
+/* Zoom image on second and third cards */
+
+.cards-featured > ul > li:nth-child(2) .cards-featured-card-image img,
+.cards-featured > ul > li:nth-child(3) .cards-featured-card-image img {
+  transition: transform 0.5s ease;
+}
+
+.cards-featured > ul > li:nth-child(2):hover .cards-featured-card-image img,
+.cards-featured > ul > li:nth-child(3):hover .cards-featured-card-image img {
+  transform: scale(1.08);
+}
+
+/* Desktop */
+
 @media (width >= 900px) {
   .cards-featured > ul {
     flex-direction: row;
@@ -149,7 +188,8 @@
     min-width: 0;
   }
 
-  /* featured (first) card: text panel beside a half-width image */
+  /* Featured first card */
+
   .cards-featured > ul > li:first-child {
     flex: 2 1 0;
     flex-direction: row-reverse;
@@ -159,7 +199,6 @@
     width: 50%;
   }
 
-  /* no gradient scrim on the featured card — text sits on the solid black panel */
   .cards-featured > ul > li:first-child .cards-featured-card-image::before {
     display: none;
   }
@@ -173,11 +212,5 @@
     position: static;
     width: 50%;
     padding: 24px;
-  }
-
-  /* push the "Learn more" link to the bottom of the featured panel;
-     eyebrow + title stay grouped at the top */
-  .cards-featured > ul > li:first-child .cards-featured-card-body p:last-of-type {
-    margin-top: auto;
   }
 }

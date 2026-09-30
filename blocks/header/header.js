@@ -151,8 +151,27 @@ export default async function decorate(block) {
       });
     }
     // last link styled as the Contact CTA
+    // last link styled as the Contact CTA
     const toolLinks = navTools.querySelectorAll(':scope > p a');
-    if (toolLinks.length) toolLinks[toolLinks.length - 1].classList.add('nav-cta');
+
+    if (toolLinks.length) {
+      const cta = toolLinks[toolLinks.length - 1];
+
+      cta.classList.add('nav-cta');
+
+      const text = cta.textContent.trim();
+
+      const currentText = document.createElement('span');
+      currentText.className = 'nav-cta-text nav-cta-text-current';
+      currentText.textContent = text;
+
+      const hoverText = document.createElement('span');
+      hoverText.className = 'nav-cta-text nav-cta-text-hover';
+      hoverText.textContent = text;
+
+      cta.textContent = '';
+      cta.append(currentText, hoverText);
+    }
   }
 
   // hamburger for mobile

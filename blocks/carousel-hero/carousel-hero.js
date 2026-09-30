@@ -80,6 +80,24 @@ function createSlide(row, slideIndex, carouselId) {
     slide.append(column);
   });
 
+  // Wrap all <p> elements containing an <a> inside .cta-wrapper
+  const content = slide.querySelector('.carousel-hero-slide-content');
+
+  if (content) {
+    const ctaParagraphs = content.querySelectorAll(':scope > p:has(> a)');
+
+    if (ctaParagraphs.length) {
+      const ctaWrapper = document.createElement('div');
+      ctaWrapper.classList.add('cta-wrapper');
+
+      ctaParagraphs.forEach((paragraph) => {
+        ctaWrapper.append(paragraph);
+      });
+
+      content.append(ctaWrapper);
+    }
+  }
+
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));

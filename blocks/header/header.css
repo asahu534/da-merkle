@@ -33,7 +33,7 @@ header nav {
 }
 
 
-@media (width < 900px) {
+@media (width < 1280px) {
   header nav[aria-expanded='false']{
     padding: 0 40px;
   }
@@ -91,7 +91,7 @@ header nav .nav-sections > ul > li > a::before {
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -3px;
   width: 100%;
   height: 2px;
   background: var(--brand-accent, #dd3039);
@@ -351,28 +351,81 @@ header nav .nav-lang li {
 }
 
 /* Contact Us — static white pill (source shows no hover change) */
+
+/* Contact CTA */
 header nav .nav-cta {
-  display: flex;
+  display: inline-flex;
   width: auto;
   justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
   padding: 13px 14px;
-  border-radius: 16px;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-decoration: none;
   border: 2px solid #dd3039;
+  border-radius: 16px;
   background-color: transparent;
   color: #fff;
   font-size: 18px;
-}
-
-header nav .nav-cta:hover {
+  font-weight: 700;
+  text-transform: uppercase;
   text-decoration: none;
 }
 
+/* Text wrapper */
+header nav .nav-tools .nav-cta .nav-cta-text {
+  display: block;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.35s ease;
+}
+
+/* Current text - visible initially */
+header nav .nav-tools .nav-cta .nav-cta-text-current {
+  position: relative;
+  transform: translateY(0);
+}
+
+/* Hover text - COMPLETELY hidden initially */
+header nav .nav-tools .nav-cta .nav-cta-text-hover {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max-content;
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transform: translate(-50%, -160%);
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    visibility 0s linear 0.35s;
+}
+
+/* Old text moves DOWN */
+header nav .nav-tools .nav-cta:hover .nav-cta-text-current {
+  transform: translateY(180%);
+}
+
+/* New text comes FROM TOP */
+header nav .nav-tools .nav-cta:hover .nav-cta-text-hover {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.35s ease,
+    opacity 0.2s ease,
+    visibility 0s;
+}
+
+/* CTA background */
+header nav .nav-cta:hover {
+  background-color: #dd3039;
+  color: #fff;
+  text-decoration: none;
+}
 
 /* ===== Desktop ===== */
-@media (width >= 900px) {
+@media (width >= 1280px) {
   header{
       padding:0 30px;
   }
