@@ -11,8 +11,6 @@
   margin-bottom: 16px;
 }
 
-
-
 .default-content-wrapper > p {
   font-size: 21px;
   font-weight: 400;
@@ -48,12 +46,22 @@
 }
 
 .cards-featured > ul > li {
+  cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
   overflow: hidden;
   background-color: #000;
+}
+
+.cards-featured > ul > li .cards-featured-card-body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.cards-featured > ul > li .cards-featured-card-body p:last-of-type {
+  margin-top: auto;
 }
 
 /* --- image (fills the card; text overlays it on regular cards) --- */
@@ -111,6 +119,62 @@
   color: #fff;
 }
 
+
+/* "Learn more" link */
+.cards-featured .cards-featured-card-body p:last-of-type {
+  margin: 16px 0 0;
+}
+
+.cards-featured .cards-featured-card-body a,
+.cards-featured .cards-featured-card-body a.button:any-link {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0 0 4px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: normal;
+}
+
+/* Animated underline */
+.cards-featured .cards-featured-card-body a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00a3ff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+/* Trigger underline when the whole card is hovered */
+.cards-featured > ul > li:hover
+.cards-featured-card-body a::after {
+  transform: scaleX(1);
+}
+
+
+/* Zoom image on the second and third cards */
+.cards-featured > ul > li:nth-child(2) .cards-featured-card-image img,
+.cards-featured > ul > li:nth-child(3) .cards-featured-card-image img {
+  transition: transform 0.5s ease;
+}
+
+/* Trigger zoom when the whole card is hovered */
+.cards-featured > ul > li:nth-child(2):hover .cards-featured-card-image img,
+.cards-featured > ul > li:nth-child(3):hover .cards-featured-card-image img {
+  transform: scale(1.08);
+}
+
 /* "Learn more" link */
 .cards-featured .cards-featured-card-body p:last-of-type {
   margin: 16px 0 0;
@@ -134,6 +198,11 @@
 
 .cards-featured .cards-featured-card-body a:hover {
   text-decoration: underline;
+}
+
+.cards-featured .cards-featured-card-body a,
+.cards-featured .cards-featured-card-body a.button:any-link {
+  padding: 0 0 8px;
 }
 
 /* --- desktop: horizontal row, featured card is double-width --- */
