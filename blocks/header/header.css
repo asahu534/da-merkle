@@ -7,7 +7,6 @@ header .header-wrapper,
 header {
   background-color: #000;
   z-index: 3;
-  position: fixed;
   width: 100%;
   top: 0;
   box-sizing: border-box;
@@ -21,52 +20,15 @@ header .nav-wrapper {
 nav {
   display: flex;
   justify-content: flex-start;
-  gap:40px;
   align-items: center;
 }
 
 header nav {
   max-width: 1264px;
-  height: 80px;
+  padding: 16px 30px;
   background-color: #000;
   color: #fff;
 }
-
-
-@media (width < 1280px) {
-  header nav[aria-expanded='false']{
-    padding: 0 40px;
-  }
-
-
-header nav[aria-expanded='true'] {
-  grid-template:
-    'hamburger brand' 80px
-    'sections sections' 1fr
-    'tools tools' auto / auto 1fr;
-  overflow-y: auto;
-  min-height: 100dvh;
-}
-
-header nav[aria-expanded='true'] .nav-hamburger{
-  position: absolute;
-  right: 20px;
-  top: 30px;
-}
-
-header nav[aria-expanded='true'] .nav-brand{
-  position: absolute;
-  left: 20px;
-  top: 30px;
-}
-
-header nav[aria-expanded='true'] .nav-sections{
- margin-top: 40px;
-}
-
-}
-
-
 
 
 header nav p {
@@ -115,7 +77,6 @@ header nav a:hover {
 
 /* hamburger */
 header nav .nav-hamburger {
-  grid-area: hamburger;
   height: 22px;
   display: flex;
   align-items: center;
@@ -187,7 +148,6 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 
 /* brand */
 header .nav-brand {
-  grid-area: brand;
   display: flex;
   align-items: center;
 }
@@ -426,10 +386,6 @@ header nav .nav-cta:hover {
 
 /* ===== Desktop ===== */
 @media (width >= 1280px) {
-  header{
-      padding:0 30px;
-  }
-
   header nav {
     display: flex;
     align-items: center;
@@ -533,3 +489,226 @@ header nav .nav-cta:hover {
     color: #fff;
   }
 }
+
+
+@media (width < 1280px) {
+
+  /* =========================
+     MOBILE TOP BAR
+     ========================= */
+
+  header nav {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 16px;
+    max-width: 100%;
+    padding: 16px 30px;
+    background-color: #000;
+  }
+
+  /* =========================
+     BRAND - LEFT
+     ========================= */
+
+  header nav .nav-brand {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  header nav .nav-brand img {
+    width: 120px;
+    height: auto;
+  }
+
+  /* =========================
+   MOBILE ACTIONS
+   ========================= */
+
+header nav .nav-mobile-actions {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+  /* =========================
+     SEARCH - RIGHT
+     ========================= */
+
+  header nav .nav-tools {
+    grid-column: 2;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Hide language on mobile */
+  header nav .nav-lang-wrap {
+    display: none;
+  }
+
+  /* Search */
+  header nav .search {
+    display: flex;
+    align-items: center;
+  }
+
+  header nav .search > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header nav .search > a > img {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+  }
+
+  /* =========================
+     HAMBURGER - RIGHT
+     ========================= */
+
+  /* header nav .nav-hamburger {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    z-index: 10;
+    right: 20px;
+  } */
+
+  /* =========================
+     CONTACT HIDDEN IN TOP BAR
+     ========================= */
+
+  header nav .nav-tools > p {
+    display: none;
+  }
+
+  /* =========================
+     MOBILE DRAWER
+     ========================= */
+
+  header nav .nav-sections {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100dvh;
+
+    display: block;
+    visibility: visible;
+
+    padding: 120px 24px 130px;
+
+    box-sizing: border-box;
+
+    background-color: #000;
+
+    overflow-y: auto;
+
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+
+    z-index: 5;
+  }
+
+  /* OPEN DRAWER */
+
+  header nav[aria-expanded='true'] .nav-sections {
+    transform: translateX(0);
+  }
+
+  /* =========================
+     NAV LINKS
+     ========================= */
+
+  header nav .nav-sections > ul {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+  }
+
+  header nav .nav-sections > ul > li {
+    padding: 18px 0;
+
+    border: 0;
+  }
+
+  header nav .nav-sections > ul > li > a {
+    font-size: 32px;
+    line-height: 1.1;
+    font-weight: 700;
+
+    text-transform: uppercase;
+  }
+
+  /* =========================
+     CONTACT IN DRAWER
+     ========================= */
+      header nav[aria-expanded='true'] .nav-sections {
+        padding: 15px 16px;
+      }
+
+     header nav[aria-expanded='true'] .search  {
+display: none;
+       }
+
+header nav[aria-expanded='true'] .nav-brand  {
+display: none;
+       }
+
+  header nav[aria-expanded='true'] .nav-tools > p {
+    display: block;
+    position: fixed;
+    left: 24px;
+    right: 24px;
+    bottom: 30px;
+    margin: 0;
+    z-index: 20;
+  }
+
+  header nav[aria-expanded='true'] .nav-tools .nav-cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 20px;
+    border: 0;
+    border-radius: 18px;
+    background-color: #fff;
+    color: #000;
+  }
+
+.nav-hamburger button[aria-expanded='true'] .nav-hamburger-icon {
+  background: transparent;
+}
+
+.nav-hamburger button[aria-expanded='true'] .nav-hamburger-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger button[aria-expanded='true'] .nav-hamburger-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+}
+
