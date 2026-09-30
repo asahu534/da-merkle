@@ -76,6 +76,18 @@ export default async function decorate(block) {
 
   // brand: unwrap the logo link/paragraph
   const navBrand = nav.querySelector('.nav-brand');
+  if (navBrand) {
+  const logoImage = navBrand.querySelector('picture');
+
+  if (logoImage) {
+    const logoLink = document.createElement('a');
+    logoLink.href = '/';
+    logoLink.setAttribute('aria-label', 'Merkle Home');
+
+    logoLink.append(logoImage);
+    navBrand.append(logoLink);
+  }
+}
 
   // primary nav: mark items with sub-lists as dropdowns
   const navSections = nav.querySelector('.nav-sections');

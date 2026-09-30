@@ -146,6 +146,7 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
 
 /* brand */
 header .nav-brand {
+  cursor: pointer;
     display: flex;
     align-items: center;
 }
