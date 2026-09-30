@@ -1,0 +1,286 @@
+/* cards-grid — one card grid, several looks picked by block options.
+ * Default = icon cards (the homepage "Built for the experience economy" grid).
+ * Options: logos, text, stats, people, promo.
+ * Text colour is inherited from the section (dark/navy sections make it white).
+ * Values extracted from merkle.com computed styles.
+ */
+
+/* ===== Shared internals ===== */
+.cards-grid {
+  margin: 0;
+}
+
+.cards-grid > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards-grid > ul > li {
+  display: block;
+  margin: 0;
+}
+
+.cards-grid .cards-grid-card-image {
+  line-height: 0;
+}
+
+.cards-grid .cards-grid-card-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 360 / 243; /* default icon rendition (source 360x243) */
+  object-fit: contain;
+}
+
+.cards-grid .cards-grid-card-body {
+  display: block;
+  padding: 0;
+}
+
+/* ===== Default: icon cards =====
+ * The homepage content has FOUR separate blocks (one per column) as siblings
+ * in one dark section, so the 4-across layout comes from the block WRAPPERS.
+ * h6: 21px / 700 / 24px, ~49px vertical rhythm (source).
+ */
+.cards-grid .cards-grid-card-body h6 {
+  margin: 48px 0;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.cards-grid .cards-grid-card-body p {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@media (width >= 900px) {
+  .cards-grid-wrapper:has(> .cards-grid:not(.logos, .text, .stats, .people, .promo)) {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 25%;
+    margin: 0;
+    vertical-align: top;
+  }
+}
+
+/* ===== Option grids (one block, many cards) ===== */
+.cards-grid:is(.logos, .text, .stats, .people, .promo) > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px 20px;
+}
+
+@media (width >= 600px) {
+  .cards-grid:is(.logos, .text, .stats, .people) > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* text-only link under a card (Learn More / Download Report) */
+.cards-grid:is(.logos, .text, .people) .cards-grid-card-body p:has(> a:only-child) a:any-link {
+  color: inherit;
+  font-size: 18px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+/* ===== logos: centred logo + label, optional text and link ===== */
+.cards-grid.logos {
+  text-align: center;
+}
+
+.cards-grid.logos .cards-grid-card-image img {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.cards-grid.logos .cards-grid-card-body :is(h3, h4, h5, h6, p) {
+  margin: 16px 0 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.cards-grid.logos .cards-grid-card-body :is(h3, h4, h5, h6, strong) {
+  font-weight: 700;
+}
+
+/* ===== text: heading + text + optional link, no image ===== */
+.cards-grid.text .cards-grid-card-body :is(h2, h3, h4, h5, h6) {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.cards-grid.text .cards-grid-card-body p {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+/* ===== stats: large number + label ===== */
+.cards-grid.stats .cards-grid-card-body > :first-child {
+  margin: 0 0 8px;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+.cards-grid.stats .cards-grid-card-body > :first-child strong {
+  font-weight: inherit;
+}
+
+.cards-grid.stats .cards-grid-card-body > :not(:first-child) {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* ===== people: headshot + name + role + region ===== */
+.cards-grid.people {
+  text-align: center;
+}
+
+.cards-grid.people .cards-grid-card-image img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.cards-grid.people .cards-grid-card-body {
+  padding-top: 16px;
+}
+
+.cards-grid.people .cards-grid-card-body p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.cards-grid.people .cards-grid-card-body :is(strong, b, h3, h4, h5, h6) {
+  display: block;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+/* ===== promo: centred navy panel, eyebrow + heading + text + CTA ===== */
+.cards-grid.promo > ul > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  background-color: rgb(4 14 75);
+  color: #fff;
+  text-align: center;
+}
+
+.cards-grid.promo .cards-grid-card-body p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.cards-grid.promo .cards-grid-card-body > p:first-child {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.cards-grid.promo .cards-grid-card-body :is(h2, h3, h4) {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.cards-grid.promo .cards-grid-card-body p:has(> a:only-child) {
+  margin-top: 24px;
+}
+
+.cards-grid.promo .cards-grid-card-body p:has(> a:only-child) > a:any-link {
+  display: inline-block;
+  padding: 15px 16px;
+  border-radius: 16px;
+  background-color: #fff;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.35s, color 0.35s;
+}
+
+.cards-grid.promo .cards-grid-card-body p:has(> a:only-child) > a:any-link:hover,
+.cards-grid.promo .cards-grid-card-body p:has(> a:only-child) > a:any-link:focus-visible {
+  background-color: #0328d1;
+  color: #fff;
+}
+
+/* ===== Desktop ===== */
+@media (width >= 900px) {
+  .cards-grid:is(.logos, .text, .people) > ul {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 0;
+  }
+
+  .cards-grid:is(.text, .people) > ul {
+    gap: 40px 24px;
+  }
+
+  .cards-grid.text .cards-grid-card-body :is(h2, h3, h4, h5, h6) {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .cards-grid.text .cards-grid-card-body p,
+  .cards-grid.stats .cards-grid-card-body > :not(:first-child) {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .cards-grid.logos .cards-grid-card-body :is(h3, h4, h5, h6, p) {
+    font-size: 21px;
+  }
+
+  .cards-grid.stats > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 20px;
+  }
+
+  .cards-grid.stats .cards-grid-card-body > :first-child {
+    font-size: 44px;
+    line-height: 48px;
+  }
+
+  .cards-grid.promo > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .cards-grid.promo > ul > li {
+    min-height: 383px;
+    padding: 48px 64px;
+  }
+
+  /* logos in multiples of 3 (e.g. 6 partner logos) sit three across */
+  .cards-grid.logos > ul:has(> li:nth-child(3n):last-child):not(:has(> li:nth-child(4n):last-child)) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* space between consecutive option grids in one section (e.g. logos, then stats) */
+.cards-grid-wrapper:has(> .cards-grid:is(.logos, .text, .stats, .people, .promo)) + .cards-grid-wrapper:has(> .cards-grid:is(.logos, .text, .stats, .people, .promo)) {
+  margin-top: 48px;
+}

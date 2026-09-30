@@ -378,6 +378,15 @@ main .section.navy a:any-link {
   color: #fff;
 }
 
+/* grey section variant — full-bleed grey band with black text (source: the
+   AI Expertise "AI for Customer Experience" band, rgb(214 214 223)). */
+main .section.grey {
+  background-color: rgb(214 214 223);
+  color: #000;
+  margin: 0;
+  padding: 64px 0;
+}
+
 /* center section variant — author-configurable via Section Metadata Style=center.
    Centers the intro (heading + paragraph) and the CTA button row; constrains
    the intro text to a readable centered column (matches Merkle intro sections). */
@@ -396,8 +405,25 @@ main .section.center .default-content-wrapper > p {
 main .section.center .default-content-wrapper p:has(> a:only-child),
 main .section.center .default-content-wrapper p:has(> a + a) {
   justify-content: center;
+  margin-left: auto; /* the CTA rule below resets side margins to 0 */
+  margin-right: auto;
 }
 /* stylelint-enable no-descending-specificity */
+
+/* eyebrow: a short first paragraph directly above a heading in a coloured
+   band (e.g. "News & Industry Insights", "Blog Post") — Merkle pretitle style */
+main .section:is(.navy, .dark, .grey) .default-content-wrapper > p:first-child:has(+ :is(h1, h2)) {
+  margin-bottom: 16px;
+  color: rgb(174 174 188);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+main .section.grey .default-content-wrapper > p:first-child:has(+ :is(h1, h2)) {
+  color: rgb(96 96 125);
+}
 
 /* CTA links in default content — a paragraph whose only content is links
    renders as Merkle pill buttons. First link = PRIMARY (white pill, blue on

@@ -3,12 +3,12 @@
    Horizontally-scrolling tall image cards with a client eyebrow + title
    overlaid on a dark-to-transparent gradient, plus circular prev/next arrows. */
 
-/* the source gallery sits on a full-black section (extracted bg rgb(0,0,0));
-   make the block self-contained so the white text/arrows always read correctly */
+/* the gallery takes its section's background (black on the homepage, navy on
+   capability pages, white for related content); card text sits on the image
+   gradient, so it stays white */
 .cards-casestudy {
   position: relative;
   padding: 24px 0 40px;
-  background-color: #000;
   color: #fff;
 }
 
@@ -132,6 +132,17 @@
 .cards-casestudy .cards-casestudy-nav button:hover {
   border-color: #fff;
   background: rgb(255 255 255 / 10%);
+}
+
+/* on light sections the arrows are black */
+.section:not(.dark, .navy) .cards-casestudy .cards-casestudy-nav button {
+  border-color: rgb(0 0 0 / 60%);
+  color: #000;
+}
+
+.section:not(.dark, .navy) .cards-casestudy .cards-casestudy-nav button:hover {
+  border-color: #000;
+  background: rgb(0 0 0 / 5%);
 }
 
 .cards-casestudy .cards-casestudy-nav button::after {
