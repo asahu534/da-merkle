@@ -41,14 +41,21 @@ export async function fetchQueryIndex(url = '/query-index.json') {
   return promise;
 }
 
+/** Decodes HTML entities (e.g. a pasted "&amp;") to plain text. */
+function decodeEntities(text) {
+  const el = document.createElement('textarea');
+  el.innerHTML = text;
+  return el.value;
+}
+
 /**
  * Splits a row's comma-separated `keywords` column into trimmed tags.
  * @param {object} row Index row
  * @returns {string[]} Keyword tags
  */
 export function keywordTags(row) {
-  return (row.keywords || '')
-    .split(/[,;|]/)
+  return decodeEntities(row.keywords || '')
+    .split(',')
     .map((t) => t.trim())
     .filter(Boolean);
 }
