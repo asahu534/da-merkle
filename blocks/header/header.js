@@ -197,17 +197,17 @@ export default async function decorate(block) {
   // nav.setAttribute('aria-expanded', 'false');
 
   // Mobile actions: search + hamburger
-// Mobile actions: search + hamburger
-const mobileActions = document.createElement('div');
-mobileActions.className = 'nav-mobile-actions';
+  // Mobile actions: search + hamburger
+  const mobileActions = document.createElement('div');
+  mobileActions.className = 'nav-mobile-actions';
 
-const searchBlock = nav.querySelector('.search');
+  const searchBlock = nav.querySelector('.search');
 
-// Create hamburger only for mobile
-const hamburger = document.createElement('div');
-hamburger.className = 'nav-hamburger';
+  // Create hamburger only for mobile
+  const hamburger = document.createElement('div');
+  hamburger.className = 'nav-hamburger';
 
-hamburger.innerHTML = `
+  hamburger.innerHTML = `
   <button
     type="button"
     aria-controls="nav"
@@ -217,39 +217,39 @@ hamburger.innerHTML = `
   </button>
 `;
 
-hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
 
-// Add search + hamburger to the mobile wrapper
-mobileActions.append(searchBlock, hamburger);
+  // Add search + hamburger to the mobile wrapper
+  mobileActions.append(searchBlock, hamburger);
 
-const setupMobileActions = () => {
-  if (!isDesktop.matches) {
+  const setupMobileActions = () => {
+    if (!isDesktop.matches) {
     // Mobile:
     // Move search + hamburger into one wrapper
-    if (!mobileActions.parentElement) {
-      nav.append(mobileActions);
-    }
-  } else {
+      if (!mobileActions.parentElement) {
+        nav.append(mobileActions);
+      }
+    } else {
     // Desktop:
     // Move search back to nav-tools
-    if (searchBlock && searchBlock.parentElement === mobileActions) {
-      navTools.insertBefore(searchBlock, navTools.firstChild);
+      if (searchBlock && searchBlock.parentElement === mobileActions) {
+        navTools.insertBefore(searchBlock, navTools.firstChild);
+      }
+
+      // Remove mobile-only wrapper and hamburger
+      if (mobileActions.parentElement) {
+        mobileActions.remove();
+      }
     }
+  };
 
-    // Remove mobile-only wrapper and hamburger
-    if (mobileActions.parentElement) {
-      mobileActions.remove();
-    }
-  }
-};
+  setupMobileActions();
 
-setupMobileActions();
-
-nav.setAttribute('aria-expanded', 'false');
+  nav.setAttribute('aria-expanded', 'false');
   // keep brand ahead of hamburger visually via CSS; reset menu state on breakpoint change
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => {
-     setupMobileActions();
+    setupMobileActions();
     toggleMenu(nav, navSections, isDesktop.matches);
     toggleAllNavSections(navSections, false);
     const hb = nav.querySelector('.nav-hamburger button');
