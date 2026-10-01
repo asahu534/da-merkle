@@ -1,5 +1,5 @@
 // media query match that indicates desktop width
-const isDesktop = window.matchMedia('(min-width: 900px)');
+const isDesktop = window.matchMedia('(min-width: 1280px)');
 
 /**
  * Fetch the nav fragment. Metadata-independent dual-fetch:
@@ -34,12 +34,24 @@ function toggleAllNavSections(sections, expanded = false) {
  * @param {Boolean|null} forceExpanded
  */
 function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
+  const expanded = forceExpanded !== null
+    ? !forceExpanded
+    : nav.getAttribute('aria-expanded') === 'true';
+
   const button = nav.querySelector('.nav-hamburger button');
+
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
+
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+
   toggleAllNavSections(navSections, false);
-  if (button) button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+
+  if (button) {
+    button.setAttribute(
+      'aria-label',
+      expanded ? 'Open navigation' : 'Close navigation',
+    );
+  }
 }
 
 /**
@@ -64,6 +76,18 @@ export default async function decorate(block) {
 
   // brand: unwrap the logo link/paragraph
   const navBrand = nav.querySelector('.nav-brand');
+  if (navBrand) {
+    const logoImage = navBrand.querySelector('picture');
+
+    if (logoImage) {
+      const logoLink = document.createElement('a');
+      logoLink.href = '/';
+      logoLink.setAttribute('aria-label', 'Merkle Home');
+
+      logoLink.append(logoImage);
+      navBrand.append(logoLink);
+    }
+  }
 
   // primary nav: mark items with sub-lists as dropdowns
   const navSections = nav.querySelector('.nav-sections');
@@ -151,23 +175,93 @@ export default async function decorate(block) {
       });
     }
     // last link styled as the Contact CTA
+    // last link styled as the Contact CTA
     const toolLinks = navTools.querySelectorAll(':scope > p a');
-    if (toolLinks.length) toolLinks[toolLinks.length - 1].classList.add('nav-cta');
+
+    if (toolLinks.length) {
+      const cta = toolLinks[toolLinks.length - 1];
+
+      cta.classList.add('nav-cta');
+
+      const text = cta.textContent.trim();
+
+      const currentText = document.createElement('span');
+      currentText.className = 'nav-cta-text nav-cta-text-current';
+      currentText.textContent = text;
+
+      const hoverText = document.createElement('span');
+      hoverText.className = 'nav-cta-text nav-cta-text-hover';
+      hoverText.textContent = text;
+
+      cta.textContent = '';
+      cta.append(currentText, hoverText);
+    }
   }
 
   // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
+  // const hamburger = document.createElement('div');
+  // hamburger.classList.add('nav-hamburger');
+  // hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
+  //     <span class="nav-hamburger-icon"></span>
+  //   </button>`;
+  // hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+  // nav.prepend(hamburger);
+  // nav.setAttribute('aria-expanded', 'false');
 
+  // Mobile actions: search + hamburger
+  // Mobile actions: search + hamburger
+  const mobileActions = document.createElement('div');
+  mobileActions.className = 'nav-mobile-actions';
+
+  const searchBlock = nav.querySelector('.search');
+
+  // Create hamburger only for mobile
+  const hamburger = document.createElement('div');
+  hamburger.className = 'nav-hamburger';
+
+  hamburger.innerHTML = `
+  <button
+    type="button"
+    aria-controls="nav"
+    aria-label="Open navigation"
+  >
+    <span class="nav-hamburger-icon"></span>
+  </button>
+`;
+
+  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+
+  // Add search + hamburger to the mobile wrapper
+  mobileActions.append(searchBlock, hamburger);
+
+  const setupMobileActions = () => {
+    if (!isDesktop.matches) {
+    // Mobile:
+    // Move search + hamburger into one wrapper
+      if (!mobileActions.parentElement) {
+        nav.append(mobileActions);
+      }
+    } else {
+    // Desktop:
+    // Move search back to nav-tools
+      if (searchBlock && searchBlock.parentElement === mobileActions) {
+        navTools.insertBefore(searchBlock, navTools.firstChild);
+      }
+
+      // Remove mobile-only wrapper and hamburger
+      if (mobileActions.parentElement) {
+        mobileActions.remove();
+      }
+    }
+  };
+
+  setupMobileActions();
+
+  nav.setAttribute('aria-expanded', 'false');
   // keep brand ahead of hamburger visually via CSS; reset menu state on breakpoint change
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => {
+    setupMobileActions();
     toggleMenu(nav, navSections, isDesktop.matches);
     toggleAllNavSections(navSections, false);
     const hb = nav.querySelector('.nav-hamburger button');
