@@ -22,7 +22,7 @@ Rows without an image can leave the first cell empty or have a single cell.
 | `Cards Grid` | Icon cards (default) — icon, bold title, description | icon image · heading (H6) + text |
 | `Cards Grid (logos)` | Centred logo + label, optional text and link | logo image · **bold label** + text + link |
 | `Cards Grid (text)` | No image: heading + text + optional link, four across | heading (H5) + text + link |
-| `Cards Grid (stats)` | Large number + label, three across | first line = the number (e.g. `$30B+`), then the label |
+| `Cards Grid (stats)` | Blue line above each stat, large number + label, three across | first line = the number (e.g. `$30B+`), then the label |
 | `Cards Grid (people)` | 16:9 headshot, **bold name**, role, region — centred | photo · **name** + role + region |
 | `Cards Grid (promo)` | Centred navy panel with eyebrow, heading, text and CTA, two across | eyebrow + heading + text + link |
 | `Cards Grid (promo, rounded)` | Any look above with 24px rounded card corners — add `rounded` to the options, or put the block in a section with `Style = rounded` | same as the look it's combined with |

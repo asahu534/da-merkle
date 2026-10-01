@@ -163,11 +163,6 @@
   padding: 40px 24px;
 }
 
-.columns.media.hero p:first-child:has(+ :is(h1, h2, h3, h4)) {
-  font-size: 16px;
-  line-height: 16px;
-}
-
 .columns.media.hero :is(h1, h2, h3, h4) {
   font-size: 36px;
   font-weight: 400;

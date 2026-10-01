@@ -1,12 +1,11 @@
 :root {
-  /* Merkle brand — proxima-nova is the source face; use a geometric sans fallback
-     stack (no public proxima-nova web kit is available to us). */
-  --heading-font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
-  --body-font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
+  /* Merkle brand — Work Sans (self-hosted, see fonts.css) */
+  --heading-font-family: work-sans, work-sans-fallback, sans-serif;
+  --body-font-family: work-sans, work-sans-fallback, sans-serif;
 
   /* colors */
   --background-color: #fff;
-  --text-color: #202020;
+  --text-color: #000;
   --link-color: #dd3039;
   --link-hover-color: #b3262e;
   --brand-accent: #dd3039;
@@ -20,7 +19,7 @@
 
   /* heading sizes (desktop) */
   --heading-size-xxl: 52px;
-  --heading-size-xl: 40px;
+  --heading-size-xl: 52px;
   --heading-size-l: 28px;
   --heading-size-m: 21px;
   --heading-size-s: 18px;

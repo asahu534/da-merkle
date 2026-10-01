@@ -17,13 +17,13 @@
   --background-color: #fff;
   --light-color: #f5f5f5;
   --dark-color: #000;
-  --text-color: #202020;
+  --text-color: #000;
   --link-color: #dd3039;
   --link-hover-color: #b3262e;
 
-  /* fonts — proxima-nova with geometric sans fallback */
-  --body-font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
-  --heading-font-family: "proxima-nova", "Helvetica Neue", helvetica, arial, sans-serif;
+  /* fonts — Work Sans (merkle.com), size-matched Arial fallback until it loads */
+  --body-font-family: work-sans, work-sans-fallback, sans-serif;
+  --heading-font-family: work-sans, work-sans-fallback, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 20px;
@@ -42,17 +42,26 @@
   --nav-height: 80px;
 }
 
-/* fallback fonts */
+/* fallback fonts — Arial scaled to Work Sans widths (measured: regular 97.2%,
+   bold 86.9%) and line metrics (ascent 930, descent 243 per 1000) */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
+  font-family: work-sans-fallback;
+  font-weight: 100 599;
+  size-adjust: 97.2%;
+  ascent-override: 95.7%;
+  descent-override: 25%;
+  line-gap-override: 0%;
   src: local('Arial');
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
+  font-family: work-sans-fallback;
+  font-weight: 600 900;
+  size-adjust: 86.9%;
+  ascent-override: 107%;
+  descent-override: 28%;
+  line-gap-override: 0%;
+  src: local('Arial Bold'), local('Arial-BoldMT');
 }
 
 @media (width >= 900px) {
@@ -62,9 +71,9 @@
     --body-font-size-s: 18px;
     --body-font-size-xs: 16px;
 
-    /* heading sizes — Merkle uses large 52px display h1/h2 */
+    /* heading sizes — Merkle uses large 52px / 56px display h1/h2 */
     --heading-font-size-xxl: 52px;
-    --heading-font-size-xl: 48px;
+    --heading-font-size-xl: 52px;
     --heading-font-size-l: 28px;
     --heading-font-size-m: 21px;
     --heading-font-size-s: 18px;
@@ -436,7 +445,8 @@ main .section.center .default-content-wrapper > p {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.14; /* tight intro copy — source: 24px on 21px */
+  font-size: 21px; /* intro copy — source: 21px / 24px */
+  line-height: 24px;
 }
 
 /* stylelint-disable no-descending-specificity */

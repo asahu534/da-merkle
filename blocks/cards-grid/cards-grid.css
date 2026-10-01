@@ -124,7 +124,12 @@
   line-height: 20px;
 }
 
-/* ===== stats: large number + label ===== */
+/* ===== stats: blue rule, large number + label ===== */
+.cards-grid.stats > ul > li {
+  padding-top: 16px;
+  border-top: 2px solid rgb(3 145 242); /* source: infographic item rule */
+}
+
 .cards-grid.stats .cards-grid-card-body > :first-child {
   margin: 0 0 8px;
   font-size: 36px;
@@ -252,6 +257,11 @@
 
   .cards-grid.logos .cards-grid-card-body :is(h3, h4, h5, h6, p) {
     font-size: 21px;
+  }
+
+  /* a lone name under a partner logo is smaller (source: 18px) */
+  .cards-grid.logos .cards-grid-card-body > p:only-child {
+    font-size: 18px;
   }
 
   .cards-grid.stats > ul {
