@@ -39,6 +39,13 @@ white (no Style). For a coloured heading band above the cards (as on AI
 Expertise), put the heading in its own section with `Style = dark, center` or
 `grey, center`, then the rounded columns in the next section.
 
+`rounded` also works as a **section style**: `Style = dark, rounded` (or
+`grey, rounded`, `navy, rounded`). The section stays white and its colour moves
+onto each Columns (media) card (and any Cards Grid cards) in it, with 24px
+corners and 40px between cards. A heading at the top of that section keeps a
+full-width band in the section colour. Several rounded sections in a row sit
+40px apart, so no spacer sections are needed between them.
+
 ## Universal Editor fields
 
 N/A (Document Authoring project)

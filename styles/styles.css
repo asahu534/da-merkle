@@ -387,9 +387,47 @@ main .section.grey {
   padding: 64px 0;
 }
 
+/* rounded section variant — Section Metadata Style=rounded (e.g. "dark, rounded").
+   The colour moves from the full-width section onto the cards inside it
+   (columns media rows, cards-grid cards get 24px corners in that colour), so
+   they sit as separate cards on white with 40px between them. A heading at the
+   top of the section keeps a full-width band in the section colour.
+   Source: AI Expertise case-study teasers. */
+main .section.rounded {
+  margin: 0;
+  padding: 40px 0;
+}
+
+main .section.rounded:is(.dark, .navy, .grey) {
+  background-color: transparent;
+}
+
+main .section.rounded + .section.rounded,
+main .section.rounded:has(> .default-content-wrapper:first-child) {
+  padding-top: 0;
+}
+
+main .section.rounded:is(.dark, .navy, .grey) > .default-content-wrapper:first-child {
+  margin-bottom: 40px;
+  padding-top: 64px;
+  padding-bottom: 64px;
+  box-shadow: 0 0 0 100vmax var(--rounded-band-color, #000); /* full-bleed band */
+  clip-path: inset(0 -100vmax);
+  background-color: var(--rounded-band-color, #000);
+}
+
+main .section.rounded.navy > .default-content-wrapper:first-child {
+  --rounded-band-color: rgb(4 14 75);
+}
+
+main .section.rounded.grey > .default-content-wrapper:first-child {
+  --rounded-band-color: rgb(214 214 223);
+}
+
 /* center section variant — author-configurable via Section Metadata Style=center.
    Centers the intro (heading + paragraph) and the CTA button row; constrains
    the intro text to a readable centered column (matches Merkle intro sections). */
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.center .default-content-wrapper {
   text-align: center;
 }

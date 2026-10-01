@@ -287,7 +287,8 @@
 
 /* rounded option: rounded card corners (e.g. Cards Grid (promo, rounded)) —
    source: merkle.com AI Expertise promo panels, 24px */
-.cards-grid.rounded > ul > li {
+.cards-grid.rounded > ul > li,
+.section.rounded .cards-grid > ul > li {
   overflow: hidden;
   border-radius: 24px;
 }

@@ -25,7 +25,7 @@ Rows without an image can leave the first cell empty or have a single cell.
 | `Cards Grid (stats)` | Large number + label, three across | first line = the number (e.g. `$30B+`), then the label |
 | `Cards Grid (people)` | 16:9 headshot, **bold name**, role, region — centred | photo · **name** + role + region |
 | `Cards Grid (promo)` | Centred navy panel with eyebrow, heading, text and CTA, two across | eyebrow + heading + text + link |
-| `Cards Grid (promo, rounded)` | Any look above with 24px rounded card corners — add `rounded` to the options | same as the look it's combined with |
+| `Cards Grid (promo, rounded)` | Any look above with 24px rounded card corners — add `rounded` to the options, or put the block in a section with `Style = rounded` | same as the look it's combined with |
 
 Notes:
 

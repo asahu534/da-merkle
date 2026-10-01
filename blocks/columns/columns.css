@@ -108,30 +108,31 @@
   color: #fff;
 }
 
-/* ===== rounded option: each row is a rounded card (Columns (media, rounded)) =====
- * The card carries its own background — black by default, or grey / navy with
- * those options — so it reads as a separate card on a white section.
+/* ===== rounded: each row is a rounded card =====
+ * Either the block option (Columns (media, rounded[, grey|navy])) or the
+ * section style (Style = dark|grey|navy, rounded). The card carries the
+ * colour — black by default — so it reads as a separate card on white.
  * Source: merkle.com case-study teasers (24px radius, image clipped to it).
  */
 /* stylelint-disable no-descending-specificity */
-.columns.media.rounded > div {
+:is(.columns.media.rounded, .section.rounded .columns.media) > div {
   overflow: hidden;
   border-radius: 24px;
   background-color: #000;
   color: #fff;
 }
 
-.columns.media.rounded.grey > div {
+:is(.columns.media.rounded.grey, .section.rounded.grey .columns.media) > div {
   background-color: rgb(214 214 223);
   color: #000;
 }
 
-.columns.media.rounded.navy > div {
+:is(.columns.media.rounded.navy, .section.rounded.navy .columns.media) > div {
   background-color: rgb(4 14 75);
   color: #fff;
 }
 
-.columns.media.rounded > div > div:not(.columns-img-col) {
+:is(.columns.media.rounded, .section.rounded .columns.media) > div > div:not(.columns-img-col) {
   padding: 32px 24px;
 }
 /* stylelint-enable no-descending-specificity */
@@ -157,6 +158,7 @@
   padding-bottom: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .columns.media.hero > div > div:not(.columns-img-col) {
   padding: 40px 24px;
 }
@@ -191,7 +193,7 @@
     padding: 48px 64px;
   }
 
-  .columns.media.rounded > div > div:not(.columns-img-col) {
+  :is(.columns.media.rounded, .section.rounded .columns.media) > div > div:not(.columns-img-col) {
     padding: 48px 64px;
   }
 
@@ -213,6 +215,7 @@
     line-height: 48px;
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
   .columns.media.hero > div > div:not(.columns-img-col) {
     padding: 48px 32px 48px max(32px, calc((100vw - 1200px) / 2 + 32px));
   }
