@@ -31,3 +31,196 @@
     order: unset;
   }
 }
+
+/* ===== media option: text + image teaser (Columns (media)) =====
+ * Each row is one teaser: text cell (eyebrow, heading, text, CTA) + image cell.
+ * Panel colour comes from the section (Section Metadata Style: dark, navy, grey).
+ * Values extracted from merkle.com teaser components.
+ */
+.columns.media > div {
+  gap: 0;
+}
+
+.columns.media > div + div {
+  margin-top: 40px;
+}
+
+/* text first, image second on mobile */
+.columns.media > div > div,
+.columns.media > div > .columns-img-col {
+  order: unset;
+}
+
+.columns.media > div > div:not(.columns-img-col) {
+  padding: 32px 0;
+}
+
+.columns.media .columns-img-col img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.columns.media p {
+  margin: 16px 0 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* eyebrow: a first paragraph followed by a heading */
+.columns.media p:first-child:has(+ :is(h1, h2, h3, h4)) {
+  margin: 0 0 16px;
+  color: rgb(174 174 188);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+.columns.media :is(h1, h2, h3, h4) {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+/* CTA: a paragraph holding only a link — white pill on dark panels */
+.columns.media p:has(> a:only-child) {
+  margin-top: 24px;
+}
+
+.columns.media p:has(> a:only-child) > a:any-link {
+  display: inline-block;
+  padding: 15px 16px;
+  border-radius: 16px;
+  background-color: #fff;
+  color: #000;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.35s, color 0.35s;
+}
+
+.columns.media p:has(> a:only-child) > a:any-link:hover,
+.columns.media p:has(> a:only-child) > a:any-link:focus-visible {
+  background-color: #0328d1;
+  color: #fff;
+}
+
+/* ===== rounded: each row is a rounded card =====
+ * Either the block option (Columns (media, rounded[, grey|navy])) or the
+ * section style (Style = dark|grey|navy, rounded). The card carries the
+ * colour — black by default — so it reads as a separate card on white.
+ * Source: merkle.com case-study teasers (24px radius, image clipped to it).
+ */
+/* stylelint-disable no-descending-specificity */
+:is(.columns.media.rounded, .section.rounded .columns.media) > div {
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: #000;
+  color: #fff;
+}
+
+:is(.columns.media.rounded.grey, .section.rounded.grey .columns.media) > div {
+  background-color: rgb(214 214 223);
+  color: #000;
+}
+
+:is(.columns.media.rounded.navy, .section.rounded.navy .columns.media) > div {
+  background-color: rgb(4 14 75);
+  color: #fff;
+}
+
+:is(.columns.media.rounded, .section.rounded .columns.media) > div > div:not(.columns-img-col) {
+  padding: 32px 24px;
+}
+/* stylelint-enable no-descending-specificity */
+
+/* on a grey section or a grey card: darker eyebrow, black pill */
+:is(.grey .columns.media, .columns.media.grey) p:first-child:has(+ :is(h1, h2, h3, h4)) {
+  color: rgb(96 96 125);
+}
+
+:is(.grey .columns.media, .columns.media.grey) p:has(> a:only-child) > a:any-link {
+  background-color: #000;
+  color: #fff;
+}
+
+/* ===== hero option: full-bleed page hero (Columns (media, hero)) ===== */
+.columns-wrapper:has(> .columns.media.hero) {
+  max-width: 100%;
+  padding: 0;
+}
+
+.columns-container:has(.columns.media.hero) {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.columns.media.hero > div > div:not(.columns-img-col) {
+  padding: 40px 24px;
+}
+
+.columns.media.hero :is(h1, h2, h3, h4) {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 40px;
+}
+
+@media (width >= 900px) {
+  .columns.media > div {
+    align-items: stretch;
+    gap: 0;
+    min-height: 552px;
+  }
+
+  .columns.media.hero > div {
+    min-height: 422px;
+  }
+
+  .columns.media > div > div:not(.columns-img-col) {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 64px;
+  }
+
+  :is(.columns.media.rounded, .section.rounded .columns.media) > div > div:not(.columns-img-col) {
+    padding: 48px 64px;
+  }
+
+  /* the image fills the row's height instead of setting it */
+  .columns.media > div > .columns-img-col {
+    position: relative;
+    flex: 0 0 552px;
+  }
+
+  .columns.media .columns-img-col img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .columns.media :is(h1, h2, h3, h4) {
+    font-size: 44px;
+    line-height: 48px;
+  }
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .columns.media.hero > div > div:not(.columns-img-col) {
+    padding: 48px 32px 48px max(32px, calc((100vw - 1200px) / 2 + 32px));
+  }
+
+  .columns.media.hero > div > .columns-img-col {
+    flex: 0 0 50%;
+  }
+
+  .columns.media.hero :is(h1, h2, h3, h4) {
+    font-size: 52px;
+    line-height: 56px;
+  }
+}

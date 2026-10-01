@@ -14,66 +14,9 @@
  * the History API so results are shareable and the back/forward buttons work.
  */
 
-const QUERY_INDEX = '/query-index.json';
-const PAGE_SIZE = 500;
-
-// module-scope cache so the index is fetched at most once per page load
-let indexPromise;
-
-/* Fetch every page of the query index, following offset/limit pagination. */
-async function fetchIndex() {
-  if (indexPromise) return indexPromise;
-  indexPromise = (async () => {
-    const rows = [];
-    let offset = 0;
-    let total = Infinity;
-    while (offset < total) {
-      // eslint-disable-next-line no-await-in-loop
-      const resp = await fetch(`${QUERY_INDEX}?limit=${PAGE_SIZE}&offset=${offset}`);
-      if (!resp.ok) throw new Error(`query-index ${resp.status}`);
-      // eslint-disable-next-line no-await-in-loop
-      const json = await resp.json();
-      const data = json.data || [];
-      rows.push(...data);
-      total = typeof json.total === 'number' ? json.total : rows.length;
-      if (!data.length) break;
-      offset += data.length;
-    }
-    return rows;
-  })().catch((e) => {
-    // reset so a later interaction can retry a transient failure
-    indexPromise = undefined;
-    throw e;
-  });
-  return indexPromise;
-}
-
-/* Split a row's `keywords` column into trimmed, non-empty tags. */
-function keywordTags(row) {
-  return (row.keywords || '')
-    .split(/[,;|]/)
-    .map((t) => t.trim())
-    .filter(Boolean);
-}
-
-/* Derive a card eyebrow ("Blog Post", "Ebook", …) from the page path. */
-function pathToType(path = '') {
-  if (/\/articles-blogs\//i.test(path)) return 'Blog Post';
-  if (/\/press-releases\//i.test(path)) return 'Press Release';
-  if (/\/ebooks\//i.test(path)) return 'Ebook';
-  if (/\/events\//i.test(path)) return 'Event';
-  if (/\/work\/case-studies\//i.test(path)) return 'Case Study';
-  return '';
-}
-
-/* Paths that are not real content pages and must never appear in results. */
-function isContentPage(row) {
-  const path = row.path || '';
-  if (!path) return false;
-  if (/(^|\/)(nav|footer|fragments?)(\/|$)/i.test(path)) return false;
-  if (/\/search(\.html)?$/i.test(path)) return false; // don't list the search page itself
-  return true;
-}
+import {
+  fetchQueryIndex, keywordTags, pageType, isContentPage,
+} from '../../scripts/query-index.js';
 
 /* Score a row against the lowercased query. Matching is driven by the page's
    `keywords` metadata from query-index.json; title is a lighter fallback so the
@@ -113,7 +56,7 @@ function renderResult(row) {
   link.className = 'search-result-link';
   link.href = row.path;
 
-  const type = pathToType(row.path);
+  const type = pageType(row.path);
   if (type) {
     const eyebrow = document.createElement('p');
     eyebrow.className = 'search-result-type';
@@ -337,7 +280,7 @@ export default function decorate(block) {
     results.innerHTML = '<div class="search-results-inner"><p class="search-status">Searching…</p></div>';
     let matches;
     try {
-      const data = await fetchIndex();
+      const data = await fetchQueryIndex();
       matches = search(data, q);
     } catch (e) {
       results.innerHTML = '<div class="search-results-inner"><p class="search-status">Search is temporarily unavailable. Please try again later.</p></div>';

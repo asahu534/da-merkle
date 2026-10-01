@@ -1,10 +1,93 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+/*
+ * Cards Filter — filterable, paginated content archive powered by the site's
+ * query index (/query-index.json).
+ *
+ * Authored content: a single setting row
+ *   | Path | /articles-blogs/ |
+ * Several folders can be listed, comma-separated or one per line. Without a
+ * path, every indexed content page is listed.
+ *
+ * Cards are the indexed pages under the path(s), newest first. Filter chips are
+ * built from the pages' comma-separated `keywords`.
+ */
+
+import { readBlockConfig } from '../../scripts/aem.js';
+import {
+  fetchQueryIndex, keywordTags, pageType, isContentPage,
+} from '../../scripts/query-index.js';
 
 const BATCH_SIZE = 12;
 
-/** Slugify a label into a filter token. */
-function slug(text) {
-  return text.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+/** Normalise a folder setting (text or link) to a path with a trailing slash. */
+function toFolder(value) {
+  const text = String(value).trim();
+  if (!text) return '';
+  let { pathname } = new URL(text, window.location.origin);
+  pathname = pathname.replace(/\.html$/, '');
+  return pathname.endsWith('/') ? pathname : `${pathname}/`;
+}
+
+/** Read the folder(s) to list from the block's setting rows. */
+function readFolders(block) {
+  const config = readBlockConfig(block);
+  let values = config.path || config.folder || [];
+  if (!Array.isArray(values)) values = [values];
+  // also accept a bare single-cell row that just holds a path
+  block.querySelectorAll(':scope > div').forEach((row) => {
+    const text = row.textContent.trim();
+    if (row.children.length === 1 && text.startsWith('/')) values.push(text);
+  });
+  return values
+    .flatMap((v) => String(v).split(','))
+    .map(toFolder)
+    .filter(Boolean);
+}
+
+/** Pick and order the pages to show. */
+function selectPages(rows, folders) {
+  const here = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+  return rows
+    .filter(isContentPage)
+    .filter((row) => {
+      const path = row.path.replace(/\/$/, '');
+      if (!path || path === here) return false; // skip the home and listing page itself
+      if (!folders.length) return true;
+      return folders.some((f) => row.path.startsWith(f) && `${path}/` !== f);
+    })
+    .sort((a, b) => (Number(b.lastModified) || 0) - (Number(a.lastModified) || 0));
+}
+
+function renderCard(row) {
+  const li = document.createElement('li');
+  li.dataset.keywords = JSON.stringify(keywordTags(row));
+
+  const body = document.createElement('div');
+  body.className = 'cards-filter-card-body';
+
+  const type = pageType(row.path);
+  if (type) {
+    const eyebrow = document.createElement('p');
+    eyebrow.className = 'cards-filter-card-type';
+    eyebrow.textContent = type;
+    body.append(eyebrow);
+  }
+
+  const title = row.title || row.path;
+  const h3 = document.createElement('h3');
+  h3.textContent = title;
+  body.append(h3);
+
+  const linkP = document.createElement('p');
+  linkP.className = 'cards-filter-card-link';
+  const a = document.createElement('a');
+  a.href = row.path;
+  a.textContent = 'Read more';
+  a.setAttribute('aria-label', `Read more: ${title}`);
+  linkP.append(a);
+  body.append(linkP);
+
+  li.append(body);
+  return li;
 }
 
 /** Reveal up to `count` more hidden cards; returns the number still hidden. */
@@ -14,10 +97,10 @@ function revealBatch(list, count) {
   return list.querySelectorAll('li[hidden]:not([data-filtered])').length;
 }
 
-/** Apply the active category filter, then re-batch the visible set. */
-function applyFilter(block, list, loadMore, active) {
+/** Apply the active keyword filter, then re-batch the visible set. */
+function applyFilter(list, loadMore, active) {
   list.querySelectorAll(':scope > li').forEach((li) => {
-    const match = active === 'all' || li.dataset.category === active;
+    const match = active === null || JSON.parse(li.dataset.keywords).includes(active);
     li.toggleAttribute('data-filtered', !match);
     li.hidden = true; // reset; batch logic re-reveals
   });
@@ -25,44 +108,38 @@ function applyFilter(block, list, loadMore, active) {
   loadMore.hidden = remaining === 0;
 }
 
-export default function decorate(block) {
-  /* build the card list from authored rows */
+function makeChip(label, keyword) {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'cards-filter-chip';
+  if (keyword !== null) chip.dataset.filter = keyword;
+  chip.textContent = label;
+  return chip;
+}
+
+export default async function decorate(block) {
+  const folders = readFolders(block);
+  block.textContent = '';
+
+  let pages;
+  try {
+    pages = selectPages(await fetchQueryIndex(), folders);
+  } catch (e) {
+    block.innerHTML = '<p class="cards-filter-status">Content is temporarily unavailable. Please try again later.</p>';
+    return;
+  }
+  if (!pages.length) {
+    block.innerHTML = '<p class="cards-filter-status">No content found.</p>';
+    return;
+  }
+
   const ul = document.createElement('ul');
   ul.className = 'cards-filter-list';
-  [...block.children].forEach((row) => {
-    const li = document.createElement('li');
-    while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.querySelector('picture')) div.className = 'cards-filter-card-image';
-      else if (div.querySelector('h3, p')) div.className = 'cards-filter-card-body';
-      else div.remove(); // drop empty placeholder cells (source cards have no image)
-    });
-    // derive the card's category from its eyebrow (first paragraph in the body)
-    const body = li.querySelector('.cards-filter-card-body');
-    const eyebrow = body ? body.querySelector('p') : null;
-    if (eyebrow) li.dataset.category = slug(eyebrow.textContent);
-    // normalise the "Read more" link: source shows just "Read more" as the
-    // visible label; keep the full title as the accessible name.
-    const readLink = body ? body.querySelector('p:last-child a') : null;
-    if (readLink) {
-      const title = li.querySelector('h3');
-      const label = title ? title.textContent.trim() : readLink.textContent.trim();
-      readLink.setAttribute('aria-label', `Read more: ${label}`);
-      readLink.textContent = 'Read more';
-    }
-    ul.append(li);
-  });
+  pages.forEach((row) => ul.append(renderCard(row)));
 
-  ul.querySelectorAll('picture > img').forEach((img) => {
-    const optimised = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
-    img.closest('picture').replaceWith(optimised);
-  });
-
-  // collect the distinct categories for the filter control
-  const categories = [...new Set([...ul.querySelectorAll(':scope > li')]
-    .map((li) => li.dataset.category).filter(Boolean))];
-
-  block.textContent = '';
+  // one chip per distinct keyword across the listed pages
+  const keywords = [...new Set(pages.flatMap(keywordTags))]
+    .sort((a, b) => a.localeCompare(b));
 
   // filter control
   const controls = document.createElement('div');
@@ -76,23 +153,9 @@ export default function decorate(block) {
   const panel = document.createElement('div');
   panel.className = 'cards-filter-panel';
   panel.hidden = true;
-  const allChip = document.createElement('button');
-  allChip.type = 'button';
-  allChip.className = 'cards-filter-chip is-active';
-  allChip.dataset.filter = 'all';
-  allChip.textContent = 'All';
-  panel.append(allChip);
-  categories.forEach((cat) => {
-    const label = [...ul.querySelectorAll(':scope > li')]
-      .find((li) => li.dataset.category === cat)
-      .querySelector('.cards-filter-card-body p').textContent.trim();
-    const chip = document.createElement('button');
-    chip.type = 'button';
-    chip.className = 'cards-filter-chip';
-    chip.dataset.filter = cat;
-    chip.textContent = label;
-    panel.append(chip);
-  });
+  const allChip = makeChip('All', null);
+  allChip.classList.add('is-active');
+  panel.append(allChip, ...keywords.map((k) => makeChip(k, k)));
 
   filterBtn.addEventListener('click', () => {
     const open = filterBtn.getAttribute('aria-expanded') === 'true';
@@ -101,6 +164,7 @@ export default function decorate(block) {
   });
 
   controls.append(filterBtn, panel);
+  if (!keywords.length) filterBtn.hidden = true; // nothing to filter by
 
   // load more
   const loadMore = document.createElement('button');
@@ -116,7 +180,7 @@ export default function decorate(block) {
     if (!chip) return;
     panel.querySelectorAll('.cards-filter-chip').forEach((c) => c.classList.remove('is-active'));
     chip.classList.add('is-active');
-    applyFilter(block, ul, loadMore, chip.dataset.filter);
+    applyFilter(ul, loadMore, chip.dataset.filter ?? null);
   });
 
   loadMore.addEventListener('click', () => {
@@ -125,5 +189,5 @@ export default function decorate(block) {
   });
 
   // initial paged view
-  applyFilter(block, ul, loadMore, 'all');
+  applyFilter(ul, loadMore, null);
 }
