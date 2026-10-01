@@ -38,6 +38,11 @@
   cursor: pointer;
 }
 
+/* no keywords to filter by: the block hides the button */
+.cards-filter .cards-filter-toggle[hidden] {
+  display: none;
+}
+
 .cards-filter .cards-filter-panel {
   display: flex;
   flex-wrap: wrap;
