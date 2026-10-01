@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.merkle.com/en/capabilities/platforms-engineering.html",
+  "path": "capabilities/platforms-engineering",
+  "timestamp": "2026-10-01T06:45:32.131Z",
+  "title": "Commerce & Customer Experience Platforms and Engineering | Merkle",
+  "template": "capability",
+  "blocks": [
+    "columns (media, hero)",
+    "cards-grid (stats)",
+    "cards-grid (text)",
+    "cards-grid (logos) awards",
+    "cards-casestudy (success)",
+    "cards-grid (logos) partners",
+    "cards-grid (stats) partners",
+    "columns (media, rounded) ebook",
+    "cards-casestudy (related)"
+  ]
+}
