@@ -3,7 +3,7 @@
   "baseBlock": "cards",
   "canonicalModel": "standalone",
   "visualCharacteristics": "Filtered content archive. A black 'Filters' pill reveals category chips; results render as a 2-column grid of light-grey card panels (blue/brand eyebrow label + bold title + 'Read more' link); a black 'Load more' pill reveals results in batches.",
-  "contentPattern": "Each result card is one row: cell 1 = optional image, cell 2 = eyebrow/category label + title (heading) + 'Read more' link. Filtering, batching, and the Filters control are client-side behavior derived from the cards' eyebrow text — not authored rows.",
+  "contentPattern": "One setting row: 'Path' | folder(s) to list (comma-separated). Cards are generated from /query-index.json pages under the path, newest first: content-type eyebrow (from folder) + title + 'Read more' link. Filter chips come from each page's comma-separated keywords; batching and the Filters control are client-side behavior.",
   "usage": "'Find something specific' style filterable, paginated content archive / resource listing.",
   "options": [],
   "memberVariantIds": ["cards-filter"]

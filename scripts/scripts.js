@@ -84,6 +84,10 @@ function buildScene7Rendition(src, { width, format }) {
   });
   filtered.push(`wid=${width}`);
   filtered.push(`fmt=${format}`);
+  // Without fit, Scene7 pads an image narrower than `wid` with white
+  // (a 1080px asset requested at wid=2000 comes back 2000x1080). constrain
+  // returns it at its real size instead.
+  if (!filtered.some((p) => p.split('=')[0] === 'fit')) filtered.push('fit=constrain');
   return `${base}?${filtered.join('&')}`;
 }
 

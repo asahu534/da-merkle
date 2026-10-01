@@ -1,0 +1,20 @@
+{
+  "variantName": "cards-grid",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": "Card grid with several looks picked by block options. Default: icon cards (graphic icon, bold title, short description), four across on a dark section. logos: centred logo + label with optional text and link. text: heading + text + optional link, no image, four across. stats: large number + label, three across. people: 16:9 headshot + bold name + role + region, centred. promo: centred navy panels with eyebrow, heading, text and a white pill CTA, two across. rounded: adds 24px rounded card corners to any look.",
+  "contentPattern": "First row is the block name, optionally with an option in brackets, e.g. 'Cards Grid (stats)'. Each following row is one card: cell 1 = optional image (icon, logo or photo), cell 2 = text (heading and/or paragraphs, optional link). Rows without an image may omit cell 1.",
+  "usage": "Feature grids (icon), awards and partner logos, text feature lists, statistic rows, leadership teams and paired promo panels.",
+  "options": [
+    "logos",
+    "text",
+    "stats",
+    "people",
+    "promo",
+    "rounded"
+  ],
+  "memberVariantIds": [
+    "cards-grid",
+    "cards-icon"
+  ]
+}
