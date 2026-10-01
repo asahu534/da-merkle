@@ -2,13 +2,14 @@
   "variantName": "cards-casestudy",
   "baseBlock": "cards",
   "canonicalModel": "standalone",
-  "visualCharacteristics": "Horizontally-scrolling gallery of tall image cards with a client eyebrow and title overlaid on a dark gradient. Filled light-grey round prev/next arrows (red on hover, dimmed at the ends) scroll one card at a time. rounded: 24px card corners. arrows-right: arrows at the bottom right. heading-left: the section heading in a 345px left column with the arrows at its bottom, cards to the right (desktop).",
+  "visualCharacteristics": "Horizontally-scrolling gallery of tall image cards with a client eyebrow and title overlaid on a dark gradient. Filled light-grey round prev/next arrows (red on hover, dimmed at the ends) scroll one card at a time. rounded: 24px card corners. arrows-right: arrows at the bottom right. heading-left: the section heading in a 345px left column with the arrows at its bottom, cards to the right (desktop). grid: all cards in rows (4/2/1 across), no arrows, titles clamped to three lines.",
   "contentPattern": "First row labels the block ('Cards'). Each case study is one row with two cells: cell 1 = image, cell 2 = client eyebrow + title (heading) + optional link.",
   "usage": "'Our work in action' case-study / client-story gallery carousel.",
   "options": [
     "rounded",
     "arrows-right",
-    "heading-left"
+    "heading-left",
+    "grid"
   ],
   "memberVariantIds": [
     "cards-casestudy"

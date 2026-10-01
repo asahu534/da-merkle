@@ -229,3 +229,53 @@
     margin: 0;
   }
 }
+
+/* ===== grid option: all cards in rows, no arrows (Cards Casestudy (grid)) =====
+ * Source: merkle.com Our Work featured case studies — 330 x 587 cards, four
+ * across in a 1380px row (20px column gap, 24px row gap), titles clamped to
+ * three lines.
+ */
+.cards-casestudy.grid .cards-casestudy-track {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px 20px;
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+.cards-casestudy.grid {
+  padding-bottom: 0;
+}
+
+/* room between an intro above the grid and the cards (source: 92px) */
+.default-content-wrapper + .cards-casestudy-wrapper:has(> .cards-casestudy.grid) {
+  margin-top: 64px;
+}
+
+.cards-casestudy.grid .cards-casestudy-track > li {
+  flex: none;
+}
+
+.cards-casestudy.grid .cards-casestudy-card-body h3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (width >= 600px) {
+  .cards-casestudy.grid .cards-casestudy-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .cards-casestudy-wrapper:has(> .cards-casestudy.grid) {
+    max-width: 1440px;
+    padding: 0 30px;
+  }
+
+  .cards-casestudy.grid .cards-casestudy-track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
