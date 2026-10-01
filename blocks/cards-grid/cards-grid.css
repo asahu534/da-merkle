@@ -284,3 +284,10 @@
 .cards-grid-wrapper:has(> .cards-grid:is(.logos, .text, .stats, .people, .promo)) + .cards-grid-wrapper:has(> .cards-grid:is(.logos, .text, .stats, .people, .promo)) {
   margin-top: 48px;
 }
+
+/* rounded option: rounded card corners (e.g. Cards Grid (promo, rounded)) —
+   source: merkle.com AI Expertise promo panels, 24px */
+.cards-grid.rounded > ul > li {
+  overflow: hidden;
+  border-radius: 24px;
+}

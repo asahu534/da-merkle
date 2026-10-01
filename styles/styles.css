@@ -425,6 +425,67 @@ main .section.grey .default-content-wrapper > p:first-child:has(+ :is(h1, h2)) {
   color: rgb(96 96 125);
 }
 
+/* split section variant — author-configurable via Section Metadata Style=split
+   (e.g. "navy, split"). The section's first heading sits in a left column and
+   the rest of its text in a right column, top-aligned; stacked on mobile.
+   Left-aligned, so it overrides center. Source: Platforms & Engineering intro
+   (two columns at opposite edges, ~480px each like the source, 44/48 bold
+   heading, 18/24 text). */
+/* stylelint-disable no-descending-specificity */
+main .section.split .default-content-wrapper {
+  text-align: left;
+}
+
+main .section.split .default-content-wrapper > :is(h1, h2):first-child {
+  margin-top: 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+main .section.split .default-content-wrapper > p {
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* space between the split intro and a block that follows it (e.g. stats) */
+main .section.split .default-content-wrapper + div {
+  margin-top: 48px;
+}
+
+@media (width >= 900px) {
+  main .section.split .default-content-wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 42%) minmax(0, 42%);
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  main .section.split .default-content-wrapper > * {
+    grid-column: 2;
+  }
+
+  /* the heading fills the left column beside all the text on the right */
+  main .section.split .default-content-wrapper > :is(h1, h2):first-child {
+    grid-column: 1;
+    grid-row: 1 / span 10;
+    font-size: 44px;
+    line-height: 48px;
+  }
+
+  main .section.split .default-content-wrapper > p:nth-child(2) {
+    margin-top: 0;
+  }
+
+  main .section.split .default-content-wrapper + div {
+    margin-top: 80px;
+  }
+}
+/* stylelint-enable no-descending-specificity */
+
 /* CTA links in default content — a paragraph whose only content is links
    renders as Merkle pill buttons. First link = PRIMARY (white pill, blue on
    hover); any following link = SECONDARY (red outline, solid-red fill on hover).
