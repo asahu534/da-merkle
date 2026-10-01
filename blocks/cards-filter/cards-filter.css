@@ -9,6 +9,12 @@
   gap: 18px;
 }
 
+/* room between the archive intro ("Find something specific") and the filters
+   (source: 100px from the intro text to the Filters button) */
+.default-content-wrapper + .cards-filter-wrapper {
+  margin-top: 96px;
+}
+
 /* --- filter control --- */
 .cards-filter .cards-filter-controls {
   position: relative;
@@ -30,6 +36,11 @@
   line-height: 1;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+/* no keywords to filter by: the block hides the button */
+.cards-filter .cards-filter-toggle[hidden] {
+  display: none;
 }
 
 .cards-filter .cards-filter-panel {

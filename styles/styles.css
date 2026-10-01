@@ -327,6 +327,19 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
+/* a plain section opening with text after a coloured band starts lower
+   (source: 80–104px from the band to the next heading, 88px on Our Work) */
+main > .section:is(.dark, .navy, .grey, .light, .highlight) + .section:not(.dark, .navy, .grey, .light, .highlight, .rounded):has(> .default-content-wrapper:first-child) {
+  margin-top: 88px;
+}
+
+/* a coloured band's opening text starts right at its padding (source: the
+   first heading of every merkle.com band sits 64px below the band top);
+   plain sections keep the heading margin, which gives their top gap */
+main > .section:is(.dark, .navy, .grey, .light, .highlight) > .default-content-wrapper:first-child > :first-child {
+  margin-top: 0;
+}
+
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
