@@ -35,7 +35,7 @@ function toggleAllNavSections(sections, expanded = false) {
  */
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null
-    ? !forceExpanded
+    ? forceExpanded
     : nav.getAttribute('aria-expanded') === 'true';
 
   const button = nav.querySelector('.nav-hamburger button');
@@ -76,6 +76,10 @@ export default async function decorate(block) {
 <path d="M104.725 0V18H120.7V14.3925H108.523V0H104.725Z" fill="#12295D"/>
 <path d="M124.842 0V18H142V14.3925H128.564V10.2886H136.873V6.6811H128.564V3.7114H141.271V0H124.842Z" fill="#12295D"/>
 </svg>`;
+
+const searchsvg =`<svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#1f1f1f">
+<path d="M792-120.67 532.67-380q-30 25.33-69.67 39.67Q423.33-326 378.67-326q-108.34 0-183.5-75.17Q120-476.33 120-583.33t75.17-182.17q75.16-75.17 182.83-75.17 107 0 181.83 75.17 74.84 75.17 74.84 182.17 0 43.33-14 83-14 39.66-40.67 73l260 258.66-48 48Zm-414-272q79 0 134.5-55.83T568-583.33q0-79-55.5-134.84Q457-774 378-774q-79.67 0-135.5 55.83-55.83 55.84-55.83 134.84T242.5-448.5q55.83 55.83 135.5 55.83Z"/>
+</svg>`
 
   // label the three sections: brand, primary nav, tools
   const classes = ['brand', 'sections', 'tools'];
@@ -136,31 +140,45 @@ export default async function decorate(block) {
       }
     });
 
+    const pageName = window.location.pathname
+  .split('/')
+  .filter(Boolean)
+  .pop() || '';
+
+
     // search: make the authored search icon clickable
     const searchBlock = nav.querySelector('.search');
 
-    if (searchBlock) {
-      const searchContent = searchBlock.querySelector(':scope > div');
-      const searchPath = searchContent?.querySelector(':scope > div:first-child')?.textContent.trim();
-      const searchImage = searchBlock.querySelector('img');
+   if (searchBlock) {
+  const searchContent = searchBlock.querySelector(':scope > div');
+  const searchPath = searchContent
+    ?.querySelector(':scope > div:first-child')
+    ?.textContent.trim();
 
-      if (searchPath && searchImage) {
-        const searchLink = document.createElement('a');
+  const searchImage = searchBlock.querySelector('img');
 
-        // Convert "en/search" to "/en/search"
-        searchLink.href = searchPath.startsWith('/') ? searchPath : `/${searchPath}`;
+  if (searchPath) {
+    const searchLink = document.createElement('a');
 
-        searchLink.setAttribute('aria-label', 'Search');
-        searchLink.className = 'nav-search-link';
+    searchLink.href = searchPath.startsWith('/')
+      ? searchPath
+      : `/${searchPath}`;
 
-        // Move the SVG/image into the link
-        searchLink.append(searchImage);
+    searchLink.setAttribute('aria-label', 'Search');
+    searchLink.className = 'nav-search-link';
 
-        // Replace the original search content
-        searchBlock.textContent = '';
-        searchBlock.append(searchLink);
-      }
+    if (pageName === 'merkle-now') {
+      // Use custom inline SVG on Merkle Now
+      searchLink.innerHTML = searchsvg;
+    } else if (searchImage) {
+      // Keep existing authored icon on other pages
+      searchLink.append(searchImage);
     }
+
+    searchBlock.textContent = '';
+    searchBlock.append(searchLink);
+  }
+}
 
     // desktop hover open/close for dropdowns
     navSections.querySelectorAll(':scope > ul > li.nav-drop').forEach((drop) => {
