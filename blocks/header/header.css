@@ -42,13 +42,13 @@ header nav a:any-link {
 
 /* animated red underline bar on the primary nav links (matches source:
    2px red bar, scaleX 0 -> 1 from the left on hover, 0.25s ease-out) */
-header nav .nav-sections > ul > li > a {
+header nav .nav-sections > ul > li > p> a {
     position: relative;
     font-size: 18px;
     font-weight: 700;
 }
 
-header nav .nav-sections > ul > li > a::before {
+header nav .nav-sections > ul > li >p > a::before {
     content: "";
     position: absolute;
     left: 0;
@@ -61,8 +61,8 @@ header nav .nav-sections > ul > li > a::before {
     transition: transform 0.25s ease-out;
 }
 
-header nav .nav-sections > ul > li > a:hover::before,
-header nav .nav-sections > ul > li > a:focus-visible::before {
+header nav .nav-sections > ul > li >p > a:hover::before,
+header nav .nav-sections > ul > li >p > a:focus-visible::before {
     transform: scaleX(1);
     transform-origin: left bottom;
 }
@@ -690,3 +690,26 @@ header nav .nav-cta:hover {
         transform: translateY(-7px) rotate(-45deg);
     }
 }
+
+
+.merkle-now_page header nav {
+    background-color: #fff !important;
+}
+
+.merkle-now_page header nav .nav-sections > ul > li > p > a  {
+    color: #040e4b !important;
+    font-weight: 700;
+}
+
+.merkle-now_page header nav > .nav-tools > p >a {
+    color:#040e4b;
+}
+
+.merkle-now_page header nav > .nav-tools > .nav-lang-wrap > button {
+    color:#040e4b;
+}
+
+.merkle-now_page header nav > .nav-tools > .search > a >img {
+    color:#040e4b;
+}
+

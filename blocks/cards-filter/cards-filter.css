@@ -9,6 +9,10 @@
   gap: 18px;
 }
 
+.default-content-wrapper { 
+  width: 600px;
+}
+
 /* room between the archive intro ("Find something specific") and the filters
    (source: 100px from the intro text to the Filters button) */
 .default-content-wrapper + .cards-filter-wrapper {
@@ -97,6 +101,11 @@
   min-height: 210px;
 }
 
+.cards-filter .cards-filter-list > li :hover {
+  cursor: pointer;
+  background-color:#e5e5e9;
+}
+
 /* card body — 24px padding, column layout, "Read more" pushed to bottom */
 .cards-filter .cards-filter-card-body {
   flex: 1;
@@ -104,6 +113,8 @@
   flex-direction: column;
   padding: 24px;
 }
+
+
 
 /* eyebrow / content-type label — blue, uppercase */
 .cards-filter .cards-filter-card-type {
@@ -171,4 +182,29 @@
   .cards-filter .cards-filter-list {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+
+@media (width < 1280px) {
+
+.default-content-wrapper > h2 {
+  font-size: 44px;
+  line-height: 40px;
+ }
+
+ .default-content-wrapper > p  {
+  font-size: 16px !important;
+  line-height: 40px !important; 
+ }
+
+ .cards-filter .cards-filter-controls > button {
+ width: 100%;
+ justify-content: center;
+ margin-top:56px;
+ }
+
+ .cards-filter .cards-filter-list {
+   grid-template-columns: repeat(1, 1fr);
+}
+
 }
