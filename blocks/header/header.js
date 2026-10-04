@@ -36,20 +36,21 @@ function toggleAllNavSections(sections, expanded = false) {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null
     ? forceExpanded
-    : nav.getAttribute('aria-expanded') === 'true';
+    : nav.getAttribute('aria-expanded') !== 'true';
 
   const button = nav.querySelector('.nav-hamburger button');
 
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
+  document.body.style.overflowY = (expanded && !isDesktop.matches) ? 'hidden' : '';
 
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  nav.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 
   toggleAllNavSections(navSections, false);
 
   if (button) {
+    button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     button.setAttribute(
       'aria-label',
-      expanded ? 'Open navigation' : 'Close navigation',
+      expanded ? 'Close navigation' : 'Open navigation',
     );
   }
 }
@@ -272,26 +273,34 @@ export default async function decorate(block) {
   // Add search + hamburger to the mobile wrapper
   mobileActions.append(searchBlock, hamburger);
 
-  const setupMobileActions = () => {
-    if (!isDesktop.matches) {
-    // Mobile:
-    // Move search + hamburger into one wrapper
-      if (!mobileActions.parentElement) {
-        nav.append(mobileActions);
-      }
-    } else {
-    // Desktop:
-    // Move search back to nav-tools
-      if (searchBlock && searchBlock.parentElement === mobileActions) {
+ const setupMobileActions = () => {
+  if (!isDesktop.matches) {
+    // Mobile: move search + hamburger into the mobile wrapper
+    if (!mobileActions.parentElement) {
+      nav.append(mobileActions);
+    }
+
+    if (searchBlock && searchBlock.parentElement !== mobileActions) {
+      mobileActions.insertBefore(searchBlock, hamburger);
+    }
+  } else {
+    // Desktop: move search back into nav-tools
+    if (searchBlock && searchBlock.parentElement === mobileActions) {
+      const langWrap = navTools.querySelector('.nav-lang-wrap');
+
+      if (langWrap) {
+        navTools.insertBefore(searchBlock, langWrap.nextSibling);
+      } else {
         navTools.insertBefore(searchBlock, navTools.firstChild);
       }
-
-      // Remove mobile-only wrapper and hamburger
-      if (mobileActions.parentElement) {
-        mobileActions.remove();
-      }
     }
-  };
+
+    // Remove mobile wrapper
+    if (mobileActions.parentElement) {
+      mobileActions.remove();
+    }
+  }
+};
 
   setupMobileActions();
 
