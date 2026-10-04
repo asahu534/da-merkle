@@ -692,30 +692,32 @@ header nav .nav-cta:hover {
 }
 
 
-.merkle-now_page header nav {
+.merkle-now-page header nav {
     background-color: #fff !important;
 }
 
-.merkle-now_page header nav[aria-expanded="false"] .nav-sections > ul > li > p > a {
+.merkle-now-page header nav > .nav-tools > p >a {
+    color:#040e4b;
+}
+
+.merkle-now-page header nav[aria-expanded="false"] .nav-sections > ul > li > p > a {
     color: #040e4b !important;
     font-weight: 700;
 }
 
 /* Navigation OPEN = white */
-.merkle-now_page header nav[aria-expanded="true"] .nav-sections > ul > li > p > a {
+.merkle-now-page header nav[aria-expanded="true"] .nav-sections > ul > li > p > a {
     color: #fff !important;
     font-weight: 700;
 }
 
-.merkle-now_page header nav > .nav-tools > p >a {
+
+
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap > button {
     color:#040e4b;
 }
 
-.merkle-now_page header nav > .nav-tools > .nav-lang-wrap > button {
-    color:#040e4b;
-}
-
-.merkle-now_page header nav > .nav-tools > .search > a > svg {
+.merkle-now-page header nav > .nav-tools > .search > a > svg {
     color:#040e4b;
     width: 24px;
     height: 24px;
@@ -723,23 +725,23 @@ header nav .nav-cta:hover {
     margin-top:8px;
 }
 
-.merkle-now_page header nav > .nav-tools > .nav-lang-wrap > .nav-lang-toggle::after {
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap > .nav-lang-toggle::after {
     border-color: #040e4b;
 }
 
-.merkle-now_page header nav > .nav-tools > .nav-lang-wrap .nav-lang {
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap .nav-lang {
     background-color: #ececec;
 }
 
-.merkle-now_page header nav > .nav-tools > .nav-lang-wrap .nav-lang li a {
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap .nav-lang li a {
   color: #040e4b;
 }
 
-.merkle-now_page header nav .nav-hamburger {
+.merkle-now-page header nav .nav-hamburger {
   color: #040e4b;
 }
 
  /* Merkle Now - cross when menu is open */
-.merkle-now_page header nav[aria-expanded="true"] .nav-hamburger {
+.merkle-now-page header nav[aria-expanded="true"] .nav-hamburger {
   color: #fff;
 }

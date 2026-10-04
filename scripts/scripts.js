@@ -383,8 +383,8 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     const path = window.location.pathname;
-   const pageName = path.split('/').filter(Boolean).pop();
-    document.body.classList.add('appear', pageName+"_page");
+    const pageName = path.split('/').filter(Boolean).pop();
+    document.body.classList.add('appear', `${pageName}-page`);
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
