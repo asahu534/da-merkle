@@ -605,7 +605,7 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:
 /* stylelint-enable no-descending-specificity */
 
 #our-growing-family {
-  margin: 40px 0px;
+  margin: 40px 0;
   font-size: 44px;
   width: 497px;
   font-weight: 700;
