@@ -2,6 +2,11 @@
    Large bold titles with a thin divider between items and a +/- style chevron;
    panel content revealed on open. Values aligned to Merkle source. */
 
+/* Remove the first accordion item's top border */
+.accordion .accordion-item:first-child {
+  border-top: none;
+}
+
 .accordion .accordion-item {
   border-top: 1px solid #dadada;
 }
@@ -10,10 +15,11 @@
   border-bottom: 1px solid #dadada;
 }
 
+
 .accordion .accordion-item summary {
   position: relative;
   display: block;
-  padding: 24px 48px 24px 0;
+  padding: 16px 0px;
   font-size: 24px;
   font-weight: 700;
   line-height: 1.03;
@@ -26,7 +32,7 @@
 }
 
 /* chevron */
-.accordion .accordion-item summary::after {
+/* .accordion .accordion-item summary::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -37,17 +43,50 @@
   border-width: 2px 2px 0 0;
   transform: translateY(-50%) rotate(135deg);
   transition: transform 0.2s;
+} */
+
+/* Default plus icon — grey */
+.accordion .accordion-item summary::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%) rotate(0deg);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+  color: #d9d9d9;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
 }
 
+/* Open accordion — red cross with rotation */
 .accordion .accordion-item[open] summary::after {
-  transform: translateY(-70%) rotate(-45deg);
+  content: '×';
+  color: #dd3039;
+  transform: translateY(-50%) rotate(180deg);
+}
+/* Smooth panel opening */
+.accordion .accordion-item-body {
+  padding: 0 0 24px;
+  font-size: 18px;
+  line-height: 1.33;
+  animation: accordion-reveal 0.35s ease;
 }
 
-.accordion .accordion-item summary:hover,
-.accordion .accordion-item summary:focus-visible {
-  color: var(--link-color);
-  outline: none;
+@keyframes accordion-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 
 .accordion .accordion-item-body {
   padding: 0 0 24px;
