@@ -426,11 +426,13 @@ main .section.rounded:has(> .default-content-wrapper:first-child) {
   padding-top: 0;
 }
 
+@media (width >= 1280px) {
+
 .merkle-now-container .default-content-wrapper   {
  margin: 0 auto;
  width:600px;
 padding: 64px 0 48px;
-}
+}}
 
 main .section.rounded:is(.dark, .navy, .grey) > .default-content-wrapper:first-child {
   margin-bottom: 40px;
@@ -611,7 +613,7 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:
 /* stylelint-enable no-descending-specificity */
 
 
-@media (width <= 600px) {
+@media (width <= 1280px) {
   .merkle-now-container .default-content-wrapper {
    padding: 56px 0;
   }

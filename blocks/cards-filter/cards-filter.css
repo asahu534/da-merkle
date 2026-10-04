@@ -9,8 +9,11 @@
   gap: 18px;
 }
 
-.default-content-wrapper { 
-  width: 600px;
+@media (width >= 1280px) {
+  .default-content-wrapper {
+    width: 600px;
+    max-width: 100%;
+  }
 }
 
 /* room between the archive intro ("Find something specific") and the filters
