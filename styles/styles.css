@@ -427,7 +427,6 @@ main .section.rounded:has(> .default-content-wrapper:first-child) {
 }
 
 @media (width >= 1280px) {
-
 .merkle-now-container .default-content-wrapper   {
  margin: 0 auto;
  width:600px;
