@@ -42,13 +42,13 @@ header nav a:any-link {
 
 /* animated red underline bar on the primary nav links (matches source:
    2px red bar, scaleX 0 -> 1 from the left on hover, 0.25s ease-out) */
-header nav .nav-sections > ul > li > a {
+header nav .nav-sections > ul > li > p> a {
     position: relative;
     font-size: 18px;
     font-weight: 700;
 }
 
-header nav .nav-sections > ul > li > a::before {
+header nav .nav-sections > ul > li >p > a::before {
     content: "";
     position: absolute;
     left: 0;
@@ -61,8 +61,8 @@ header nav .nav-sections > ul > li > a::before {
     transition: transform 0.25s ease-out;
 }
 
-header nav .nav-sections > ul > li > a:hover::before,
-header nav .nav-sections > ul > li > a:focus-visible::before {
+header nav .nav-sections > ul > li >p > a:hover::before,
+header nav .nav-sections > ul > li >p > a:focus-visible::before {
     transform: scaleX(1);
     transform-origin: left bottom;
 }
@@ -125,24 +125,30 @@ header nav[aria-expanded="false"] .nav-hamburger-icon::after {
 
 header nav[aria-expanded="true"] .nav-hamburger-icon {
     height: 22px;
+     background: transparent;
 }
+
 
 header nav[aria-expanded="true"] .nav-hamburger-icon::before,
 header nav[aria-expanded="true"] .nav-hamburger-icon::after {
-    top: 3px;
-    left: 1px;
-    transform: rotate(45deg);
-    transform-origin: 2px 1px;
+    top: 10px;
+    left: 0;
     width: 24px;
     height: 2px;
     border-radius: 2px;
+    transform-origin: center;
+}
+
+header nav[aria-expanded="true"] .nav-hamburger-icon::before {
+    transform: rotate(45deg);
 }
 
 header nav[aria-expanded="true"] .nav-hamburger-icon::after {
-    top: unset;
-    bottom: 3px;
+    top: 10px;
     transform: rotate(-45deg);
 }
+
+
 
 /* brand */
 header .nav-brand {
@@ -678,15 +684,67 @@ header nav .nav-cta:hover {
         color: #000;
     }
 
-    .nav-hamburger button[aria-expanded="true"] .nav-hamburger-icon {
-        background: transparent;
-    }
 
-    .nav-hamburger button[aria-expanded="true"] .nav-hamburger-icon::before {
-        transform: translateY(7px) rotate(45deg);
-    }
+}
 
-    .nav-hamburger button[aria-expanded="true"] .nav-hamburger-icon::after {
-        transform: translateY(-7px) rotate(-45deg);
-    }
+
+.merkle-now-page header nav {
+    background-color: #fff !important;
+}
+
+.merkle-now-page header nav > .nav-tools > p >a {
+    color:#040e4b;
+}
+
+
+@media (width >= 1280px) {
+  .merkle-now-page header nav .nav-sections > ul > li > p > a {
+    color: #040e4b !important;
+  }
+}
+
+@media (width < 1280px) {
+  .merkle-now-page header nav.panel-close .nav-sections > ul > li > p > a {
+    color: #040e4b !important;
+  }
+
+  /* Merkle Now - mobile open */
+  .merkle-now-page header nav.panel-open .nav-sections > ul > li > p > a {
+    color: #fff !important;
+  }
+}
+
+
+
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap > button {
+    color:#040e4b;
+}
+
+.merkle-now-page header nav > .nav-tools > .search > a > svg {
+    color:#040e4b;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-top:8px;
+}
+
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap > .nav-lang-toggle::after {
+    border-color: #040e4b;
+}
+
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap .nav-lang {
+    background-color: #ececec;
+}
+
+.merkle-now-page header nav > .nav-tools > .nav-lang-wrap .nav-lang li a {
+  color: #040e4b;
+}
+
+.merkle-now-page header nav .nav-hamburger {
+  color: #040e4b;
+}
+
+ /* Merkle Now - cross when menu is open */
+.merkle-now-page header nav[aria-expanded="true"] .nav-hamburger {
+  color: #fff;
 }
