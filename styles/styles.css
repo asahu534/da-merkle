@@ -348,12 +348,15 @@ main > .section:is(.dark, .navy, .grey, .light, .highlight) > .default-content-w
   main > .section > div {
     padding: 0 32px;
   }
+
   main .section.center.cards-icon-container .default-content-wrapper:first-child > p:last-child {
       margin-bottom: 48px;
   }
+
   main .carousel-hero-container.cards-featured-container {
       margin-bottom: 100px;
   }
+
   main .section.dark.video-centered-container {
       padding: 0;
   }
@@ -566,6 +569,7 @@ main > .section > .cards-icon-wrapper .cards-icon-card-body {
     justify-content: space-between;
     align-items: start;
   }
+
   main > .section > .cards-icon-wrapper .cards-icon-card-body {
     padding: 0 30px;
   }
@@ -589,20 +593,25 @@ main > .section > .cards-icon-wrapper .cards-icon-card-body {
   main .section.split .default-content-wrapper + div {
     margin-top: 80px;
   }
+
   main .section.center .default-content-wrapper {
     max-width: 600px;
   }
+
   main .section.dark h2 {
     font-size: 52px;
   }
+
   main .section.center .default-content-wrapper > p {
     font-size: 21px;
   }
+
   main > .section > .cards-icon-wrapper {
     width: 25%;
     margin-bottom: 80px;
 
   }
+
   .history-page main .section.center .default-content-wrapper > p {
       text-align: left;
   }
@@ -676,9 +685,10 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:
   width: 497px;
   font-weight: 700;
 }
+
 @media (width >= 900px) {
-  main .section .default-content-wrapper p:has(> a:only-child) > a:any-link,
-  main .section .default-content-wrapper p:has(> a + a) > a:any-link {
+   main .section .default-content-wrapper p:has(> a + a) > a:any-link,
+  main .section .default-content-wrapper p:has(> a:only-child) > a:any-link{
     width: fit-content;
   }
 }

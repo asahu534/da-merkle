@@ -40,8 +40,8 @@
   overflow: hidden;
 }
 
-.video-centered .video-centered-placeholder:before {
-    background-image: linear-gradient(180deg, rgba(5, 5, 30, 0), #000);
+.video-centered .video-centered-placeholder::before {
+    background-image: linear-gradient(180deg, rgb(5 5 30 / 0%), #000);
     content: "";
     height: 100%;
     left: 0;
@@ -111,6 +111,7 @@
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
+
 main .section.dark.video-centered-container .video-centered-wrapper {
       padding-bottom: 40px;
 }

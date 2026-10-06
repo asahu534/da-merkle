@@ -71,12 +71,15 @@
     margin: 0;
     vertical-align: top;
   }
+
   .cards-icon .cards-icon-card-body h6 {
     font-size: 21px;
   }
+
   .cards-icon .cards-icon-card-body p {
     font-size: 18px;
   }
+
   .cards-icon .cards-icon-card-image img {
     aspect-ratio: 300 / 245;
   }

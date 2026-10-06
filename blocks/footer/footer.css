@@ -74,6 +74,7 @@ footer .footer-brand ul {
   padding: 0;
   margin: 0;
 }
+
 footer .footer-brand ul li {
   margin-bottom: 24px;
   line-height: normal;
@@ -151,7 +152,6 @@ footer .footer-legal-bottom img {
 
   footer .footer-brand ul {
     -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
     margin: 0 0 2pc;
     padding: 0;
     column-count: 2;
