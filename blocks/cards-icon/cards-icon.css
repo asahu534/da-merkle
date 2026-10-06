@@ -37,7 +37,7 @@
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 360 / 243;
+  aspect-ratio: 300 / 200;
   object-fit: contain;
 }
 
@@ -49,7 +49,7 @@
 /* h6: 21px / 700 / 24px line-height, generous ~49px vertical rhythm (source: margin 48.93px 0) */
 .cards-icon .cards-icon-card-body h6 {
   margin: 48px 0;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 24px;
 }
@@ -57,7 +57,7 @@
 /* p: 18px / 400 / 24px line-height, margin 0 0 16px (source) */
 .cards-icon .cards-icon-card-body p {
   margin: 0 0 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
 }
@@ -70,5 +70,14 @@
     width: 25%;
     margin: 0;
     vertical-align: top;
+  }
+  .cards-icon .cards-icon-card-body h6 {
+    font-size: 21px;
+  }
+  .cards-icon .cards-icon-card-body p {
+    font-size: 18px;
+  }
+  .cards-icon .cards-icon-card-image img {
+    aspect-ratio: 300 / 245;
   }
 }

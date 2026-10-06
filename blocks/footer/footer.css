@@ -6,17 +6,17 @@ footer {
 }
 
 footer .footer-content {
-  max-width: 1264px;
+  max-width: 1890px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 32px 15px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+  background-image: none;
 }
 
 footer .footer-content a:any-link {
   color: #fff;
-  text-decoration: none;
 }
 
 footer .footer-content a:hover {
@@ -29,6 +29,7 @@ footer .footer-content a:hover {
 /* stylelint-disable-next-line no-descending-specificity */
 footer .footer-brand ul a {
   position: relative;
+  font-size: 16px;
 }
 
 footer .footer-brand ul a::before {
@@ -58,22 +59,24 @@ footer p {
 footer .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
 }
 
 footer .footer-brand img {
-  width: 40px;
+  width: 32px;
   height: auto;
 }
 
 footer .footer-brand ul {
   list-style: none;
-  margin: 0;
+  display: block;
+  width: fit-content;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-  font-size: 0.875rem;
+  margin: 0;
+}
+footer .footer-brand ul li {
+  margin-bottom: 24px;
+  line-height: normal;
 }
 
 /* social icons */
@@ -91,8 +94,8 @@ footer .footer-social-icon {
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: 1px solid rgb(255 255 255 / 40%);
-  border-radius: 50%;
+  border: 2px solid #dd3039;
+  border-radius: 8px;
   transition: border-color 0.2s;
 }
 
@@ -106,7 +109,7 @@ footer .footer-social-icon:hover {
 footer .footer-disclosure {
   font-size: 0.75rem;
   color: rgb(255 255 255 / 70%);
-  max-width: 900px;
+  max-width: 600px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -117,12 +120,12 @@ footer .footer-disclosure a {
 /* bottom: dentsu logo + copyright */
 footer .footer-legal-bottom {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 16px;
   padding-top: 16px;
-  border-top: 1px solid rgb(255 255 255 / 15%);
   font-size: 0.75rem;
   color: rgb(255 255 255 / 70%);
+  justify-content: space-between;
 }
 
 footer .footer-legal-bottom img {
@@ -132,26 +135,38 @@ footer .footer-legal-bottom img {
 
 @media (width >= 900px) {
   footer .footer-content {
-    padding: 64px 64px 48px;
+    padding: 32px 30px;
+    background-image: var(--footer-vector-image);
+    background-origin: border-box;
+    background-repeat: no-repeat;
+    background-position: right 30px top 44px;
   }
 
   /* logo stacked above a two-column legal-link list (matches source) */
   footer .footer-brand {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 32px;
   }
 
   footer .footer-brand ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 240px));
-    gap: 16px 64px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    margin: 0 0 2pc;
+    padding: 0;
+    column-count: 2;
+    margin-bottom: 40px;
+    max-width: 600px;
+    width: 600px;
+  }
+
+  footer .footer-brand ul a {
+    font-size: 18px;
   }
 
   /* bottom row: dentsu logo on the left, copyright pushed to the right */
   footer .footer-legal-bottom {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
   }
 }

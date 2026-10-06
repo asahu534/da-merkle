@@ -318,13 +318,17 @@ main > .section {
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: auto;
   padding: 0 24px;
 }
 
 main > .section:first-of-type {
   margin-top: 0;
+}
+
+main .carousel-hero-container.cards-featured-container {
+    margin-bottom: 40px;
 }
 
 /* a plain section opening with text after a coloured band starts lower
@@ -344,6 +348,15 @@ main > .section:is(.dark, .navy, .grey, .light, .highlight) > .default-content-w
   main > .section > div {
     padding: 0 32px;
   }
+  main .section.center.cards-icon-container .default-content-wrapper:first-child > p:last-child {
+      margin-bottom: 48px;
+  }
+  main .carousel-hero-container.cards-featured-container {
+      margin-bottom: 100px;
+  }
+  main .section.dark.video-centered-container {
+      padding: 0;
+  }
 }
 
 /* section metadata */
@@ -360,6 +373,7 @@ main .section.dark {
   color: #fff;
   margin: 0;
   padding: 64px 0;
+  margin-top: -1px;
 }
 
 main .section.dark h1,
@@ -369,6 +383,10 @@ main .section.dark h4,
 main .section.dark h5,
 main .section.dark h6 {
   color: #fff;
+}
+
+main .section.dark h2 {
+  font-size: 44px;
 }
 
 main .section.dark a:any-link {
@@ -426,6 +444,14 @@ main .section.rounded:has(> .default-content-wrapper:first-child) {
   padding-top: 0;
 }
 
+@media (width >= 1280px) {
+  .merkle-now-container .default-content-wrapper   {
+    margin: 0 auto;
+    width:600px;
+    padding: 64px 0 48px;
+  }
+}
+
 main .section.rounded:is(.dark, .navy, .grey) > .default-content-wrapper:first-child {
   margin-bottom: 40px;
   padding-top: 64px;
@@ -455,8 +481,12 @@ main .section.center .default-content-wrapper > p {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 21px; /* intro copy — source: 21px / 24px */
+  font-size: 16px; /* intro copy — source: 21px / 24px */
   line-height: 24px;
+}
+
+.history-page main .section.center .default-content-wrapper > p {
+    text-align: center;
 }
 
 /* stylelint-disable no-descending-specificity */
@@ -514,12 +544,30 @@ main .section.split .default-content-wrapper + div {
   margin-top: 48px;
 }
 
+main > .section > .cards-icon-wrapper {
+  width: 50%;
+  float: left;
+  margin-left: 0;
+  display: block;
+  clear: none;
+  text-align: left;
+  padding: 0;
+}
+
+main > .section > .cards-icon-wrapper .cards-icon-card-body {
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
 @media (width >= 900px) {
   main .section.split .default-content-wrapper {
     display: grid;
     grid-template-columns: minmax(0, 42%) minmax(0, 42%);
     justify-content: space-between;
     align-items: start;
+  }
+  main > .section > .cards-icon-wrapper .cards-icon-card-body {
+    padding: 0 30px;
   }
 
   main .section.split .default-content-wrapper > * {
@@ -540,6 +588,23 @@ main .section.split .default-content-wrapper + div {
 
   main .section.split .default-content-wrapper + div {
     margin-top: 80px;
+  }
+  main .section.center .default-content-wrapper {
+    max-width: 600px;
+  }
+  main .section.dark h2 {
+    font-size: 52px;
+  }
+  main .section.center .default-content-wrapper > p {
+    font-size: 21px;
+  }
+  main > .section > .cards-icon-wrapper {
+    width: 25%;
+    margin-bottom: 80px;
+
+  }
+  .history-page main .section.center .default-content-wrapper > p {
+      text-align: left;
   }
 }
 /* stylelint-enable no-descending-specificity */
@@ -568,6 +633,7 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link {
   text-transform: uppercase;
   text-decoration: none;
   transition: color 0.35s, background-color 0.35s, border-color 0.35s;
+  width: 100%;
 }
 
 /* PRIMARY (first link): white pill, black text */
@@ -609,6 +675,12 @@ main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:
   font-size: 44px;
   width: 497px;
   font-weight: 700;
+}
+@media (width >= 900px) {
+  main .section .default-content-wrapper p:has(> a:only-child) > a:any-link,
+  main .section .default-content-wrapper p:has(> a + a) > a:any-link {
+    width: fit-content;
+  }
 }
 
 @media (width < 1280px) {

@@ -82,7 +82,8 @@
   align-items: flex-start;
   width: 100%;
   max-width: 100%;
-  padding: 24px;
+  padding: 24px 15px;
+  box-sizing: border-box;
 }
 
 /* description paragraphs — white body copy (base for all content <p>) */
