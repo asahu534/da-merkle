@@ -36,18 +36,63 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
+  overflow: auto hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.cards-featured > ul::-webkit-scrollbar {
+  display: none;
 }
 
 .cards-featured > ul > li {
   cursor: pointer;
   position: relative;
+  flex: 0 0 calc((100% - 40px) / 3);
+  min-width: 0;
   display: flex;
   flex-direction: column;
   border-radius: 24px;
   overflow: hidden;
   background-color: #000;
+  scroll-snap-align: start;
+}
+
+/* 3 cards */
+@media (width >= 1024px) and (width < 1280px) {
+  .cards-featured > ul > li {
+    flex-basis: calc((100% - 40px) / 3);
+  }
+}
+
+/* 2.5 cards */
+@media (width >= 768px) and (width < 1024px) {
+  .cards-featured > ul > li {
+    flex-basis: calc((100% - 30px) / 2.5);
+  }
+}
+
+/* 2 cards */
+@media (width >= 600px) and (width < 768px) {
+  .cards-featured > ul > li {
+    flex-basis: calc((100% - 20px) / 2);
+  }
+}
+
+/* 1.5 cards */
+@media (width >= 480px) and (width < 600px) {
+  .cards-featured > ul > li {
+    flex-basis: calc((100% - 10px) / 1.5);
+  }
+}
+
+/* 1 card */
+@media (width < 480px) {
+  .cards-featured > ul > li {
+    flex-basis: 100%;
+  }
 }
 
 /* Image */
@@ -176,7 +221,7 @@ text-decoration: none !important;
 
 /* Desktop */
 
-@media (width >= 900px) {
+@media (width >= 1280px) {
   .cards-featured > ul {
     flex-direction: row;
     align-items: stretch;
@@ -216,7 +261,7 @@ text-decoration: none !important;
   
   /* --- desktop: horizontal row, featured card is double-width.
    Six cards wrap into two rows (wide + 2, then 2 + wide), as on the source. --- */
-  @media (width >= 900px) {
+  @media (width >= 1280px) {
     .cards-featured > ul {
       flex-direction: row;
       align-items: stretch;
