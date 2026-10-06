@@ -7,7 +7,7 @@
    capability pages, white for related content); card text sits on the image
    gradient, so it stays white */
 .cards-casestudy {
-  position: relative;
+  position: static;
   padding: 24px 0 40px;
   color: #fff;
 }
@@ -114,6 +114,7 @@
   display: flex;
   gap: 16px;
   margin-top: 24px;
+  justify-content: flex-end;
 }
 
 .cards-casestudy .cards-casestudy-nav button {
@@ -163,17 +164,103 @@
   transform: translate(-70%, -50%) rotate(45deg);
 }
 
-@media (width >= 600px) {
-  .cards-casestudy .cards-casestudy-track > li {
-    flex-basis: 45%;
+
+/* ===== heading-left responsive layout ===== */
+
+/* Mobile + tablet */
+@media (width < 1280px) {
+  .section:has(.cards-casestudy.heading-left) .default-content-wrapper :is(h2, h3) {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+  .section:has(.cards-casestudy.heading-left) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section:has(.cards-casestudy.heading-left) > .default-content-wrapper,
+  .section:has(.cards-casestudy.heading-left) > .cards-casestudy-wrapper {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  .cards-casestudy.heading-left {
+    width: 100%;
   }
 }
 
-/* desktop — fixed 330px cards matching the source */
-@media (width >= 900px) {
+/* Mobile — 1.5 cards */
+@media (width < 768px) {
   .cards-casestudy .cards-casestudy-track > li {
-    flex: 0 0 330px;
+    flex: 0 0 calc((100% - 20px) / 1.5);
   }
+}
+
+/* Tablet — 2 cards */
+@media (width >= 768px) and (width < 1280px) {
+  .cards-casestudy .cards-casestudy-track > li {
+    flex: 0 0 calc((100% - 20px) / 2);
+  }
+}
+
+/* Desktop — 25% heading + 75% carousel */
+@media (width >= 1280px) {
+  .section:has(.cards-casestudy.heading-left) .default-content-wrapper :is(h2, h3) {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+  .section:has(> .cards-casestudy-wrapper > .cards-casestudy.heading-left) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+     position: relative;
+     padding: 0 30px;
+  }
+
+  .section:has(> .cards-casestudy-wrapper > .cards-casestudy.heading-left) > .default-content-wrapper {
+    flex: 0 0 25%;
+    width: 25%;
+    max-width: none;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .section:has(> .cards-casestudy-wrapper > .cards-casestudy.heading-left) > .cards-casestudy-wrapper {
+    flex: 0 0 75%;
+    width: 75%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .cards-casestudy.heading-left {
+    width: 100%;
+    padding: 0 0 40px;
+    box-sizing: border-box;
+  }
+
+
+  /* Exactly 3 cards visible */
+  .cards-casestudy.heading-left .cards-casestudy-track > li {
+    flex: 0 0 calc((100% - 40px) / 3);
+  }
+
+   /* Navigation below the heading */
+  .cards-casestudy.heading-left .cards-casestudy-nav {
+    position: absolute;
+    left: 30px;
+    bottom: 40px;
+    margin: 0;
+    justify-content: flex-start;
+  }
+
 }
 
 /* ===== rounded option: 24px card corners (Cards Casestudy (rounded)) ===== */
@@ -192,40 +279,42 @@
  * its right. Mobile: heading, cards, arrows stacked as usual.
  * Source: P&E "Success stories" (heading 44/48 bold, cards from x+345).
  */
-.section:has(.cards-casestudy.heading-left) .default-content-wrapper :is(h2, h3) {
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 36px;
+
+
+
+/* ===== grid option: all cards in rows, no arrows (Cards Casestudy (grid)) =====
+ * Source: merkle.com Our Work featured case studies — 330 x 587 cards, four
+ * across in a 1380px row (20px column gap, 24px row gap), titles clamped to
+ * three lines.
+ */
+.cards-casestudy.grid .cards-casestudy-track {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px 20px;
+  overflow: visible;
+  scroll-snap-type: none;
 }
 
-@media (width >= 900px) {
-  .section:has(> .cards-casestudy-wrapper > .cards-casestudy.heading-left) {
-    display: grid;
-  }
-
-  /* heading and carousel share one grid cell; the carousel leaves room on the left */
-  .section:has(> .cards-casestudy-wrapper > .cards-casestudy.heading-left) > :is(.default-content-wrapper, .cards-casestudy-wrapper) {
-    grid-area: 1 / 1;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0 auto; /* top-aligned (the section's auto margins would centre it) */
-  }
-
-  .section:has(.cards-casestudy.heading-left) .default-content-wrapper :is(h2, h3) {
-    max-width: 345px;
-    margin-top: 0;
-    font-size: 44px;
-    line-height: 48px;
-  }
-
-  .cards-casestudy.heading-left {
-    padding: 0 0 0 345px;
-  }
-
-  .cards-casestudy.heading-left .cards-casestudy-nav {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 0;
-  }
+.cards-casestudy.grid {
+  padding-bottom: 0;
 }
+
+/* room between an intro above the grid and the cards (source: 92px) */
+.default-content-wrapper + .cards-casestudy-wrapper:has(> .cards-casestudy.grid) {
+  margin-top: 64px;
+}
+
+.cards-casestudy.grid .cards-casestudy-track > li {
+  flex: none;
+}
+
+.cards-casestudy.grid .cards-casestudy-card-body h3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+
+
+

@@ -25,6 +25,7 @@ Add options in brackets after the block name; they can be combined, e.g.
 | `Cards Casestudy` | Square cards, arrows bottom left |
 | `Cards Casestudy (rounded)` | Cards with 24px rounded corners |
 | `Cards Casestudy (arrows-right)` | Arrows at the bottom right (e.g. "More on this topic" related content) |
+| `Cards Casestudy (grid)` | All cards shown in rows (four across on desktop, two on tablet, one on mobile) instead of a scrolling row; no arrows. Titles are cut to three lines. Used for the Our Work featured case studies with `rounded`. |
 | `Cards Casestudy (heading-left)` | The section heading sits in a left column with the arrows at its bottom; the cards start to its right (e.g. "Success stories"). Stacks on mobile. |
 
 For `heading-left`, write the heading (e.g. `Success stories`) as normal text

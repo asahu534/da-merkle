@@ -1,0 +1,56 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "capability",
+      "urls": [
+        "https://www.merkle.com/en/capabilities/platforms-engineering.html"
+      ],
+      "description": "Capability page: navy media hero, intro + stats, text feature cards, award logos, success-story carousel, partner logos + stats, ebook teaser and related-content carousel.",
+      "blocks": [
+        { "name": "columns", "instances": [".teaser.cmp-teaser-layout-media.mer-full-bleed", ".teaser.cmp-teaser-layout-media.cmp-teaser-blue-black"] },
+        { "name": "cards-grid", "instances": [".infographics", ".container.white-background.full-bleed", ".container.text-center:has(h6)", ".image.logo-style"] },
+        { "name": "cards-casestudy", "instances": [".listcards.teasergallerylist", ".teasergallerylist.list:not(.listcards):not(.mer-featured-tgl)"] }
+      ],
+      "sections": [
+        { "id": "hero", "name": "hero", "selector": [".teaser.cmp-teaser-layout-media.mer-full-bleed"], "style": "navy", "blocks": ["columns"], "defaultContent": [] },
+        { "id": "intro", "name": "intro-stats", "selector": [".teaser.cmp-teaser-layout-medium.cmp-teaser-dark"], "style": "navy, split", "blocks": ["cards-grid"], "defaultContent": [".teaser.cmp-teaser-layout-medium.cmp-teaser-dark"] },
+        { "id": "expertise", "name": "expertise-awards", "selector": [".container.white-background.full-bleed"], "style": "center", "blocks": ["cards-grid"], "defaultContent": [".teaser.cmp-teaser-layout-large.content-center"] },
+        { "id": "success", "name": "success-stories", "selector": [".listcards.teasergallerylist"], "style": "navy", "blocks": ["cards-casestudy"], "defaultContent": [".listcards h2"] },
+        { "id": "partners", "name": "technology-partnerships", "selector": [".container.blue-black-background.full-bleed"], "style": "dark, center", "blocks": ["cards-grid"], "defaultContent": [".teaser.cmp-teaser-layout-large.cmp-teaser-blue-black"] },
+        { "id": "more", "name": "more-on-this-topic", "selector": [".teaser.cmp-teaser-layout-medium:not(.cmp-teaser-dark)"], "style": null, "blocks": [], "defaultContent": [".teaser.cmp-teaser-layout-medium:not(.cmp-teaser-dark)"] },
+        { "id": "ebook", "name": "ebook-teaser", "selector": [".teaser.cmp-teaser-layout-media.cmp-teaser-blue-black"], "style": "dark", "blocks": ["columns"], "defaultContent": [] },
+        { "id": "related", "name": "related-content", "selector": [".teasergallerylist.list:not(.listcards):not(.mer-featured-tgl)"], "style": null, "blocks": ["cards-casestudy"], "defaultContent": [] }
+      ]
+    },
+    {
+      "name": "ai-expertise",
+      "urls": [
+        "https://www.merkle.com/en/ai-expertise.html"
+      ],
+      "description": "AI Expertise page: background-video hero, promo pair, case-study teasers on black and grey bands, insights gallery, Forbes teaser, partnership video and leadership team grid.",
+      "blocks": [
+        { "name": "hero", "instances": [".teaser.cmp-teaser-layout-hero"] },
+        { "name": "cards-grid", "instances": [".teaser.cmp-teaser-layout-card", ".container.responsivegrid.text-center:has(.image)"] },
+        { "name": "columns", "instances": [".teaser.cmp-teaser-layout-media.cmp-teaser-blue-black", ".teaser.cmp-teaser-layout-media.grey-background"] },
+        { "name": "cards-featured", "instances": [".teasergallerylist.mer-featured-tgl"] },
+        { "name": "video-centered", "instances": [".video.bottom-spacer-m"] }
+      ],
+      "sections": [
+        { "id": "hero", "name": "hero", "selector": [".teaser.cmp-teaser-layout-hero"], "style": null, "blocks": ["hero"], "defaultContent": [] },
+        { "id": "promo", "name": "ai-innovation-promo", "selector": [".cmp-container-two-column"], "style": null, "blocks": ["cards-grid"], "defaultContent": [] },
+        { "id": "enterprise", "name": "ai-for-enterprise", "selector": [".teaser.cmp-teaser-layout-large.cmp-teaser-blue-black"], "style": "dark, center", "blocks": ["columns"], "defaultContent": [".teaser.cmp-teaser-layout-large.cmp-teaser-blue-black"] },
+        { "id": "customer", "name": "ai-for-customer-experience", "selector": [".teaser.cmp-teaser-layout-large.grey-background"], "style": "grey, center", "blocks": ["columns"], "defaultContent": [".teaser.cmp-teaser-layout-large.grey-background"] },
+        { "id": "insights", "name": "insights-intro", "selector": [".teaser.cmp-teaser-layout-large.cmp-teaser-dark"], "style": "navy, center", "blocks": [], "defaultContent": [".teaser.cmp-teaser-layout-large.cmp-teaser-dark"] },
+        { "id": "gallery", "name": "insights-gallery", "selector": [".teasergallerylist.mer-featured-tgl"], "style": null, "blocks": ["cards-featured"], "defaultContent": [] },
+        { "id": "forbes", "name": "forbes-teaser", "selector": [".teaser.cmp-teaser-layout-media.cmp-teaser-blue-black"], "style": "dark", "blocks": ["columns"], "defaultContent": [] },
+        { "id": "partnerships", "name": "partnerships-intro", "selector": [".teaser.cmp-teaser-layout-large.cmp-teaser-dark"], "style": "navy, center", "blocks": [], "defaultContent": [".teaser.cmp-teaser-layout-large.cmp-teaser-dark"] },
+        { "id": "video", "name": "partnerships-video", "selector": [".video.bottom-spacer-m"], "style": null, "blocks": ["video-centered"], "defaultContent": [] },
+        { "id": "team-intro", "name": "leadership-intro", "selector": [".teaser.cmp-teaser-layout-large.cmp-teaser-dark"], "style": "navy, center", "blocks": [], "defaultContent": [".teaser.cmp-teaser-layout-large.cmp-teaser-dark"] },
+        { "id": "team", "name": "leadership-team", "selector": [".container.responsivegrid.text-center:has(.image)"], "style": null, "blocks": ["cards-grid"], "defaultContent": [".title h3"] }
+      ]
+    }
+  ]
+}

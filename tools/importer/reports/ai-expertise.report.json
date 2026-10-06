@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "url": "https://www.merkle.com/en/ai-expertise.html",
+  "path": "ai-expertise",
+  "timestamp": "2026-10-01T05:21:59.437Z",
+  "title": "Artificial Intelligence Innovation | Merkle",
+  "template": "ai-expertise",
+  "blocks": [
+    "hero (video)",
+    "cards-grid (promo, rounded)",
+    "columns (media, rounded) enterprise",
+    "columns (media, rounded, grey) customer",
+    "cards-featured",
+    "columns (media, rounded) forbes",
+    "video-centered",
+    "cards-grid (people) Americas",
+    "cards-grid (people) EMEA & Central Europe",
+    "cards-grid (people) APAC & Global"
+  ]
+}

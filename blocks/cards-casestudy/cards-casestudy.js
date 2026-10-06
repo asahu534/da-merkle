@@ -29,6 +29,9 @@ export default function decorate(block) {
   ul.classList.add('cards-casestudy-track');
   block.append(ul);
 
+  // grid option: all cards visible in rows, no scrolling or arrows
+  if (block.classList.contains('grid')) return;
+
   // prev/next arrow controls for the horizontal gallery
   const nav = document.createElement('div');
   nav.className = 'cards-casestudy-nav';

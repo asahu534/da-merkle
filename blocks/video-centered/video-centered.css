@@ -7,7 +7,7 @@
 
 .video-centered {
   max-width: 960px;
-  margin: 0 auto 80px;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -38,6 +38,23 @@
   position: relative;
   border-radius: 24px;
   overflow: hidden;
+}
+
+.video-centered .video-centered-placeholder::before {
+    background-image: linear-gradient(180deg, rgb(5 5 30 / 0%), #000);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition-duration: .3s;
+    transition-property: opacity;
+    transition-timing-function: linear;
+    width: 100%;
+    pointer-events: none;
+    z-index: 2;
+    display: block;
+    opacity: 1;
 }
 
 .video-centered .video-centered-placeholder > * {
@@ -93,4 +110,15 @@
 .video-centered .video-centered-placeholder-play button:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
+}
+
+main .section.dark.video-centered-container .video-centered-wrapper {
+      padding-bottom: 40px;
+}
+
+@media (width >= 900px) {
+  main .section.dark.video-centered-container .video-centered-wrapper {
+      padding-bottom: 80px;
+  }
+
 }
