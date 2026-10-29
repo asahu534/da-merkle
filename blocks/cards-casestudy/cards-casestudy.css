@@ -38,6 +38,7 @@
   aspect-ratio: 330 / 587;
   scroll-snap-align: start;
   overflow: hidden;
+   cursor: pointer;
 }
 
 /* image fills the card */
@@ -103,9 +104,15 @@
   white-space: normal;
 }
 
+.cards-casestudy .cards-casestudy-card-body a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
 .cards-casestudy .cards-casestudy-card-body a:hover {
   color: #fff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* prev/next arrows below the gallery — filled circles that turn red on hover,
@@ -219,7 +226,7 @@
     flex-direction: row;
     align-items: flex-start;
      position: relative;
-     padding: 0 30px;
+     padding: 80px 30px;
   }
 
   .section:has(> .cards-casestudy-wrapper > .cards-casestudy.heading-left) > .default-content-wrapper {
@@ -251,6 +258,11 @@
   .cards-casestudy.heading-left .cards-casestudy-track > li {
     flex: 0 0 calc((100% - 40px) / 3);
   }
+
+  /* Cards without heading - 4 cards */
+.cards-casestudy:not(.heading-left) .cards-casestudy-track > li {
+  flex: 0 0 calc((100% - 60px) / 4);
+}
 
    /* Navigation below the heading */
   .cards-casestudy.heading-left .cards-casestudy-nav {
@@ -332,6 +344,32 @@
   }
 }
 
+.cards-casestudy .cards-casestudy-card-image img {
+  transition: transform 0.5s ease-in-out;
+}
+
+.cards-casestudy .cards-casestudy-track > li:hover
+.cards-casestudy-card-image img {
+  transform: scale(1.05);
+}
+
+/* Read case underline animation */
 
 
+.cards-casestudy .cards-casestudy-card-body a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: #0391f2;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease-in-out;
+}
 
+.cards-casestudy .cards-casestudy-track > li:hover
+.cards-casestudy-card-body a::after {
+  transform: scaleX(1);
+}

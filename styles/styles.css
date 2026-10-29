@@ -1,4 +1,4 @@
-@import url('brand.css');
+@import url("brand.css");
 
 /*
  * Copyright 2020 Adobe. All rights reserved.
@@ -13,97 +13,96 @@
  */
 
 :root {
-  /* colors — Merkle brand (see brand.css) */
-  --background-color: #fff;
-  --light-color: #f5f5f5;
-  --dark-color: #000;
-  --text-color: #000;
-  --link-color: #dd3039;
-  --link-hover-color: #b3262e;
+    /* colors — Merkle brand (see brand.css) */
+    --background-color: #fff;
+    --light-color: #f5f5f5;
+    --dark-color: #000;
+    --text-color: #000;
+    --link-color: #dd3039;
+    --link-hover-color: #b3262e;
 
-  /* fonts — Work Sans (merkle.com), size-matched Arial fallback until it loads */
-  --body-font-family: work-sans, work-sans-fallback, sans-serif;
-  --heading-font-family: work-sans, work-sans-fallback, sans-serif;
+    /* fonts — Work Sans (merkle.com), size-matched Arial fallback until it loads */
+    --body-font-family: work-sans, work-sans-fallback, sans-serif;
+    --heading-font-family: work-sans, work-sans-fallback, sans-serif;
 
-  /* body sizes */
-  --body-font-size-m: 20px;
-  --body-font-size-s: 18px;
-  --body-font-size-xs: 16px;
-
-  /* heading sizes — mobile-first (full size at >=900px below) */
-  --heading-font-size-xxl: 36px;
-  --heading-font-size-xl: 30px;
-  --heading-font-size-l: 24px;
-  --heading-font-size-m: 20px;
-  --heading-font-size-s: 18px;
-  --heading-font-size-xs: 16px;
-
-  /* nav height */
-  --nav-height: 80px;
-}
-
-/* fallback fonts — Arial scaled to Work Sans widths (measured: regular 97.2%,
-   bold 86.9%) and line metrics (ascent 930, descent 243 per 1000) */
-@font-face {
-  font-family: work-sans-fallback;
-  font-weight: 100 599;
-  size-adjust: 97.2%;
-  ascent-override: 95.7%;
-  descent-override: 25%;
-  line-gap-override: 0%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: work-sans-fallback;
-  font-weight: 600 900;
-  size-adjust: 86.9%;
-  ascent-override: 107%;
-  descent-override: 28%;
-  line-gap-override: 0%;
-  src: local('Arial Bold'), local('Arial-BoldMT');
-}
-
-@media (width >= 900px) {
-  :root {
     /* body sizes */
     --body-font-size-m: 20px;
     --body-font-size-s: 18px;
     --body-font-size-xs: 16px;
 
-    /* heading sizes — Merkle uses large 52px / 56px display h1/h2 */
-    --heading-font-size-xxl: 52px;
-    --heading-font-size-xl: 52px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 21px;
+    /* heading sizes — mobile-first (full size at >=900px below) */
+    --heading-font-size-xxl: 36px;
+    --heading-font-size-xl: 30px;
+    --heading-font-size-l: 24px;
+    --heading-font-size-m: 20px;
     --heading-font-size-s: 18px;
     --heading-font-size-xs: 16px;
-  }
+
+    /* nav height */
+    --nav-height: 80px;
+}
+
+/* fallback fonts — Arial scaled to Work Sans widths (measured: regular 97.2%,
+   bold 86.9%) and line metrics (ascent 930, descent 243 per 1000) */
+@font-face {
+    font-family: work-sans-fallback;
+    font-weight: 100 599;
+    size-adjust: 97.2%;
+    ascent-override: 95.7%;
+    descent-override: 25%;
+    line-gap-override: 0%;
+    src: local("Arial");
+}
+
+@font-face {
+    font-family: work-sans-fallback;
+    font-weight: 600 900;
+    size-adjust: 86.9%;
+    ascent-override: 107%;
+    descent-override: 28%;
+    line-gap-override: 0%;
+    src: local("Arial Bold"), local("Arial-BoldMT");
+}
+
+@media (width >= 900px) {
+    :root {
+        /* body sizes */
+        --body-font-size-m: 20px;
+        --body-font-size-s: 18px;
+        --body-font-size-xs: 16px;
+
+        /* heading sizes — Merkle uses large 52px / 56px display h1/h2 */
+        --heading-font-size-xxl: 52px;
+        --heading-font-size-xl: 52px;
+        --heading-font-size-l: 28px;
+        --heading-font-size-m: 21px;
+        --heading-font-size-s: 18px;
+        --heading-font-size-xs: 16px;
+    }
 }
 
 body {
-  display: none;
-  margin: 0;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+    display: none;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-m);
+    line-height: 1.6;
 }
 
 body.appear {
-  display: block;
+    display: block;
 }
-
 
 header .header,
 footer .footer {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 header .header[data-block-status="loaded"],
 footer .footer[data-block-status="loaded"] {
-  visibility: visible;
+    visibility: visible;
 }
 
 h1,
@@ -112,12 +111,12 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  line-height: 1.15;
-  scroll-margin: 40px;
+    margin-top: 0.8em;
+    margin-bottom: 0.25em;
+    font-family: var(--heading-font-family);
+    font-weight: 700;
+    line-height: 1.15;
+    scroll-margin: 40px;
 }
 
 /* Merkle uses light-weight (400) large display headings for h1/h2;
@@ -125,16 +124,33 @@ h6 {
    headings also use a tight line-height (~1.08, source: 56px on 52px). */
 h1,
 h2 {
-  font-weight: 400;
-  line-height: 1.08;
+    font-weight: 400;
+    line-height: 1.08;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 {
+    font-size: var(--heading-font-size-xxl);
+}
+
+h2 {
+    font-size: var(--heading-font-size-xl);
+}
+
+h3 {
+    font-size: var(--heading-font-size-l);
+}
+
+h4 {
+    font-size: var(--heading-font-size-m);
+}
+
+h5 {
+    font-size: var(--heading-font-size-s);
+}
+
+h6 {
+    font-size: var(--heading-font-size-xs);
+}
 
 p,
 dl,
@@ -142,92 +158,92 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+    margin-top: 0.8em;
+    margin-bottom: 0.25em;
 }
 
 code,
 pre {
-  font-size: var(--body-font-size-s);
+    font-size: var(--body-font-size-s);
 }
 
 pre {
-  padding: 16px;
-  border-radius: 8px;
-  background-color: var(--light-color);
-  overflow-x: auto;
-  white-space: pre;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: var(--light-color);
+    overflow-x: auto;
+    white-space: pre;
 }
 
 main > div {
-  margin: 40px 16px;
+    margin: 40px 16px;
 }
 
 input,
 textarea,
 select,
 button {
-  font: inherit;
+    font: inherit;
 }
 
 /* links */
 a:any-link {
-  color: var(--link-color);
-  text-decoration: none;
-  overflow-wrap: break-word;
+    color: var(--link-color);
+    text-decoration: none;
+    overflow-wrap: break-word;
 }
 
 a:hover {
-  color: var(--link-hover-color);
-  text-decoration: underline;
+    color: var(--link-hover-color);
+    text-decoration: underline;
 }
 
 /* buttons */
 p.button-wrapper {
-  margin: 12px 0;
+    margin: 12px 0;
 }
 
 a.button:any-link,
 button.button {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  margin: 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font: inherit;
-  font-weight: 500;
-  line-height: 1.25;
-  text-decoration: none;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    margin: 0;
+    border: 2px solid transparent;
+    border-radius: 2.4em;
+    padding: 0.5em 1.2em;
+    font: inherit;
+    font-weight: 500;
+    line-height: 1.25;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 a.button[aria-disabled="true"],
 button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 a.button.primary,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+    border-color: var(--text-color);
+    background-color: var(--text-color);
+    color: var(--background-color);
 }
 
 a.button.primary:hover,
 a.button.primary:focus-visible,
 button.button.primary:hover,
 button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+    border-color: var(--dark-color);
+    background-color: var(--dark-color);
+    color: var(--light-color);
 }
 
 a.button.primary[aria-disabled="true"],
@@ -236,25 +252,25 @@ a.button.primary[aria-disabled="true"]:focus-visible,
 button.button.primary:disabled,
 button.button.primary:disabled:hover,
 button.button.primary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+    background-color: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 a.button.secondary,
 button.button.secondary {
-  border-color: var(--text-color);
-  background-color: transparent;
-  color: var(--text-color);
+    border-color: var(--text-color);
+    background-color: transparent;
+    color: var(--text-color);
 }
 
 a.button.secondary:hover,
 a.button.secondary:focus-visible,
 button.button.secondary:hover,
 button.button.secondary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--light-color);
-  color: var(--dark-color);
+    border-color: var(--dark-color);
+    background-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 a.button.secondary[aria-disabled="true"],
@@ -263,25 +279,25 @@ a.button.secondary[aria-disabled="true"]:focus-visible,
 button.button.secondary:disabled,
 button.button.secondary:disabled:hover,
 button.button.secondary:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+    background-color: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 /* high-impact call-to-action */
 a.button.accent,
 button.button.accent {
-  border-color: var(--link-color);
-  background-color: var(--link-color);
-  color: var(--background-color);
+    border-color: var(--link-color);
+    background-color: var(--link-color);
+    color: var(--background-color);
 }
 
 a.button.accent:hover,
 a.button.accent:focus-visible,
 button.button.accent:hover,
 button.button.accent:focus-visible {
-  border-color: var(--link-hover-color);
-  background-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
+    background-color: var(--link-hover-color);
 }
 
 a.button.accent[aria-disabled="true"],
@@ -290,41 +306,45 @@ a.button.accent[aria-disabled="true"]:focus-visible,
 button.button.accent:disabled,
 button.button.accent:disabled:hover,
 button.button.accent:disabled:focus-visible {
-  background-color: var(--light-color);
-  border-color: var(--light-color);
-  color: var(--dark-color);
+    background-color: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--dark-color);
 }
 
 main img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
+    max-width: 100%;
+    width: auto;
+    height: auto;
 }
 
 .icon {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
 }
 
 .icon img {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+    margin: 40px 0;
+}
+
+.card-grid-heading > div {
+  margin-top:40px;
 }
 
 main > .section > div {
-  max-width: 1400px;
-  margin: auto;
-  padding: 0 24px;
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 24px;
 }
 
 main > .section:first-of-type {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 main .carousel-hero-container.cards-featured-container {
@@ -333,50 +353,60 @@ main .carousel-hero-container.cards-featured-container {
 
 /* a plain section opening with text after a coloured band starts lower
    (source: 80–104px from the band to the next heading, 88px on Our Work) */
-main > .section:is(.dark, .navy, .grey, .light, .highlight) + .section:not(.dark, .navy, .grey, .light, .highlight, .rounded):has(> .default-content-wrapper:first-child) {
-  margin-top: 88px;
+main
+    > .section:is(.dark, .navy, .grey, .light, .highlight)
+    + .section:not(.dark, .navy, .grey, .light, .highlight, .rounded):has(
+        > .default-content-wrapper:first-child
+    ) {
+    margin-top: 88px;
 }
 
 /* a coloured band's opening text starts right at its padding (source: the
    first heading of every merkle.com band sits 64px below the band top);
    plain sections keep the heading margin, which gives their top gap */
-main > .section:is(.dark, .navy, .grey, .light, .highlight) > .default-content-wrapper:first-child > :first-child {
-  margin-top: 0;
+main
+    > .section:is(.dark, .navy, .grey, .light, .highlight)
+    > .default-content-wrapper:first-child
+    > :first-child {
+    margin-top: 0;
 }
 
 @media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
+    main > .section > div {
+        padding: 0 32px;
+    }
 
-  main .section.center.cards-icon-container .default-content-wrapper:first-child > p:last-child {
-      margin-bottom: 48px;
-  }
+    main
+        .section.center.cards-icon-container
+        .default-content-wrapper:first-child
+        > p:last-child {
+        margin-bottom: 48px;
+    }
 
-  main .carousel-hero-container.cards-featured-container {
-      margin-bottom: 100px;
-  }
+    main .carousel-hero-container.cards-featured-container {
+        margin-bottom: 100px;
+    }
 
-  main .section.dark.video-centered-container {
-      padding: 0;
-  }
+    main .section.dark.video-centered-container {
+        padding: 0;
+    }
 }
 
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+    background-color: var(--light-color);
+    margin: 0;
+    padding: 40px 0;
 }
 
 /* dark section variant — Merkle uses full-bleed black sections with white text */
 main .section.dark {
-  background-color: var(--dark-color);
-  color: #fff;
-  margin: 0;
-  padding: 64px 0;
-  margin-top: -1px;
+    background-color: var(--dark-color);
+    color: #fff;
+    margin: 0;
+    padding: 64px 0;
+    margin-top: -1px;
 }
 
 main .section.dark h1,
@@ -385,24 +415,24 @@ main .section.dark h3,
 main .section.dark h4,
 main .section.dark h5,
 main .section.dark h6 {
-  color: #fff;
+    color: #fff;
 }
 
 main .section.dark h2 {
-  font-size: 44px;
+    font-size: 44px;
 }
 
 main .section.dark a:any-link {
-  color: #fff;
+    color: #fff;
 }
 
 /* navy section variant — Merkle uses a full-bleed navy panel with white text for
    the site search and article-header sections (source: rgb(4 14 75)). */
 main .section.navy {
-  background-color: rgb(4 14 75);
-  color: #fff;
-  margin: 0;
-  padding: 64px 0;
+    background-color: rgb(4 14 75);
+    color: #fff;
+    margin: 0;
+    padding: 64px 0;
 }
 
 main .section.navy h1,
@@ -411,20 +441,20 @@ main .section.navy h3,
 main .section.navy h4,
 main .section.navy h5,
 main .section.navy h6 {
-  color: #fff;
+    color: #fff;
 }
 
 main .section.navy a:any-link {
-  color: #fff;
+    color: #fff;
 }
 
 /* grey section variant — full-bleed grey band with black text (source: the
    AI Expertise "AI for Customer Experience" band, rgb(214 214 223)). */
 main .section.grey {
-  background-color: rgb(214 214 223);
-  color: #000;
-  margin: 0;
-  padding: 64px 0;
+    background-color: rgb(214 214 223);
+    color: #000;
+    margin: 0;
+    padding: 64px 0;
 }
 
 /* rounded section variant — Section Metadata Style=rounded (e.g. "dark, rounded").
@@ -434,42 +464,44 @@ main .section.grey {
    top of the section keeps a full-width band in the section colour.
    Source: AI Expertise case-study teasers. */
 main .section.rounded {
-  margin: 0;
-  padding: 40px 0;
+    margin: 0;
+    padding: 40px 0;
 }
 
 main .section.rounded:is(.dark, .navy, .grey) {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 main .section.rounded + .section.rounded,
 main .section.rounded:has(> .default-content-wrapper:first-child) {
-  padding-top: 0;
+    padding-top: 0;
 }
 
 @media (width >= 1280px) {
-  .merkle-now-container .default-content-wrapper   {
-    margin: 0 auto;
-    width:600px;
-    padding: 64px 0 48px;
-  }
+    .merkle-now-container .default-content-wrapper {
+        margin: 0 auto;
+        width: 600px;
+        padding: 64px 0 48px;
+    }
 }
 
-main .section.rounded:is(.dark, .navy, .grey) > .default-content-wrapper:first-child {
-  margin-bottom: 40px;
-  padding-top: 64px;
-  padding-bottom: 64px;
-  box-shadow: 0 0 0 100vmax var(--rounded-band-color, #000); /* full-bleed band */
-  clip-path: inset(0 -100vmax);
-  background-color: var(--rounded-band-color, #000);
+main
+    .section.rounded:is(.dark, .navy, .grey)
+    > .default-content-wrapper:first-child {
+    margin-bottom: 40px;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    box-shadow: 0 0 0 100vmax var(--rounded-band-color, #000); /* full-bleed band */
+    clip-path: inset(0 -100vmax);
+    background-color: var(--rounded-band-color, #000);
 }
 
 main .section.rounded.navy > .default-content-wrapper:first-child {
-  --rounded-band-color: rgb(4 14 75);
+    --rounded-band-color: rgb(4 14 75);
 }
 
 main .section.rounded.grey > .default-content-wrapper:first-child {
-  --rounded-band-color: rgb(214 214 223);
+    --rounded-band-color: rgb(214 214 223);
 }
 
 /* center section variant — author-configurable via Section Metadata Style=center.
@@ -477,15 +509,15 @@ main .section.rounded.grey > .default-content-wrapper:first-child {
    the intro text to a readable centered column (matches Merkle intro sections). */
 /* stylelint-disable-next-line no-descending-specificity */
 main .section.center .default-content-wrapper {
-  text-align: center;
+    text-align: center;
 }
 
 main .section.center .default-content-wrapper > p {
-  max-width: 760px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 16px; /* intro copy — source: 21px / 24px */
-  line-height: 24px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px; /* intro copy — source: 21px / 24px */
+    line-height: 24px;
 }
 
 .history-page main .section.center .default-content-wrapper > p {
@@ -495,25 +527,28 @@ main .section.center .default-content-wrapper > p {
 /* stylelint-disable no-descending-specificity */
 main .section.center .default-content-wrapper p:has(> a:only-child),
 main .section.center .default-content-wrapper p:has(> a + a) {
-  justify-content: center;
-  margin-left: auto; /* the CTA rule below resets side margins to 0 */
-  margin-right: auto;
+    justify-content: center;
+    margin-left: auto; /* the CTA rule below resets side margins to 0 */
+    margin-right: auto;
 }
 /* stylelint-enable no-descending-specificity */
 
 /* eyebrow: a short first paragraph directly above a heading in a coloured
    band (e.g. "News & Industry Insights", "Blog Post") — Merkle pretitle style */
-main .section:is(.navy, .dark, .grey) .default-content-wrapper > p:first-child:has(+ :is(h1, h2)) {
-  margin-bottom: 16px;
-  color: rgb(174 174 188);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
-  text-transform: uppercase;
+main
+    .section:is(.navy, .dark, .grey)
+    .default-content-wrapper
+    > p:first-child:has(+ :is(h1, h2)) {
+    margin-bottom: 16px;
+    color: rgb(174 174 188);
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    text-transform: uppercase;
 }
 
 main .section.grey .default-content-wrapper > p:first-child:has(+ :is(h1, h2)) {
-  color: rgb(96 96 125);
+    color: rgb(96 96 125);
 }
 
 /* split section variant — author-configurable via Section Metadata Style=split
@@ -524,97 +559,101 @@ main .section.grey .default-content-wrapper > p:first-child:has(+ :is(h1, h2)) {
    heading, 18/24 text). */
 /* stylelint-disable no-descending-specificity */
 main .section.split .default-content-wrapper {
-  text-align: left;
+    text-align: left;
 }
 
 main .section.split .default-content-wrapper > :is(h1, h2):first-child {
-  margin-top: 0;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 36px;
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
 }
 
 main .section.split .default-content-wrapper > p {
-  max-width: none;
-  margin-left: 0;
-  margin-right: 0;
-  font-size: 18px;
-  line-height: 24px;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 /* space between the split intro and a block that follows it (e.g. stats) */
+.navy.section.cards-grid-container > div  {
+  padding-bottom: 80px !important;
+  padding-top: 16px !important;
+}
+
 main .section.split .default-content-wrapper + div {
-  margin-top: 48px;
+    margin-top: 48px;
 }
 
 main > .section > .cards-icon-wrapper {
-  width: 50%;
-  float: left;
-  margin-left: 0;
-  display: block;
-  clear: none;
-  text-align: left;
-  padding: 0;
+    width: 50%;
+    float: left;
+    margin-left: 0;
+    display: block;
+    clear: none;
+    text-align: left;
+    padding: 0;
 }
 
 main > .section > .cards-icon-wrapper .cards-icon-card-body {
-  padding: 0 20px;
-  box-sizing: border-box;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 @media (width >= 900px) {
-  main .section.split .default-content-wrapper {
-    display: grid;
-    grid-template-columns: minmax(0, 42%) minmax(0, 42%);
-    justify-content: space-between;
-    align-items: start;
-  }
+    main .section.split .default-content-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0, 42%) minmax(0, 42%);
+        justify-content: space-between;
+        align-items: start;
+    }
 
-  main > .section > .cards-icon-wrapper .cards-icon-card-body {
-    padding: 0 30px;
-  }
+    main > .section > .cards-icon-wrapper .cards-icon-card-body {
+        padding: 0 30px;
+    }
 
-  main .section.split .default-content-wrapper > * {
-    grid-column: 2;
-  }
+    main .section.split .default-content-wrapper > * {
+        grid-column: 2;
+    }
 
-  /* the heading fills the left column beside all the text on the right */
-  main .section.split .default-content-wrapper > :is(h1, h2):first-child {
-    grid-column: 1;
-    grid-row: 1 / span 10;
-    font-size: 44px;
-    line-height: 48px;
-  }
+    /* the heading fills the left column beside all the text on the right */
+    main .section.split .default-content-wrapper > :is(h1, h2):first-child {
+        grid-column: 1;
+        grid-row: 1 / span 10;
+        font-size: 44px;
+        line-height: 48px;
+    }
 
-  main .section.split .default-content-wrapper > p:nth-child(2) {
-    margin-top: 0;
-  }
+    main .section.split .default-content-wrapper > p:nth-child(2) {
+        margin-top: 0;
+    }
 
-  main .section.split .default-content-wrapper + div {
-    margin-top: 80px;
-  }
+    main .section.split .default-content-wrapper + div {
+        margin-top: 80px;
+    }
 
-  main .section.center .default-content-wrapper {
-    max-width: 600px;
-  }
+    main .section.center .default-content-wrapper {
+        max-width: 600px;
+    }
 
-  main .section.dark h2 {
-    font-size: 52px;
-  }
+    main .section.dark h2 {
+        font-size: 52px;
+    }
 
-  main .section.center .default-content-wrapper > p {
-    font-size: 21px;
-  }
+    main .section.center .default-content-wrapper > p {
+        font-size: 21px;
+    }
 
-  main > .section > .cards-icon-wrapper {
-    width: 25%;
-    margin-bottom: 80px;
+    main > .section > .cards-icon-wrapper {
+        width: 25%;
+        margin-bottom: 80px;
+    }
 
-  }
-
-  .history-page main .section.center .default-content-wrapper > p {
-      text-align: left;
-  }
+    .history-page main .section.center .default-content-wrapper > p {
+        text-align: left;
+    }
 }
 /* stylelint-enable no-descending-specificity */
 
@@ -625,77 +664,193 @@ main > .section > .cards-icon-wrapper .cards-icon-card-body {
 /* stylelint-disable no-descending-specificity */
 main .section .default-content-wrapper p:has(> a:only-child),
 main .section .default-content-wrapper p:has(> a + a) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin: 24px 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 24px 0 0;
 }
 
 /* base pill (both variants) */
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link,
 main .section .default-content-wrapper p:has(> a + a) > a:any-link {
-  display: inline-block;
-  border-radius: 16px;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: color 0.35s, background-color 0.35s, border-color 0.35s;
-  width: 100%;
+    display: inline-block;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition:
+        color 0.35s,
+        background-color 0.35s,
+        border-color 0.35s;
+    width: 100%;
 }
 
 /* PRIMARY (first link): white pill, black text */
 main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child,
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link {
-  padding: 15px 16px;
-  border: 0;
-  background-color: #fff;
-  color: #000;
+    padding: 15px 16px;
+    border: 0;
+    background-color: #fff;
+    color: #000;
 }
 
-main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child:hover,
-main .section .default-content-wrapper p:has(> a + a) > a:any-link:first-child:focus-visible,
+main
+    .section
+    .default-content-wrapper
+    p:has(> a + a)
+    > a:any-link:first-child:hover,
+main
+    .section
+    .default-content-wrapper
+    p:has(> a + a)
+    > a:any-link:first-child:focus-visible,
 main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:hover,
-main .section .default-content-wrapper p:has(> a:only-child) > a:any-link:focus-visible {
-  background-color: #0328d1;
-  color: #fff;
+main
+    .section
+    .default-content-wrapper
+    p:has(> a:only-child)
+    > a:any-link:focus-visible {
+    background-color: #0328d1;
+    color: #fff;
 }
 
 /* SECONDARY (subsequent links): transparent, red outline, white text */
 main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link,
-main .section.dark .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link {
-  padding: 13px 14px;
-  border: 2px solid var(--brand-accent, #dd3039);
-  background-color: transparent;
-  color: #fff;
+main
+    .section.dark
+    .default-content-wrapper
+    p:has(> a + a)
+    > a:any-link
+    ~ a:any-link {
+    padding: 13px 14px;
+    border: 2px solid var(--brand-accent, #dd3039);
+    background-color: transparent;
+    color: #fff;
 }
 
-main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:hover,
-main .section .default-content-wrapper p:has(> a + a) > a:any-link ~ a:any-link:focus-visible {
-  background-color: var(--brand-accent, #dd3039);
-  border-color: var(--brand-accent, #dd3039);
-  color: #fff;
+main
+    .section
+    .default-content-wrapper
+    p:has(> a + a)
+    > a:any-link
+    ~ a:any-link:hover,
+main
+    .section
+    .default-content-wrapper
+    p:has(> a + a)
+    > a:any-link
+    ~ a:any-link:focus-visible {
+    background-color: var(--brand-accent, #dd3039);
+    border-color: var(--brand-accent, #dd3039);
+    color: #fff;
 }
 /* stylelint-enable no-descending-specificity */
 
 #our-growing-family {
-  margin: 40px 0;
-  font-size: 44px;
-  width: 497px;
-  font-weight: 700;
+    margin: 40px 0;
+    font-size: 44px;
+    width: 497px;
+    font-weight: 700;
 }
 
 @media (width >= 900px) {
-   main .section .default-content-wrapper p:has(> a + a) > a:any-link,
-  main .section .default-content-wrapper p:has(> a:only-child) > a:any-link{
-    width: fit-content;
+    main .section .default-content-wrapper p:has(> a + a) > a:any-link,
+    main .section .default-content-wrapper p:has(> a:only-child) > a:any-link {
+        width: fit-content;
+    }
+}
+
+@media (width < 1280px) {
+    #our-growing-family {
+        font-size: 32px;
+        width: auto;
+    }
+}
+
+
+
+
+@media (width >= 1280px) {
+.navy.section.cards-grid-container > div  {
+  display: flex;
+  justify-content: space-between;
+  gap:40px;
+  
+}
+
+.card-grid-heading > div > h2{
+margin:64px 0 0;
+padding-bottom: 48px;
+line-height: 56px;
+font-size:52px;
+font-weight:400;
+}
+
+.column-media-heading > div > h3{
+  font-size:44px;
+  line-height: 56px;
+  font-weight: 700;
+}
+
+
+.navy.section.cards-grid-container > div > h2 {
+    font-size: 44px;
+    line-height: 3pc;
+    max-width: 497px;
+    width: 100%;
+    font-weight: 700;
+}
+
+.navy.section.cards-grid-container > div > p { 
+  font-size: 18px;
+  line-height: 24px;
+    max-width: 497px;
+    width: 100%;
+}
+
+}
+
+
+@media (width < 1280px) {
+  .navy.section.cards-grid-container > div  {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap:18px;
+}
+
+
+.navy.section.cards-grid-container > div > h2 {
+    font-size: 32px;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+.navy.section.cards-grid-container > div > p { 
+  font-size: 16px;
+  line-height: 20px;
+}
+
+}
+
+
+
+
+
+@media (width < 1280px) {
+.card-grid-heading > div > h2{
+    font-size:44px;
+   line-height: 40px;
   }
 }
 
 @media (width < 1280px) {
-  #our-growing-family {
-    font-size: 32px;
-    width: auto;
+  .column-media-heading > div > h3{
+    font-size:32px;
+    line-height:40px;
+    font-weight:700;
   }
 }
+
