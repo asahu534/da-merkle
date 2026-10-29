@@ -8,7 +8,7 @@
 .cards .cards-switcher button {
   font: inherit;
   padding: 0.4rem 1rem;
-  border: 1px solid currentColor;
+  border: 1px solid currentcolor;
   border-radius: 999px;
   background: transparent;
   color: inherit;
@@ -41,7 +41,7 @@
   overflow: hidden;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%);
 }
 
 .cards .cards-card-image img {
@@ -93,7 +93,7 @@
   justify-content: center;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .cards.is-list .cards-card {
     flex-direction: column;
   }

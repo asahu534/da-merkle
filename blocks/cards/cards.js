@@ -33,6 +33,21 @@ function buildCard(row) {
   return card;
 }
 
+function setVariant(block, variant) {
+  block.classList.toggle('is-cards', variant === 'cards');
+  block.classList.toggle('is-list', variant === 'list');
+
+  block.querySelectorAll('.cards-switcher button').forEach((button) => {
+    button.setAttribute('aria-pressed', String(button.dataset.variant === variant));
+  });
+
+  try {
+    localStorage.setItem(STORAGE_KEY, variant);
+  } catch (e) {
+    // Storage may be unavailable (private mode, etc.). The switcher still works.
+  }
+}
+
 function buildSwitcher(block) {
   const switcher = document.createElement('div');
   switcher.className = 'cards-switcher';
@@ -54,21 +69,6 @@ function buildSwitcher(block) {
   });
 
   return switcher;
-}
-
-function setVariant(block, variant) {
-  block.classList.toggle('is-cards', variant === 'cards');
-  block.classList.toggle('is-list', variant === 'list');
-
-  block.querySelectorAll('.cards-switcher button').forEach((button) => {
-    button.setAttribute('aria-pressed', String(button.dataset.variant === variant));
-  });
-
-  try {
-    localStorage.setItem(STORAGE_KEY, variant);
-  } catch (e) {
-    // Storage may be unavailable (private mode, etc.). The switcher still works.
-  }
 }
 
 export default function decorate(block) {
