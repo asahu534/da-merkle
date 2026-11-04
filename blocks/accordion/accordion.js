@@ -13,7 +13,7 @@ export default function decorate(block) {
     summary.className = 'accordion-item-label';
     summary.append(...label.childNodes);
 
-    // decorate accordion item body
+    // decorate accordion item  body
     const body = row.children[1];
     body.className = 'accordion-item-body';
 
