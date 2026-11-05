@@ -86,6 +86,10 @@ export default async function decorate(block) {
   <path d="M792-120.67 532.67-380q-30 25.33-69.67 39.67Q423.33-326 378.67-326q-108.34 0-183.5-75.17Q120-476.33 120-583.33t75.17-182.17q75.16-75.17 182.83-75.17 107 0 181.83 75.17 74.84 75.17 74.84 182.17 0 43.33-14 83-14 39.66-40.67 73l260 258.66-48 48Zm-414-272q79 0 134.5-55.83T568-583.33q0-79-55.5-134.84Q457-774 378-774q-79.67 0-135.5 55.83-55.83 55.84-55.83 134.84T242.5-448.5q55.83 55.83 135.5 55.83Z"/>
   </svg>`;
 
+  // white header (Theme "header-white", or the Merkle Now page) needs dark icons
+  const lightHeader = document.body.classList.contains('header-white')
+    || document.body.classList.contains('merkle-now-page');
+
   // label the three sections: brand, primary nav, tools
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
@@ -98,17 +102,12 @@ export default async function decorate(block) {
   if (navBrand) {
     const logoImage = navBrand.querySelector('picture');
 
-    const pageName = window.location.pathname
-      .split('/')
-      .filter(Boolean)
-      .pop() || '';
-
     const logoLink = document.createElement('a');
     logoLink.href = '/';
     logoLink.setAttribute('aria-label', 'Merkle Home');
 
-    if (pageName === 'merkle-now') {
-      // Use your custom SVG on Merkle Now page
+    if (lightHeader) {
+      // dark logo on the white header (the authored logo is white)
       logoLink.innerHTML = brandImage;
     } else if (logoImage) {
       // Use the normal authored logo on other pages
@@ -145,11 +144,6 @@ export default async function decorate(block) {
       }
     });
 
-    const pageName = window.location.pathname
-      .split('/')
-      .filter(Boolean)
-      .pop() || '';
-
     // search: make the authored search icon clickable
     const searchBlock = nav.querySelector('.search');
 
@@ -171,8 +165,8 @@ export default async function decorate(block) {
         searchLink.setAttribute('aria-label', 'Search');
         searchLink.className = 'nav-search-link';
 
-        if (pageName === 'merkle-now') {
-          // Use custom inline SVG on Merkle Now
+        if (lightHeader) {
+          // dark inline icon on the white header (the authored icon is white)
           searchLink.innerHTML = searchsvg;
         } else if (searchImage) {
           // Keep existing authored icon on other pages
