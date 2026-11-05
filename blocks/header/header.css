@@ -1,15 +1,38 @@
-/* Merkle header — solid black bar, white text.
-   Mobile-first: base styles are the mobile drawer; min-width media queries enhance desktop. */
+/* Merkle header — full-width colour bar, content centred inside it.
+   Mobile-first: base styles are the mobile drawer; min-width media queries enhance desktop.
 
-/* paint the whole header chrome black so any ancestor sampled is legible */
+   The bar colour is set per page with the page metadata "Theme" (body class):
+     (none)          navy  — most pages (capabilities, AI expertise, search, articles…)
+     header-black    black — home, Our Work
+     header-white    white — Merkle Now
+   The colour is painted on the full-width <header>; the inner nav stays
+   transparent so the two can never differ (no strip beside the nav). */
 header.header-wrapper,
 header .header-wrapper,
 header {
-    background-color: #000;
+    --header-bg: rgb(4 14 75);
+    --header-fg: #fff;
+    --header-menu-bg: #111;
+    --header-menu-fg: #fff;
+
+    background-color: var(--header-bg);
     z-index: 3;
     width: 100%;
     top: 0;
     box-sizing: border-box;
+}
+
+body.header-black header {
+    --header-bg: #000;
+}
+
+/* .merkle-now-page (set from the URL) keeps Merkle Now white until its Theme is set */
+body.header-white header,
+body.merkle-now-page header {
+    --header-bg: #fff;
+    --header-fg: #040e4b;
+    --header-menu-bg: #ececec;
+    --header-menu-fg: #040e4b;
 }
 
 header .nav-wrapper {
@@ -25,9 +48,10 @@ nav {
 
 header nav {
     max-width: 1264px;
+    margin-inline: auto;
     padding: 16px 30px;
-    background-color: #000;
-    color: #fff;
+    background-color: transparent;
+    color: var(--header-fg);
 }
 
 header nav p {
@@ -36,7 +60,7 @@ header nav p {
 }
 
 header nav a:any-link {
-    color: #fff;
+    color: var(--header-fg);
     text-decoration: none;
 }
 
@@ -69,7 +93,7 @@ header nav .nav-sections > ul > li >p > a:focus-visible::before {
 
 /* stylelint-disable-next-line no-descending-specificity */
 header nav a:hover {
-    color: #fff;
+    color: var(--header-fg);
     text-decoration: none;
 }
 
@@ -274,7 +298,7 @@ header nav .nav-lang-toggle {
     padding: 0;
     margin: 0;
     font: inherit;
-    color: #fff;
+    color: var(--header-fg);
     text-transform: uppercase;
     cursor: pointer;
     font-size: 18px;
@@ -289,8 +313,8 @@ header nav .nav-lang-toggle::after {
     content: "";
     width: 7px;
     height: 7px;
-    border-right: 2px solid #fff;
-    border-bottom: 2px solid #fff;
+    border-right: 2px solid currentcolor;
+    border-bottom: 2px solid currentcolor;
     transform: rotate(45deg);
     margin-top: -4px;
 }
@@ -316,6 +340,10 @@ header nav .nav-lang li {
     padding: 6px 0;
 }
 
+header nav .nav-lang li a:any-link {
+    color: var(--header-menu-fg);
+}
+
 /* Contact Us — static white pill (source shows no hover change) */
 
 /* Contact CTA */
@@ -330,7 +358,7 @@ header nav .nav-cta {
     border: 2px solid #dd3039;
     border-radius: 16px;
     background-color: transparent;
-    color: #fff;
+    color: var(--header-fg);
     font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
@@ -482,7 +510,7 @@ header nav .nav-cta:hover {
         right: 0;
         min-width: 160px;
         padding: 8px 12px;
-        background: #111;
+        background: var(--header-menu-bg);
         box-shadow: 0 8px 24px rgb(0 0 0 / 40%);
         z-index: 4;
     }
@@ -507,7 +535,6 @@ header nav .nav-cta:hover {
         column-gap: 16px;
         max-width: 100%;
         padding: 16px 30px;
-        background-color: #000;
     }
 
     /* =========================
@@ -652,6 +679,16 @@ header nav .nav-cta:hover {
         text-transform: uppercase;
     }
 
+    /* the drawer stays black, so its links and the close (X) icon are always white */
+    /* stylelint-disable-next-line no-descending-specificity */
+    header nav .nav-sections a:any-link {
+        color: #fff;
+    }
+
+    header nav[aria-expanded="true"] .nav-hamburger {
+        color: #fff;
+    }
+
     /* =========================
      CONTACT IN DRAWER
      ========================= */
@@ -687,64 +724,11 @@ header nav .nav-cta:hover {
 
 }
 
-
-.merkle-now-page header nav {
-    background-color: #fff !important;
-}
-
-.merkle-now-page header nav > .nav-tools > p >a {
-    color:#040e4b;
-}
-
-
-@media (width >= 1280px) {
-  .merkle-now-page header nav .nav-sections > ul > li > p > a {
-    color: #040e4b !important;
-  }
-}
-
-@media (width < 1280px) {
-  .merkle-now-page header nav.panel-close .nav-sections > ul > li > p > a {
-    color: #040e4b !important;
-  }
-
-  /* Merkle Now - mobile open */
-  .merkle-now-page header nav.panel-open .nav-sections > ul > li > p > a {
-    color: #fff !important;
-  }
-}
-
-
-
-.merkle-now-page header nav > .nav-tools > .nav-lang-wrap > button {
-    color:#040e4b;
-}
-
-.merkle-now-page header nav > .nav-tools > .search > a > svg {
-    color:#040e4b;
+/* inline search icon used on the white header (see header.js) */
+header nav .nav-search-link svg {
     width: 24px;
     height: 24px;
+    margin-top: 8px;
+    fill: currentcolor;
     cursor: pointer;
-    margin-top:8px;
-}
-
-.merkle-now-page header nav > .nav-tools > .nav-lang-wrap > .nav-lang-toggle::after {
-    border-color: #040e4b;
-}
-
-.merkle-now-page header nav > .nav-tools > .nav-lang-wrap .nav-lang {
-    background-color: #ececec;
-}
-
-.merkle-now-page header nav > .nav-tools > .nav-lang-wrap .nav-lang li a {
-  color: #040e4b;
-}
-
-.merkle-now-page header nav .nav-hamburger {
-  color: #040e4b;
-}
-
- /* Merkle Now - cross when menu is open */
-.merkle-now-page header nav[aria-expanded="true"] .nav-hamburger {
-  color: #fff;
 }
